@@ -31,8 +31,6 @@ int main(void) {
     printf("///                                                                            ///\n");
     printf("///                        PS.: LETTERS ONLY                                   ///\n");  
     printf("///                                                                            ///\n");
-	printf("///                                                                            ///\n");
-	printf("///                                                                            ///\n");
     printf("///                                                                            ///\n");
 	printf("/// | /////////// | /////////// | /////////// | /////////// | /////////// | ////////\n");
     printf("////////////////////////////////////////////////////////////////////////////////////\n");
@@ -66,8 +64,6 @@ void about(){
     printf("///                 Center for Higher Education of the Seridó               ///\n");
     printf("///               Department of Computation and Technology                  ///\n");
     printf("///                  Discipline DCT1106 -- Programming                      ///\n");
-    printf("///                                                                         ///\n");
-    printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
