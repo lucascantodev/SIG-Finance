@@ -5,8 +5,9 @@
 
 int main(void) { 
     cls;
-	printf("\n");
     welcome();
+    team();
+    about();
     printf("\n");
 	printf("///////////////////////////////////////////////////////////////////////////////////\n");
 	printf("///////////////////////////////////////////////////////////////////////////////////\n");
@@ -38,7 +39,9 @@ int main(void) {
 }
 
 void welcome(){
+    printf("\n");
 	printf("          __          __       _                                 _ \n          \\ \\        / /      | |                               | |\n           \\ \\  /\\  / /   ___ | |  ___   ___   _ __ ___    ___  | |\n            \\ \\/  \\/ /   / _ \\| | / __| / _ \\ | '_ ` _ \\  / _ \\ | |\n             \\  /\\  /   |  __/| || (__ | (_) || | | | | ||  __/ |_|\n              \\/  \\/     \\___||_| \\___| \\___/ |_| |_| |_| \\___| (_)\n");
+    printf("\n");
 }
 
 void team(){
@@ -60,8 +63,8 @@ void about(){
 	printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
-    printf("///             Federal University of Rio Grande do Norte                   ///\n");
-    printf("///                 Center for Higher Education of the Seridó               ///\n");
+    printf("///               Federal University of Rio Grande do Norte                 ///\n");
+    printf("///                Center for Higher Education of the Seridó                ///\n");
     printf("///               Department of Computation and Technology                  ///\n");
     printf("///                  Discipline DCT1106 -- Programming                      ///\n");
     printf("///                                                                         ///\n");
