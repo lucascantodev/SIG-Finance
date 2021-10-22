@@ -3,7 +3,7 @@
 
 #define cls system("clear||cls");
 
-int main(void) { 
+int main(void) {
     cls;
     printf("\n");
 	printf("///////////////////////////////////////////////////////////////////////////////////\n");
@@ -24,10 +24,12 @@ int main(void) {
 	printf("///           = = = = = = = = = = = = = = = = = = = = = = = =                  ///\n");
 	printf("///         = = = = = = = = =  Start Menu  = = = = = = = = = =                 ///\n");
 	printf("///           = = = = = = = = = = = = = = = = = = = = = = = =                  ///\n");
-	printf("///                                                                            ///\n");
-	printf("///                  FIRST OF ALL, WHAT'S YOUR NAME?                           ///\n");
-    printf("///                                                                            ///\n");
-    printf("///                        PS.: LETTERS ONLY                                   ///\n");  
+	printf("///                 ______________________________                             ///\n");
+	printf("///                |  1. View history             |                            ///\n");
+    printf("///                |  2. Add/Remove a transaction |                            ///\n");
+    printf("///                |  3. Change a transaction     |                            ///\n");
+    printf("///                |  4. Exit                     |                            ///\n");
+    printf("///                |______________________________|                            ///\n");
     printf("///                                                                            ///\n");
     printf("///                                                                            ///\n");
 	printf("/// | /////////// | /////////// | /////////// | /////////// | /////////// | ////////\n");
