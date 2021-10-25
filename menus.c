@@ -9,6 +9,10 @@ void team(void);
 void about(void);
 
 int main(){
+    welcome();
+    mainScreen();
+    team();
+    about();
     return 0;
 }
 
