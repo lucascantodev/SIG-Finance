@@ -33,7 +33,7 @@ void mainScreen(void) {
 	printf("///        |= = = =       household expenses today!         = = = =|           ///\n");
 	printf("///           |= = = = = = = = = = = = = = = = = = = = = = = = =|              ///\n");
 	printf("///          |===================================================|             ///\n");
-	printf("///               Developed by Lucas Canto and Jonathan Maia                  ///\n");
+	printf("///               Developed by Lucas Canto and Jonathan Maia                   ///\n");
   	printf("///                                                                            ///\n");
 	printf("//////////////////////////////////////////////////////////////////////////     ///\n");
 	printf("///                                                                            ///\n");
@@ -91,6 +91,11 @@ void about(){
     printf("\n");
 }
 
+
+void history(){
+
+}
+
 void createTransaction(){
     printf("\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n");
@@ -98,9 +103,37 @@ void createTransaction(){
     printf("///            = = = = = = Register Transaction = = = = = =               ///\n");
     printf("///                                                                       ///\n");
     printf("///           Your name:                                                  ///\n");
-    printf("///           Deposit or Withdraw (D/W):                                  ///\n");
+    printf("///           Deposit or Withdrawal (D/W):                                ///\n");
     printf("///           Value (no signal):                                          ///\n");
     printf("///           Description:                                                ///\n");
+    printf("///                                                                       ///\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+}
+
+void deleteTransaction(){
+    printf("\n");
+    history();
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                       ///\n");
+    printf("///            = = = = = = Delete Transaction = = = = = =                 ///\n");
+    printf("///                                                                       ///\n");
+    printf("///                                                                       ///\n");
+    printf("///           Please enter the transaction ID to remove it:               ///\n");
+    printf("///                                                                       ///\n");
+    printf("///                                                                       ///\n");
+    printf("///                                                                       ///\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                       ///\n");
+    printf("///            = = = = = = Delete Transaction = = = = = =                 ///\n");
+    printf("///                                                                       ///\n");
+    printf("///                                                                       ///\n");
+    printf("///             Transaction (ID X) deleted successfully!                  ///\n");
+    printf("///                                                                       ///\n");
+    printf("///                                                                       ///\n");
     printf("///                                                                       ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
