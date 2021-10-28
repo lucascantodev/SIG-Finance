@@ -109,6 +109,34 @@ void createTransaction(){
     printf("///                                                                       ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+
+    //Deposit
+    printf("\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                       ///\n");
+    printf("///            = = = = = = Register Transaction = = = = = =               ///\n");
+    printf("///                                                                       ///\n");
+    printf("///                 The deposit registration made by XXX                  ///\n");
+    printf("///                       of +R$ XXX was sucessful!                       ///\n");
+    printf("///                                                                       ///\n");
+    printf("///     Description: texttexttexttexttexttexttexttexttexttext.            ///\n");
+    printf("///                                                                       ///\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+
+    //Withdrawal
+    printf("\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                       ///\n");
+    printf("///            = = = = = = Register Transaction = = = = = =               ///\n");
+    printf("///                                                                       ///\n");
+    printf("///                 The withdrawal registration made by XXX               ///\n");
+    printf("///                       of -R$ XXX was sucessful!                       ///\n");
+    printf("///                                                                       ///\n");
+    printf("///     Description: texttexttexttexttexttexttexttexttexttext.            ///\n");
+    printf("///                                                                       ///\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
 }
 
 void deleteTransaction(){
