@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define cls system("clear||cls");
-
 void welcome(void);
 void mainScreen(void);
 void team(void);
@@ -35,7 +33,7 @@ void mainScreen(void) {
 	printf("///        |= = = =       household expenses today!         = = = =|           ///\n");
 	printf("///           |= = = = = = = = = = = = = = = = = = = = = = = = =|              ///\n");
 	printf("///          |===================================================|             ///\n");
-	printf("///               Developed by Lucas Canto and Jonathan Tauan                  ///\n");
+	printf("///               Developed by Lucas Canto and Jonathan Maia                  ///\n");
   	printf("///                                                                            ///\n");
 	printf("//////////////////////////////////////////////////////////////////////////     ///\n");
 	printf("///                                                                            ///\n");
@@ -82,7 +80,7 @@ void about(){
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
-    printf("//  = = = = = SHousehold Finance Control System Project - 2021  = = = = =   ///\n");
+    printf("///  = = = = = Household Finance Control System Project - 2021  = = = = =   ///\n");
     printf("///                                                                         ///\n");
     printf("///    Application developed for the discipline DCT1106 - Programming       ///\n");
     printf("///    The objective of this project is to develop an application that      ///\n");
@@ -90,5 +88,20 @@ void about(){
     printf("///    the lack of control of expenses.                                     ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+}
+
+void createTransaction(){
+    printf("\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                       ///\n");
+    printf("///            = = = = = = Register Transaction = = = = = =               ///\n");
+    printf("///                                                                       ///\n");
+    printf("///           Your name:                                                  ///\n");
+    printf("///           Deposit or Withdraw (D/W):                                  ///\n");
+    printf("///           Value (no signal):                                          ///\n");
+    printf("///           Description:                                                ///\n");
+    printf("///                                                                       ///\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
 }
