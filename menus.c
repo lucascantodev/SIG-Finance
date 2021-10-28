@@ -5,12 +5,16 @@ void welcome(void);
 void mainScreen(void);
 void team(void);
 void about(void);
+void createTransaction(void);
+void deleteTransaction(void);
 
 int main(){
     welcome();
     mainScreen();
     team();
     about();
+    createTransaction();
+    deleteTransaction();
     return 0;
 }
 
