@@ -9,14 +9,19 @@ void about(void);
 
 //CRUD: Transactions
 void createTransaction(void);
+void detailTransaction(void);
+void updateTransaction(void);
 void deleteTransaction(void);
 
 int main(){
     welcome();
-    mainScreen();
     team();
     about();
+    mainScreen();
+
     createTransaction();
+    detailTransaction();
+    updateTransaction();
     deleteTransaction();
     return 0;
 }
@@ -36,13 +41,13 @@ void mainScreen(void) {
 	printf("///////       ||||||||||||||||||||||||||||||||||||||||||||||||||||          //////\n");
 	printf("///          |= = = = = = = = = = = = = = = = = = = = = = = = = =|             ///\n");
 	printf("///         |= = = =           SIG-FINANCE                 = = = =|            ///\n");
-	printf("///        |= = = =        Take control of your             = = = =|           ///\n");
-	printf("///        |= = = =       household expenses today!         = = = =|           ///\n");
+	printf("///        |= = = =         Take control of your            = = = =|           ///\n");
+	printf("///        |= = = =      household expenses today!          = = = =|           ///\n");
 	printf("///           |= = = = = = = = = = = = = = = = = = = = = = = = =|              ///\n");
 	printf("///          |===================================================|             ///\n");
 	printf("///               Developed by Lucas Canto and Jonathan Maia                   ///\n");
   	printf("///                                                                            ///\n");
-	printf("//////////////////////////////////////////////////////////////////////////     ///\n");
+	printf("//////////////////////////////////////////////////////////////////////////////////\n");
 	printf("///                                                                            ///\n");
 	printf("///           = = = = = = = = = = = = = = = = = = = = = = = =                  ///\n");
 	printf("///         = = = = = = = = =  Start Menu  = = = = = = = = = =                 ///\n");
@@ -146,6 +151,7 @@ void createTransaction(){
     printf("\n");
 }
 
+//(readTransaction)
 void detailTransaction(){
     printf("\n");
     history();
