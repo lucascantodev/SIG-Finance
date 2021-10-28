@@ -3,9 +3,9 @@
 
 //screens
 void welcome(void);
-void mainScreen(void);
-void team(void);
 void about(void);
+void team(void);
+void mainScreen(void);
 
 //CRUD: Transactions
 void createTransaction(void);
@@ -15,8 +15,8 @@ void deleteTransaction(void);
 
 int main(){
     welcome();
-    team();
     about();
+    team();
     mainScreen();
 
     createTransaction();
@@ -32,6 +32,42 @@ void welcome(){
     printf("\n");
 }
 
+void about(){
+	printf("\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///               Federal University of Rio Grande do Norte                 ///\n");
+    printf("///                Center for Higher Education of the Seridó               ///\n");
+    printf("///               Department of Computation and Technology                  ///\n");
+    printf("///                  Discipline DCT1106 -- Programming                      ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///  = = = = = Household Finance Control System Project - 2021  = = = = =   ///\n");
+    printf("///                                                                         ///\n");
+    printf("///    Application developed for the discipline DCT1106 - Programming       ///\n");
+    printf("///    The objective of this project is to develop an application that      ///\n");
+    printf("///    monitors the financial flow in a home and avoids                     ///\n");
+    printf("///    the lack of control of expenses.                                     ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+}
+
+void team(){
+	printf("\n");
+	printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///                              Developed by:                              ///\n");
+    printf("///                                                                         ///\n");
+    printf("///             Lucas Canto           &           Jonathan Maia             ///\n");
+    printf("///             @lucascantodev                  @jonathan-tauan             ///\n");
+	printf("///                                                                         ///\n");
+    printf("///        Repository: https://github.com/lucascantodev/SIG-Finance         ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+}
 void mainScreen(void) {
     printf("\n");
 	printf("///////////////////////////////////////////////////////////////////////////////////\n");
@@ -53,56 +89,18 @@ void mainScreen(void) {
 	printf("///         = = = = = = = = =  Start Menu  = = = = = = = = = =                 ///\n");
 	printf("///           = = = = = = = = = = = = = = = = = = = = = = = =                  ///\n");
 	printf("///                 ______________________________                             ///\n");
-	printf("///                |  1. View history             |                            ///\n");
-    printf("///                |  2. Add/Remove a transaction |                            ///\n");
-    printf("///                |  3. Change a transaction     |                            ///\n");
-    printf("///                |  4. Exit                     |                            ///\n");
+    printf("///                |  1. Transaction Module       |                            ///\n");
+    printf("///                |  2. User Module              |                            ///\n");
+    printf("///                |  3. Transaction Type Module  |                            ///\n");
+    printf("///                |  4. About Module             |                            ///\n");    
+    printf("///                |  5. Exit                     |                            ///\n");
     printf("///                |______________________________|                            ///\n");
     printf("///                                                                            ///\n");
     printf("///                                                                            ///\n");
 	printf("/// | /////////// | /////////// | /////////// | /////////// | /////////// | ////////\n");
-    printf("////////////////////////////////////////////////////////////////////////////////////\n");
 	printf("////////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
 }
-
-void team(){
-	printf("\n");
-	printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///                              Developed by:                              ///\n");
-    printf("///                                                                         ///\n");
-    printf("///             Lucas Canto           &           Jonathan Maia             ///\n");
-    printf("///             @lucascantodev                  @jonathan-tauan             ///\n");
-	printf("///                                                                         ///\n");
-    printf("///        Repository: https://github.com/lucascantodev/SIG-Finance         ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
-}
-
-void about(){
-	printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///               Federal University of Rio Grande do Norte                 ///\n");
-    printf("///                Center for Higher Education of the Seridó                ///\n");
-    printf("///               Department of Computation and Technology                  ///\n");
-    printf("///                  Discipline DCT1106 -- Programming                      ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///  = = = = = Household Finance Control System Project - 2021  = = = = =   ///\n");
-    printf("///                                                                         ///\n");
-    printf("///    Application developed for the discipline DCT1106 - Programming       ///\n");
-    printf("///    The objective of this project is to develop an application that      ///\n");
-    printf("///    monitors the financial flow in a home and avoids                     ///\n");
-    printf("///    the lack of control of expenses.                                     ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
-}
-
 
 void history(){
 
