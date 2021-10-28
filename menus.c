@@ -1,10 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//screens
 void welcome(void);
 void mainScreen(void);
 void team(void);
 void about(void);
+
+//CRUD: Transactions
 void createTransaction(void);
 void deleteTransaction(void);
 
@@ -143,6 +146,49 @@ void createTransaction(){
     printf("\n");
 }
 
+void detailTransaction(){
+    printf("\n");
+    history();
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                       ///\n");
+    printf("///            = = = = = = Detail Transaction = = = = = =                 ///\n");
+    printf("///         _________________________________________                     ///\n");
+    printf("///         |  ID: XX                               |                     ///\n");
+    printf("///         |  Name: XXXXX                          |                     ///\n");
+    printf("///         |  Deposit or Withdrawal (D/W): D or W  |                     ///\n");
+    printf("///         |  Value: +R$ XXX or -R$ XXX            |                     ///\n");
+    printf("///         |_______________________________________|                     ///\n");
+    printf("///                                                                       ///\n");
+    printf("///                                                                       ///\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+}
+
+void updateTransaction(){
+    printf("\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                       ///\n");
+    printf("///              = = = = = = Update Transaction = = = = = =               ///\n");
+    printf("///                                                                       ///\n");
+    printf("///           Your name:                                                  ///\n");
+    printf("///           Deposit or Withdrawal (D/W):                                ///\n");
+    printf("///           Value (no signal):                                          ///\n");
+    printf("///           Description:                                                ///\n");
+    printf("///                                                                       ///\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                       ///\n");
+    printf("///              = = = = = = Update Transaction = = = = = =               ///\n");
+    printf("///                                                                       ///\n");
+    printf("///               Transaction ID X was updated successfully !             ///\n");
+    printf("///                                                                       ///\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+
+}
+
 void deleteTransaction(){
     printf("\n");
     history();
@@ -165,24 +211,6 @@ void deleteTransaction(){
     printf("///                                                                       ///\n");
     printf("///             Transaction (ID X) deleted successfully!                  ///\n");
     printf("///                                                                       ///\n");
-    printf("///                                                                       ///\n");
-    printf("///                                                                       ///\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
-}
-
-void detailTransaction(){
-    printf("\n");
-    history();
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                       ///\n");
-    printf("///            = = = = = = Detail Transaction = = = = = =                 ///\n");
-    printf("///         _________________________________________                     ///\n");
-    printf("///         |  ID: XX                               |                     ///\n");
-    printf("///         |  Name: XXXXX                          |                     ///\n");
-    printf("///         |  Deposit or Withdrawal (D/W): D or W  |                     ///\n");
-    printf("///         |  Value: +R$ XXX or -R$ XXX            |                     ///\n");
-    printf("///         |_______________________________________|                     ///\n");
     printf("///                                                                       ///\n");
     printf("///                                                                       ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n");
