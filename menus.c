@@ -105,6 +105,24 @@ void mainScreen(void) {
 void history(){
 
 }
+void transactionMenu(void) {
+    printf("\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                       ///\n");
+    printf("///               = = = = = = = = = = = = = = = = = = = =                 ///\n");
+    printf("///           = = = = = = = =  Transaction Menu = = = = = = =             ///\n");
+    printf("///               = = = = = = = = = = = = = = = = = = = =                 ///\n");
+    printf("///                                                                       ///\n");
+    printf("///              1. Register new transaction                              ///\n");
+    printf("///              2. Transactions list                                     ///\n");
+    printf("///              3. Detail transaction                                    ///\n");
+    printf("///              4. Update transaction                                    ///\n");
+    printf("///              5. Delete transaction                                    ///\n");
+    printf("///              0. Back to main menu                                     ///\n");
+    printf("///                                                                       ///\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+}
 
 void createTransaction(){
     printf("\n");
