@@ -102,10 +102,8 @@ void mainScreen(void) {
     printf("\n");
 }
 
-void history(){
 
-}
-void transactionMenu(void) {
+void transactionMenu() {
     printf("\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                       ///\n");
@@ -124,6 +122,7 @@ void transactionMenu(void) {
     printf("\n");
 }
 
+//(create)
 void createTransaction(){
     printf("\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n");
@@ -167,7 +166,13 @@ void createTransaction(){
     printf("\n");
 }
 
-//(readTransaction)
+//(read)
+void transactionList(){
+    printf("========== Trasaction List ==========");
+    //TODO: loop to show each transaction
+}
+
+//(readByID)
 void detailTransaction(){
     printf("\n");
     history();
@@ -186,6 +191,7 @@ void detailTransaction(){
     printf("\n");
 }
 
+//(update)
 void updateTransaction(){
     printf("\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n");
@@ -211,6 +217,7 @@ void updateTransaction(){
 
 }
 
+//(delete)
 void deleteTransaction(){
     printf("\n");
     history();
