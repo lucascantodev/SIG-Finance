@@ -179,7 +179,7 @@ void transactionList(){
 //(readByID)
 void detailTransaction(){
     printf("\n");
-    history();
+    transactionList();
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                       ///\n");
     printf("///            = = = = = = Detail Transaction = = = = = =                 ///\n");
@@ -224,7 +224,7 @@ void updateTransaction(){
 //(delete)
 void deleteTransaction(){
     printf("\n");
-    history();
+    transactionList();
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                       ///\n");
     printf("///            = = = = = = Delete Transaction = = = = = =                 ///\n");
