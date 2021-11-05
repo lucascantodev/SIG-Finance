@@ -115,6 +115,9 @@ void mainScreen(void) {
 
 
 void transactionMenu() {
+
+    char op;
+
     printf("\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                       ///\n");
@@ -130,6 +133,10 @@ void transactionMenu() {
     printf("///              0. Back to main menu                                     ///\n");
     printf("///                                                                       ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+    printf("\t\t\tChoose an option: ");
+    scanf("%c", &op);
+    getchar();
     printf("\n");
 }
 
@@ -147,6 +154,7 @@ void createTransaction(){
     printf("///                                                                       ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+
 
     //Deposit
     printf("\n");
@@ -257,4 +265,5 @@ void deleteTransaction(){
     printf("///                                                                       ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+
 }
