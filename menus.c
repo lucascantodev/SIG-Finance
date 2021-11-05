@@ -115,6 +115,9 @@ void mainScreen(void) {
 
 
 void transactionMenu() {
+
+    char op;
+
     printf("\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                       ///\n");
@@ -131,19 +134,37 @@ void transactionMenu() {
     printf("///                                                                       ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+    printf("\t\t\tChoose an option: ");
+    scanf("%c", &op);
+    getchar();
+    printf("\n");
 }
 
 //(create)
 void createTransaction(){
+
+    char name [51];
+    char DW;
+    float value [8];
+    char description [11];
+
     printf("\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                       ///\n");
     printf("///            = = = = = = Register Transaction = = = = = =               ///\n");
     printf("///                                                                       ///\n");
     printf("///           Your name:                                                  ///\n");
+    scanf("%c", &name);
+    getchar();
     printf("///           Deposit or Withdrawal (D/W):                                ///\n");
+    scanf("%c", &DW);
+    getchar();
     printf("///           Value (no signal):                                          ///\n");
+    scanf("%f", &value);
+    getfloat();
     printf("///           Description:                                                ///\n");
+    scanf("%c", &description);
+    getchar();
     printf("///                                                                       ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
@@ -239,6 +260,9 @@ void updateTransaction(){
 
 //(delete)
 void deleteTransaction(){
+
+    char ID;
+
     printf("\n");
     transactionList();
     printf("/////////////////////////////////////////////////////////////////////////////\n");
@@ -252,6 +276,10 @@ void deleteTransaction(){
     printf("///                                                                       ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+    printf("\t\t\tChoose an option: ");
+    scanf("%c", &ID);
+    getchar();
+    printf("\n");
 
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                       ///\n");
@@ -264,4 +292,5 @@ void deleteTransaction(){
     printf("///                                                                       ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+
 }
