@@ -172,7 +172,9 @@ void createTransaction(){
 
 //(read)
 void transactionList(){
-    printf("========== Trasaction List ==========");
+    printf("\n");
+    printf("\t\t========== Trasaction List ==========");
+    printf("\n");
     //TODO: loop to show each transaction
 }
 
