@@ -187,8 +187,14 @@ void transactionList(){
 
 //(readByID)
 void detailTransaction(){
+    char op;
+
     printf("\n");
     transactionList();
+
+    printf("Which transaction ID you want to see detailed :");
+    scanf("%c", &op);
+    getchar();
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                       ///\n");
     printf("///            = = = = = = Detail Transaction = = = = = =                 ///\n");
@@ -197,6 +203,7 @@ void detailTransaction(){
     printf("///         |  Name: XXXXX                          |                     ///\n");
     printf("///         |  Deposit or Withdrawal (D/W): D or W  |                     ///\n");
     printf("///         |  Value: +R$ XXX or -R$ XXX            |                     ///\n");
+    printf("///         |  Description: texttexttexttextte      |                     ///\n");
     printf("///         |_______________________________________|                     ///\n");
     printf("///                                                                       ///\n");
     printf("///                                                                       ///\n");
