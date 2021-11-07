@@ -74,7 +74,6 @@ void team(){
 }
 
 void mainScreen(void) {
-    
     char op;
 
     printf("\n");
@@ -114,7 +113,6 @@ void mainScreen(void) {
 
 //transaction module
 void transactionMenu() {
-
     char op;
 
     printf("\n");
@@ -141,7 +139,6 @@ void transactionMenu() {
 
 //(create)
 void createTransaction(){
-
     char name[31];
     char DW;
     float value;
@@ -211,7 +208,6 @@ void transactionList(){
 void detailTransaction(){
     char id;
 
-    transactionList();
     printf("\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                       ///\n");
@@ -222,7 +218,6 @@ void detailTransaction(){
     printf("Which transaction ID you want to see detailed: ");
     scanf("%c", &id);
     getchar();
-
     printf("\n");
 
     // printf("/////////////////////////////////////////////////////////////////////////////\n");
@@ -243,15 +238,28 @@ void detailTransaction(){
 
 //(update)
 void updateTransaction(){
+    char name[31];
+    char DW;
+    float value;
+    char description[101];
+
     printf("\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                       ///\n");
     printf("///              = = = = = = Update Transaction = = = = = =               ///\n");
     printf("///                                                                       ///\n");
     printf("///           Your name:                                                  ///\n");
+    scanf("%[A-ZÁÉÍÓÚÂÊÔÇÃÕ a-záéíóúâêôçãõ]", name); //adapted from @flgorgonio
+    getchar();
     printf("///           Deposit or Withdrawal (D/W):                                ///\n");
+    scanf("%c", &DW);
+    getchar();
     printf("///           Value (no signal):                                          ///\n");
+    scanf("%f", &value);
+    getchar();
     printf("///           Description:                                                ///\n");
+    scanf("%s", description);
+    getchar();
     printf("///                                                                       ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
@@ -269,11 +277,8 @@ void updateTransaction(){
 
 //(delete)
 void deleteTransaction(){
-
     char id;
 
-    printf("\n");
-    transactionList();
     printf("\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                       ///\n");
