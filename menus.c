@@ -79,7 +79,6 @@ void mainScreen(void) {
 
     printf("\n");
 	printf("///////////////////////////////////////////////////////////////////////////////////\n");
-	printf("///////////////////////////////////////////////////////////////////////////////////\n");
 	printf("/// | /////////// | /////////// | /////////// | /////////// | /////////// | ///////\n");
 	printf("///           ||||||===========|=============|==============||||||             ///\n");
 	printf("///////       ||||||||||||||||||||||||||||||||||||||||||||||||||||          //////\n");
@@ -113,7 +112,7 @@ void mainScreen(void) {
     printf("\n");
 }
 
-
+//transaction module
 void transactionMenu() {
 
     char op;
@@ -143,10 +142,10 @@ void transactionMenu() {
 //(create)
 void createTransaction(){
 
-    char name [51];
+    char name[31];
     char DW;
-    float value [8];
-    char description [11];
+    float value;
+    char description[101];
 
     printf("\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n");
@@ -154,48 +153,48 @@ void createTransaction(){
     printf("///            = = = = = = Register Transaction = = = = = =               ///\n");
     printf("///                                                                       ///\n");
     printf("///           Your name:                                                  ///\n");
-    scanf("%c", &name);
+    scanf("%[A-ZÁÉÍÓÚÂÊÔÇÃÕ a-záéíóúâêôçãõ]", name); //adapted from @flgorgonio
     getchar();
     printf("///           Deposit or Withdrawal (D/W):                                ///\n");
     scanf("%c", &DW);
     getchar();
     printf("///           Value (no signal):                                          ///\n");
     scanf("%f", &value);
-    getfloat();
+    getchar();
     printf("///           Description:                                                ///\n");
-    scanf("%c", &description);
+    scanf("%s", description);
     getchar();
     printf("///                                                                       ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
 
     //Deposit
-    printf("\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                       ///\n");
-    printf("///            = = = = = = Register Transaction = = = = = =               ///\n");
-    printf("///                                                                       ///\n");
-    printf("///                 The deposit registration made by XXX                  ///\n");
-    printf("///                       of +R$ XXX was sucessful!                       ///\n");
-    printf("///                                                                       ///\n");
-    printf("///     Description: texttexttexttexttexttexttexttexttexttext.            ///\n");
-    printf("///                                                                       ///\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
+    // printf("\n");
+    // printf("/////////////////////////////////////////////////////////////////////////////\n");
+    // printf("///                                                                       ///\n");
+    // printf("///            = = = = = = Register Transaction = = = = = =               ///\n");
+    // printf("///                                                                       ///\n");
+    // printf("///                 The deposit registration made by XXX                  ///\n");
+    // printf("///                       of +R$ XXX was sucessful!                       ///\n");
+    // printf("///                                                                       ///\n");
+    // printf("///     Description: texttexttexttexttexttexttexttexttexttext.            ///\n");
+    // printf("///                                                                       ///\n");
+    // printf("/////////////////////////////////////////////////////////////////////////////\n");
+    // printf("\n");
 
-    //Withdrawal
-    printf("\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                       ///\n");
-    printf("///            = = = = = = Register Transaction = = = = = =               ///\n");
-    printf("///                                                                       ///\n");
-    printf("///                 The withdrawal registration made by XXX               ///\n");
-    printf("///                       of -R$ XXX was sucessful!                       ///\n");
-    printf("///                                                                       ///\n");
-    printf("///     Description: texttexttexttexttexttexttexttexttexttext.            ///\n");
-    printf("///                                                                       ///\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
+    // //Withdrawal
+    // printf("\n");
+    // printf("/////////////////////////////////////////////////////////////////////////////\n");
+    // printf("///                                                                       ///\n");
+    // printf("///            = = = = = = Register Transaction = = = = = =               ///\n");
+    // printf("///                                                                       ///\n");
+    // printf("///                 The withdrawal registration made by XXX               ///\n");
+    // printf("///                       of -R$ XXX was sucessful!                       ///\n");
+    // printf("///                                                                       ///\n");
+    // printf("///     Description: texttexttexttexttexttexttexttexttexttext.            ///\n");
+    // printf("///                                                                       ///\n");
+    // printf("/////////////////////////////////////////////////////////////////////////////\n");
+    // printf("\n");
 }
 
 //(read)
@@ -203,33 +202,43 @@ void transactionList(){
     printf("\n");
     printf("\t\t========== Trasaction List ==========");
     printf("\n");
+    printf("\t\tTODO: loop to show each transaction");
+    printf("\n");
     //TODO: loop to show each transaction
 }
 
 //(readByID)
 void detailTransaction(){
-    char op;
+    char id;
 
-    printf("\n");
     transactionList();
-
-    printf("Which transaction ID you want to see detailed :");
-    scanf("%c", &op);
-    getchar();
+    printf("\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                       ///\n");
     printf("///            = = = = = = Detail Transaction = = = = = =                 ///\n");
-    printf("///         _________________________________________                     ///\n");
-    printf("///         |  ID: XX                               |                     ///\n");
-    printf("///         |  Name: XXXXX                          |                     ///\n");
-    printf("///         |  Deposit or Withdrawal (D/W): D or W  |                     ///\n");
-    printf("///         |  Value: +R$ XXX or -R$ XXX            |                     ///\n");
-    printf("///         |  Description: texttexttexttextte      |                     ///\n");
-    printf("///         |_______________________________________|                     ///\n");
-    printf("///                                                                       ///\n");
     printf("///                                                                       ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+    printf("Which transaction ID you want to see detailed: ");
+    scanf("%c", &id);
+    getchar();
+
+    printf("\n");
+
+    // printf("/////////////////////////////////////////////////////////////////////////////\n");
+    // printf("///                                                                       ///\n");
+    // printf("///            = = = = = = Detail Transaction = = = = = =                 ///\n");
+    // printf("///         _________________________________________                     ///\n");
+    // printf("///         |  ID: XX                               |                     ///\n");
+    // printf("///         |  Name: XXXXX                          |                     ///\n");
+    // printf("///         |  Deposit or Withdrawal (D/W): D or W  |                     ///\n");
+    // printf("///         |  Value: +R$ XXX or -R$ XXX            |                     ///\n");
+    // printf("///         |  Description: texttexttexttextte      |                     ///\n");
+    // printf("///         |_______________________________________|                     ///\n");
+    // printf("///                                                                       ///\n");
+    // printf("///                                                                       ///\n");
+    // printf("/////////////////////////////////////////////////////////////////////////////\n");
+    // printf("\n");
 }
 
 //(update)
@@ -247,50 +256,47 @@ void updateTransaction(){
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
 
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                       ///\n");
-    printf("///              = = = = = = Update Transaction = = = = = =               ///\n");
-    printf("///                                                                       ///\n");
-    printf("///               Transaction ID X was updated successfully !             ///\n");
-    printf("///                                                                       ///\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
+    // printf("/////////////////////////////////////////////////////////////////////////////\n");
+    // printf("///                                                                       ///\n");
+    // printf("///              = = = = = = Update Transaction = = = = = =               ///\n");
+    // printf("///                                                                       ///\n");
+    // printf("///               Transaction ID X was updated successfully !             ///\n");
+    // printf("///                                                                       ///\n");
+    // printf("/////////////////////////////////////////////////////////////////////////////\n");
+    // printf("\n");
 
 }
 
 //(delete)
 void deleteTransaction(){
 
-    char ID;
+    char id;
 
     printf("\n");
     transactionList();
+    printf("\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                       ///\n");
     printf("///            = = = = = = Delete Transaction = = = = = =                 ///\n");
     printf("///                                                                       ///\n");
-    printf("///                                                                       ///\n");
-    printf("///           Please enter the transaction ID to remove it:               ///\n");
-    printf("///                                                                       ///\n");
-    printf("///                                                                       ///\n");
+    printf("///           Please enter the transaction ID to remove it                ///\n");
     printf("///                                                                       ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
-    printf("\t\t\tChoose an option: ");
-    scanf("%c", &ID);
+    printf("Which transaction ID do you want to deleted :");    
+    scanf("%c", &id);
     getchar();
     printf("\n");
 
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                       ///\n");
-    printf("///            = = = = = = Delete Transaction = = = = = =                 ///\n");
-    printf("///                                                                       ///\n");
-    printf("///                                                                       ///\n");
-    printf("///             Transaction (ID X) deleted successfully!                  ///\n");
-    printf("///                                                                       ///\n");
-    printf("///                                                                       ///\n");
-    printf("///                                                                       ///\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
-
+    // printf("/////////////////////////////////////////////////////////////////////////////\n");
+    // printf("///                                                                       ///\n");
+    // printf("///            = = = = = = Delete Transaction = = = = = =                 ///\n");
+    // printf("///                                                                       ///\n");
+    // printf("///                                                                       ///\n");
+    // printf("///             Transaction (ID X) deleted successfully!                  ///\n");
+    // printf("///                                                                       ///\n");
+    // printf("///                                                                       ///\n");
+    // printf("///                                                                       ///\n");
+    // printf("/////////////////////////////////////////////////////////////////////////////\n");
+    // printf("\n");
 }
