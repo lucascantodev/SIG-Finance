@@ -305,3 +305,28 @@ void deleteTransaction(){
     // printf("/////////////////////////////////////////////////////////////////////////////\n");
     // printf("\n");
 }
+
+//type module
+void typeMenu() {
+    char op;
+
+    printf("\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                       ///\n");
+    printf("///               = = = = = = = = = = = = = = = = = = = =                 ///\n");
+    printf("///            = = = = = = Transaction Type Menu = = = = = =              ///\n");
+    printf("///               = = = = = = = = = = = = = = = = = = = =                 ///\n");
+    printf("///                                                                       ///\n");
+    printf("///              1. Create new type                                       ///\n");
+    printf("///              2. Type list                                             ///\n");
+    printf("///              3. Update a type                                         ///\n");
+    printf("///              4. Delete a type                                         ///\n");
+    printf("///              0. Back to main menu                                     ///\n");
+    printf("///                                                                       ///\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+    printf("\t\t\tChoose an option: ");
+    scanf("%c", &op);
+    getchar();
+    printf("\n");
+}
