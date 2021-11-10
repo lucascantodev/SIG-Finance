@@ -15,6 +15,9 @@ void detailTransaction(void);
 void updateTransaction(void);
 void deleteTransaction(void);
 
+//CRUD: Types
+void typeMenu(void);
+
 int main(){
     welcome();
     about();
@@ -27,6 +30,8 @@ int main(){
     detailTransaction();
     updateTransaction();
     deleteTransaction();
+
+    typeMenu();
     return 0;
 }
 
