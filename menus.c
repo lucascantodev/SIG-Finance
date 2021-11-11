@@ -18,6 +18,7 @@ void deleteTransaction(void);
 //CRUD: Types
 void typeMenu(void);
 void createType(void);
+void typeList(void);
 
 int main(){
     welcome();
@@ -34,6 +35,8 @@ int main(){
 
     typeMenu();
     createType();
+    typeList();
+    
     return 0;
 }
 
@@ -338,6 +341,7 @@ void typeMenu() {
     printf("\n");
 }
 
+//(create)
 void createType(){
     char name[21];
 
@@ -352,4 +356,14 @@ void createType(){
     printf("///                                                                       ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+}
+
+//(read)
+void typeList(){
+    printf("\n");
+    printf("\t\t========== Type List ==========");
+    printf("\n");
+    printf("\t\tTODO: loop to show each type");
+    printf("\n");
+    //TODO: loop to show each type
 }
