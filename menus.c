@@ -17,6 +17,8 @@ void deleteTransaction(void);
 
 //CRUD: Types
 void typeMenu(void);
+void createType(void);
+void typeList(void);
 
 int main(){
     welcome();
@@ -32,6 +34,9 @@ int main(){
     deleteTransaction();
 
     typeMenu();
+    createType();
+    typeList();
+    
     return 0;
 }
 
@@ -86,12 +91,12 @@ void mainScreen(void) {
 	printf("/// | /////////// | /////////// | /////////// | /////////// | /////////// | ///////\n");
 	printf("///           ||||||===========|=============|==============||||||             ///\n");
 	printf("///////       ||||||||||||||||||||||||||||||||||||||||||||||||||||          //////\n");
-	printf("///          |= = = = = = = = = = = = = = = = = = = = = = = = = =|             ///\n");
-	printf("///         |= = = =           SIG-FINANCE                 = = = =|            ///\n");
-	printf("///        |= = = =         Take control of your            = = = =|           ///\n");
-	printf("///        |= = = =      household expenses today!          = = = =|           ///\n");
-	printf("///           |= = = = = = = = = = = = = = = = = = = = = = = = =|              ///\n");
-	printf("///          |===================================================|             ///\n");
+	printf("///           |= = = = = = = = = = = = = = = = = = = = = = = = = =|            ///\n");
+	printf("///         |= = = =               SIG-FINANCE               = = = =|          ///\n");
+	printf("///        |= = = =            Take control of your           = = = =|         ///\n");
+	printf("///         |= = = =        Household Expenses Today!        = = = =|          ///\n");
+	printf("///           |= = = = = = = = = = = = = = = = = = = = = = = = = =|            ///\n");
+	printf("///                                                                            ///\n");
 	printf("///               Developed by Lucas Canto and Jonathan Maia                   ///\n");
   	printf("///                                                                            ///\n");
 	printf("//////////////////////////////////////////////////////////////////////////////////\n");
@@ -334,4 +339,31 @@ void typeMenu() {
     scanf("%c", &op);
     getchar();
     printf("\n");
+}
+
+//(create)
+void createType(){
+    char name[21];
+
+    printf("\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                       ///\n");
+    printf("///              = = = = = = = = Create Type = = = = = = = =              ///\n");
+    printf("///                                                                       ///\n");
+    printf("///           Type name:                                                  ///\n");
+    scanf("%[A-ZÁÉÍÓÚÂÊÔÇÃÕ a-záéíóúâêôçãõ]", name); //adapted from @flgorgonio
+    getchar();
+    printf("///                                                                       ///\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+}
+
+//(read)
+void typeList(){
+    printf("\n");
+    printf("\t\t========== Type List ==========");
+    printf("\n");
+    printf("\t\tTODO: loop to show each type");
+    printf("\n");
+    //TODO: loop to show each type
 }
