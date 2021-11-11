@@ -7,6 +7,9 @@ void about(void);
 void team(void);
 void mainScreen(void);
 
+//CRUD: User
+void userMenu(void);
+
 //CRUD: Transactions
 void transactionMenu(void);
 void createTransaction(void);
@@ -25,6 +28,8 @@ int main(){
     about();
     team();
     mainScreen();
+
+    userMenu();
 
     transactionMenu();
     createTransaction();
@@ -121,6 +126,36 @@ void mainScreen(void) {
     printf("\n");
 }
 
+//user module
+void userMenu(){
+    char name[31];
+    char birth_date;
+    int cpf[11];
+
+    printf("\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                       ///\n");
+    printf("///               = = = = = = = = = = = = = = = = = = = =                 ///\n");
+    printf("///           = = = = = = = =   Register User   = = = = = = =             ///\n");
+    printf("///               = = = = = = = = = = = = = = = = = = = =                 ///\n");
+    printf("///                                                                       ///\n");
+    printf("///                         User name:                                    ///\n");
+    scanf("%[A-ZÁÉÍÓÚÂÊÔÇÃÕ a-záéíóúâêôçãõ]", name); //adapted from @flgorgonio
+    getchar();
+    printf("///                                                                       ///\n");
+    printf("///                         User birthday:                                ///\n");
+    scanf("%c", &birth_date);
+    getchar();
+    printf("///                                                                       ///\n");
+    printf("///                         User's CPF:                                   ///\n");
+    scanf("%i", &cpf);
+    printf("///                                                                       ///\n");
+    printf("///                                                                       ///\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+}
+
+
 //transaction module
 void transactionMenu() {
     char op;
@@ -129,7 +164,7 @@ void transactionMenu() {
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                       ///\n");
     printf("///               = = = = = = = = = = = = = = = = = = = =                 ///\n");
-    printf("///           = = = = = = = =  Transaction Menu = = = = = = =             ///\n");
+    printf("///           = = = = = = = = Transaction Menu = = = = = = =              ///\n");
     printf("///               = = = = = = = = = = = = = = = = = = = =                 ///\n");
     printf("///                                                                       ///\n");
     printf("///              1. Register new transaction                              ///\n");
@@ -159,7 +194,7 @@ void createTransaction(){
     printf("///                                                                       ///\n");
     printf("///            = = = = = = Register Transaction = = = = = =               ///\n");
     printf("///                                                                       ///\n");
-    printf("///           Your name:                                                  ///\n");
+    printf("///           User name:                                                  ///\n");
     scanf("%[A-ZÁÉÍÓÚÂÊÔÇÃÕ a-záéíóúâêôçãõ]", name); //adapted from @flgorgonio
     getchar();
     printf("///           Deposit or Withdrawal (D/W):                                ///\n");
