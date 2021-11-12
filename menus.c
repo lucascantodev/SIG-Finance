@@ -139,7 +139,7 @@ void mainScreen(void) {
 void userMenu() {
     char op;
 
-        printf("\n");
+    printf("\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                       ///\n");
     printf("///               = = = = = = = = = = = = = = = = = = = =                 ///\n");
@@ -189,7 +189,7 @@ void createUser() {
     printf("\n");
 }
 
-//read
+//(read)
 void userList() {
     printf("\n");
     printf("\t\t========== User List ==========");
