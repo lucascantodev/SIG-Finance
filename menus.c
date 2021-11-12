@@ -499,10 +499,28 @@ void updateType(){
     printf("///           Enter the ID of the type you want to update:                ///\n");
     scanf("%d",&id)
     getchar();
-    printf("///           Type name:                                                  ///\n");
+    printf("///           New type name:                                                  ///\n");
     scanf("%[A-ZÁÉÍÓÚÂÊÔÇÃÕ a-záéíóúâêôçãõ]", name); //adapted from @flgorgonio
     getchar();
     printf("///                                                                       ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+}
+
+//(delete)
+void deleteType{
+    int id;
+
+    printf("\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                       ///\n");
+    printf("///              = = = = = = = = Delete Type = = = = = = = =              ///\n");
+    printf("///                                                                       ///\n");
+    printf("///           Enter the ID of the type you want to delete:                ///\n");
+    scanf("%d",&id)
+    getchar();
+    printf("///                                                                       ///\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+
 }
