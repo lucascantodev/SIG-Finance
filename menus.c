@@ -26,6 +26,8 @@ void deleteTransaction(void);
 void typeMenu(void);
 void createType(void);
 void typeList(void);
+void updateType(void);
+void deleteType(void);
 
 int main(){
     welcome();
@@ -49,6 +51,8 @@ int main(){
     typeMenu();
     createType();
     typeList();
+    updateType();
+    deleteType();
     
     return 0;
 }
@@ -366,6 +370,7 @@ void detailTransaction(){
 
 //(update)
 void updateTransaction(){
+    int id;
     char name[31];
     char DW;
     float value;
@@ -376,6 +381,9 @@ void updateTransaction(){
     printf("///                                                                       ///\n");
     printf("///              = = = = = = Update Transaction = = = = = =               ///\n");
     printf("///                                                                       ///\n");
+    printf("///           Enter the ID of the transaction you want to update:         ///\n");
+    scanf("%d",&id)
+    getchar();
     printf("///           User name:                                                  ///\n");
     scanf("%[A-ZÁÉÍÓÚÂÊÔÇÃÕ a-záéíóúâêôçãõ]", name); //adapted from @flgorgonio
     getchar();
