@@ -96,7 +96,7 @@ void team(){
     printf("\n");
 }
 
-void mainScreen(void) {
+void mainScreen() {
     char op;
 
     printf("\n");
@@ -334,7 +334,7 @@ void transactionList(){
 
 //(readByID)
 void detailTransaction(){
-    char id;
+    int id;
 
     printf("\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n");
@@ -344,7 +344,7 @@ void detailTransaction(){
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
     printf("Which transaction ID you want to see detailed: ");
-    scanf("%c", &id);
+    scanf("%d", &id);
     getchar();
     printf("\n");
 
@@ -405,7 +405,7 @@ void updateTransaction(){
 
 //(delete)
 void deleteTransaction(){
-    char id;
+    int id;
 
     printf("\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n");
@@ -417,7 +417,7 @@ void deleteTransaction(){
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
     printf("Which transaction ID do you want to be deleted :");    
-    scanf("%c", &id);
+    scanf("%d", &id);
     getchar();
     printf("\n");
 
@@ -484,4 +484,25 @@ void typeList(){
     printf("\t\tTODO: loop to show each type");
     printf("\n");
     //TODO: loop to show each type
+}
+
+//(update)
+void updateType(){
+    int id;
+    char name[21];
+
+    printf("\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                       ///\n");
+    printf("///              = = = = = = = = Update Type = = = = = = = =              ///\n");
+    printf("///                                                                       ///\n");
+    printf("///           Enter the ID of the type you want to update:                ///\n");
+    scanf("%d",&id)
+    getchar();
+    printf("///           Type name:                                                  ///\n");
+    scanf("%[A-ZÁÉÍÓÚÂÊÔÇÃÕ a-záéíóúâêôçãõ]", name); //adapted from @flgorgonio
+    getchar();
+    printf("///                                                                       ///\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
 }
