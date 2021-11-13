@@ -7,13 +7,6 @@ void about(void);
 void team(void);
 void mainScreen(void);
 
-//CRUD: User
-void userMenu(void);
-void createUser(void);
-void userList(void);
-void updateUser(void);
-void deleteUser(void);
-
 //CRUD: Transactions
 void transactionMenu(void);
 void createTransaction(void);
@@ -21,6 +14,13 @@ void transactionList(void);
 void detailTransaction(void);
 void updateTransaction(void);
 void deleteTransaction(void);
+
+//CRUD: User
+void userMenu(void);
+void createUser(void);
+void userList(void);
+void updateUser(void);
+void deleteUser(void);
 
 //CRUD: Types
 void typeMenu(void);
@@ -35,18 +35,18 @@ int main(){
     team();
     mainScreen();
 
-    userMenu();
-    createUser();
-    userList();
-    updateUser();
-    deleteUser();
-
     transactionMenu();
     createTransaction();
     transactionList();
     detailTransaction();
     updateTransaction();
     deleteTransaction();
+
+    userMenu();
+    createUser();
+    userList();
+    updateUser();
+    deleteUser();
 
     typeMenu();
     createType();
@@ -135,110 +135,6 @@ void mainScreen() {
     printf("\n");
     printf("\t\t\tChoose an option: ");
     scanf("%c", &op);
-    getchar();
-    printf("\n");
-}
-
-//user module
-void userMenu() {
-    char op;
-
-    printf("\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                       ///\n");
-    printf("///               = = = = = = = = = = = = = = = = = = = =                 ///\n");
-    printf("///           = = = = = = = =    User Menu    = = = = = = =               ///\n");
-    printf("///               = = = = = = = = = = = = = = = = = = = =                 ///\n");
-    printf("///                                                                       ///\n");
-    printf("///              1. Register new user                                     ///\n");
-    printf("///              2. Users list                                            ///\n");
-    printf("///              3. Update User                                           ///\n");
-    printf("///              4. Delete User                                           ///\n");
-    printf("///              0. Back to main menu                                     ///\n");
-    printf("///                                                                       ///\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
-    printf("\t\t\tChoose an option: ");
-    scanf("%c", &op);
-    getchar();
-    printf("\n");
-}
-
-//(create)
-void createUser() {
-    char name[31];
-    char birth_date;
-    int cpf[11];
-
-    printf("\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                       ///\n");
-    printf("///               = = = = = = = = = = = = = = = = = = = =                 ///\n");
-    printf("///           = = = = = = = =   Register User   = = = = = = =             ///\n");
-    printf("///               = = = = = = = = = = = = = = = = = = = =                 ///\n");
-    printf("///                                                                       ///\n");
-    printf("///                         User name:                                    ///\n");
-    scanf("%[A-ZÁÉÍÓÚÂÊÔÇÃÕ a-záéíóúâêôçãõ]", name); //adapted from @flgorgonio
-    getchar();
-    printf("///                                                                       ///\n");
-    printf("///                         User birthday:                                ///\n");
-    scanf("%c", &birth_date);
-    getchar();
-    printf("///                                                                       ///\n");
-    printf("///                         User's CPF:                                   ///\n");
-    scanf("%d", &cpf);
-    printf("///                                                                       ///\n");
-    printf("///                                                                       ///\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
-}
-
-//(read)
-void userList() {
-    printf("\n");
-    printf("\t\t========== User List ==========");
-    printf("\n");
-    printf("\t\tTODO: loop to show each user");
-    printf("\n");
-    //TODO: loop to show each user
-}
-
-//(update)
-void updateUser() {
-    char birth_date;
-    int cpf[11];
-
-    printf("\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                       ///\n");
-    printf("///              = = = = = = Update User = = = = = =                      ///\n");
-    printf("///                PS.: this will change user's data                      ///\n");
-    printf("///                                                                       ///\n");
-    printf("///           User's birthday:                                            ///\n");
-    scanf("%c", &birth_date);
-    getchar();
-    printf("///           User's CPF:                                                 ///\n");
-    scanf("%d", &cpf);
-    printf("///                                                                       ///\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
-}
-
-//(delete)
-void deleteUser() {
-    int cpf[11];
-
-    printf("\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                       ///\n");
-    printf("///                = = = = = = Delete User = = = = = =                    ///\n");
-    printf("///                                                                       ///\n");
-    printf("///               Please enter the User's CPF to remove it                ///\n");
-    printf("///                                                                       ///\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
-    printf("Which User's CPF do you want to be deleted :");    
-    scanf("%d", &cpf);
     getchar();
     printf("\n");
 }
@@ -350,6 +246,7 @@ void detailTransaction(){
     printf("Which transaction ID you want to see detailed: ");
     scanf("%d", &id);
     getchar();
+    //TODO: Show detailed transaction
     printf("\n");
 
     // printf("/////////////////////////////////////////////////////////////////////////////\n");
@@ -382,7 +279,7 @@ void updateTransaction(){
     printf("///              = = = = = = Update Transaction = = = = = =               ///\n");
     printf("///                                                                       ///\n");
     printf("///           Enter the ID of the transaction you want to update:         ///\n");
-    scanf("%d",&id)
+    scanf("%d",&id);
     getchar();
     printf("///           User name:                                                  ///\n");
     scanf("%[A-ZÁÉÍÓÚÂÊÔÇÃÕ a-záéíóúâêôçãõ]", name); //adapted from @flgorgonio
@@ -440,6 +337,110 @@ void deleteTransaction(){
     // printf("///                                                                       ///\n");
     // printf("/////////////////////////////////////////////////////////////////////////////\n");
     // printf("\n");
+}
+
+//user module
+void userMenu() {
+    char op;
+
+    printf("\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                       ///\n");
+    printf("///               = = = = = = = = = = = = = = = = = = = =                 ///\n");
+    printf("///           = = = = = = = =    User Menu    = = = = = = =               ///\n");
+    printf("///               = = = = = = = = = = = = = = = = = = = =                 ///\n");
+    printf("///                                                                       ///\n");
+    printf("///              1. Register new user                                     ///\n");
+    printf("///              2. Users list                                            ///\n");
+    printf("///              3. Update User                                           ///\n");
+    printf("///              4. Delete User                                           ///\n");
+    printf("///              0. Back to main menu                                     ///\n");
+    printf("///                                                                       ///\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+    printf("\t\t\tChoose an option: ");
+    scanf("%c", &op);
+    getchar();
+    printf("\n");
+}
+
+//(create)
+void createUser() {
+    char name[31];
+    char birth_date;
+    int cpf[11];
+
+    printf("\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                       ///\n");
+    printf("///             = = = = = = =  Register User  = = = = = = =               ///\n");
+    printf("///                                                                       ///\n");
+    printf("///                         User name:                                    ///\n");
+    scanf("%[A-ZÁÉÍÓÚÂÊÔÇÃÕ a-záéíóúâêôçãõ]", name); //adapted from @flgorgonio
+    getchar();
+    printf("///                                                                       ///\n");
+    printf("///                         User birthday:                                ///\n");
+    scanf("%c", &birth_date);
+    getchar();
+    printf("///                                                                       ///\n");
+    printf("///                         User's CPF:                                   ///\n");
+    scanf("%d", &cpf);
+    getchar();
+    printf("///                                                                       ///\n");
+    printf("///                                                                       ///\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+}
+
+//(read)
+void userList() {
+    printf("\n");
+    printf("\t\t========== User List ==========");
+    printf("\n");
+    printf("\t\tTODO: loop to show each user");
+    printf("\n");
+    //TODO: loop to show each user
+}
+
+//(update)
+void updateUser() {
+    char birth_date;
+    int cpf[11];
+
+    printf("\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                       ///\n");
+    printf("///              = = = = = = Update User = = = = = =                      ///\n");
+    printf("///                PS.: this will change user's data                      ///\n");
+    printf("///                                                                       ///\n");
+    printf("///           User's birthday:                                            ///\n");
+    scanf("%c", &birth_date);
+    getchar();
+    printf("///           User's CPF:                                                 ///\n");
+    scanf("%d", &cpf);
+    getchar();
+    printf("///                                                                       ///\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+}
+
+//(delete)
+void deleteUser() {
+    int cpf[11];
+
+    printf("\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                       ///\n");
+    printf("///                = = = = = = Delete User = = = = = =                    ///\n");
+    printf("///                                                                       ///\n");
+    printf("///               Please enter the User's CPF to remove it                ///\n");
+    printf("///                                                                       ///\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+    printf("Which User's CPF do you want to be deleted :");    
+    scanf("%d", &cpf);
+    getchar();
+    printf("\n");
 }
 
 //type module
@@ -505,9 +506,9 @@ void updateType(){
     printf("///              = = = = = = = = Update Type = = = = = = = =              ///\n");
     printf("///                                                                       ///\n");
     printf("///           Enter the ID of the type you want to update:                ///\n");
-    scanf("%d",&id)
+    scanf("%d",&id);
     getchar();
-    printf("///           New type name:                                                  ///\n");
+    printf("///           New type name:                                              ///\n");
     scanf("%[A-ZÁÉÍÓÚÂÊÔÇÃÕ a-záéíóúâêôçãõ]", name); //adapted from @flgorgonio
     getchar();
     printf("///                                                                       ///\n");
@@ -516,7 +517,7 @@ void updateType(){
 }
 
 //(delete)
-void deleteType{
+void deleteType(){
     int id;
 
     printf("\n");
@@ -525,10 +526,9 @@ void deleteType{
     printf("///              = = = = = = = = Delete Type = = = = = = = =              ///\n");
     printf("///                                                                       ///\n");
     printf("///           Enter the ID of the type you want to delete:                ///\n");
-    scanf("%d",&id)
+    scanf("%d",&id);
     getchar();
     printf("///                                                                       ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
-
 }
