@@ -182,7 +182,7 @@ void createUser() {
     getchar();
     printf("///                                                                       ///\n");
     printf("///                         User's CPF:                                   ///\n");
-    scanf("%d", &cpf);
+    scanf("%d", cpf);
     printf("///                                                                       ///\n");
     printf("///                                                                       ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n");
@@ -214,7 +214,7 @@ void updateUser() {
     scanf("%c", &birth_date);
     getchar();
     printf("///           User's CPF:                                                 ///\n");
-    scanf("%d", &cpf);
+    scanf("%d", cpf);
     printf("///                                                                       ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
@@ -234,7 +234,7 @@ void deleteUser() {
     printf("/////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
     printf("Which User's CPF do you want to be deleted :");    
-    scanf("%d", &cpf);
+    scanf("%d", cpf);
     getchar();
     printf("\n");
 }
