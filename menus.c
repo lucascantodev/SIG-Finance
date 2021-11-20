@@ -5,7 +5,7 @@
 void welcome(void);
 void about(void);
 void team(void);
-void mainScreen(void);
+char mainScreen(void);
 
 //CRUD: Transactions
 void transactionMenu(void);
@@ -33,27 +33,40 @@ int main(){
     welcome();
     about();
     team();
-    mainScreen();
 
-    transactionMenu();
-    createTransaction();
-    transactionList();
-    detailTransaction();
-    updateTransaction();
-    deleteTransaction();
+    char op; 
+    do{
+        op = mainScreen();
+        switch (op){
+            case '1':
+                transactionMenu();
+                break;
+            case '2':
+                userMenu();
+                break;
+            case '3':
+                typeMenu();
+                break;
+            case '4':
+                about();
+                team();
+                break;
+            case '0':
+                continue;
+            default:
+                printf("\t\t\t============================\n");
+                printf("\t\t\t====== Invalid option ======\n");
+                printf("\t\t\t============================\n");
+                printf("\n");
+                printf("\t\t\t>>>> Choose a valid option <<<<\n");
+                op = '9';
+        }
+    }while(op == '9');
+    printf("\n");
+    printf("\t\t\t===================================\n");
+    printf("\t\t\t====== The program has ended ======\n");
+    printf("\t\t\t===================================\n");
 
-    userMenu();
-    createUser();
-    userList();
-    updateUser();
-    deleteUser();
-
-    typeMenu();
-    createType();
-    typeList();
-    updateType();
-    deleteType();
-    
     return 0;
 }
 
@@ -83,6 +96,8 @@ void about(){
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+    printf("\t\t\t>>> Press enter to continue <<<");
+    getchar();
 }
 
 void team(){
@@ -98,9 +113,11 @@ void team(){
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+    printf("\t\t\t>>> Press enter to continue <<<\n");
+    getchar();
 }
 
-void mainScreen() {
+char mainScreen() {
     char op;
 
     printf("\n");
@@ -137,6 +154,7 @@ void mainScreen() {
     scanf("%c", &op);
     getchar();
     printf("\n");
+    return op;
 }
 
 //transaction module
