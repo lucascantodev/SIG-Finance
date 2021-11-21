@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 //screens
 void welcome(void);
@@ -8,7 +9,7 @@ void team(void);
 char mainScreen(void);
 
 //CRUD: Transactions
-void transactionMenu(void);
+char transactionMenu(void);
 void createTransaction(void);
 void transactionList(void);
 void detailTransaction(void);
@@ -16,7 +17,7 @@ void updateTransaction(void);
 void deleteTransaction(void);
 
 //CRUD: User
-void userMenu(void);
+char userMenu(void);
 void createUser(void);
 void userList(void);
 void updateUser(void);
@@ -34,9 +35,11 @@ int main(){
     about();
     team();
 
-    char op; 
+    char op;
+    bool isValid = true; 
     do{
         op = mainScreen();
+        isValid = true;
         switch (op){
             case '1':
                 transactionMenu();
@@ -59,9 +62,9 @@ int main(){
                 printf("\t\t\t============================\n");
                 printf("\n");
                 printf("\t\t\t>>>> Choose a valid option <<<<\n");
-                op = '9';
+                isValid = false;
         }
-    }while(op == '9');
+    }while(!isValid);
     printf("\n");
     printf("\t\t\t===================================\n");
     printf("\t\t\t====== The program has ended ======\n");
@@ -158,8 +161,9 @@ char mainScreen() {
 }
 
 //transaction module
-void transactionMenu() {
+char transactionMenu() {
     char op;
+    bool isValid = true;
 
     printf("\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n");
@@ -181,6 +185,41 @@ void transactionMenu() {
     scanf("%c", &op);
     getchar();
     printf("\n");
+
+    do{
+        op = transactionMenu();
+        isValid = true;
+        switch (op){
+            case '1':
+                createTransaction();
+                break;
+            case '2':
+                detailTransaction();
+                break;
+            case '3':
+                updateTransaction();
+                break;
+            case '4':
+                deleteTransaction();
+                break;
+            case '0':
+                mainScreen();
+                continue;
+            default:
+                printf("\t\t\t============================\n");
+                printf("\t\t\t====== Invalid option ======\n");
+                printf("\t\t\t============================\n");
+                printf("\n");
+                printf("\t\t\t>>>> Choose a valid option <<<<\n");
+                isValid = true;
+        }   
+    }while(!isValid);
+    printf("\n");
+    printf("\t\t\t===================================\n");
+    printf("\t\t\t====== The program has ended ======\n");
+    printf("\t\t\t===================================\n");
+
+    return 0;
 }
 
 //(create)
@@ -357,8 +396,9 @@ void deleteTransaction(){
 }
 
 //user module
-void userMenu(){
+char userMenu(){
     char op;
+    bool isValid = true;
 
     printf("\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n");
@@ -379,6 +419,41 @@ void userMenu(){
     scanf("%c", &op);
     getchar();
     printf("\n");
+    
+     do{
+        op = userMenu();
+        isValid = true;
+        switch (op){
+            case '1':
+                createUser();
+                break;
+            case '2':
+                userList();
+                break;
+            case '3':
+                updateUser();
+                break;
+            case '4':
+                deleteUser();
+                break;
+            case '0':
+                mainScreen();
+                continue;
+        default:
+            printf("\t\t\t============================\n");
+            printf("\t\t\t====== Invalid option ======\n");
+            printf("\t\t\t============================\n");
+            printf("\n");
+            printf("\t\t\t>>>> Choose a valid option <<<<\n");
+            isValid = true;
+        }   
+    }while(!isValid);
+    printf("\n");
+    printf("\t\t\t===================================\n");
+    printf("\t\t\t====== The program has ended ======\n");
+    printf("\t\t\t===================================\n");
+
+    return 0;
 }
 
 //(create)
