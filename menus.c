@@ -538,6 +538,7 @@ void deleteUser() {
 //type module
 void typeMenu() {
     char op;
+    bool isValid = true; 
 
     printf("\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n");
@@ -558,6 +559,32 @@ void typeMenu() {
     scanf("%c", &op);
     getchar();
     printf("\n");
+
+    do{
+        switch (op){
+            case '1':
+                createType();
+                break;
+            case '2':
+                typeList();
+                break;
+            case '3':
+                updateType();
+                break;
+            case '4':
+                deleteType();
+                break;
+            case '0':
+                break;
+            default:
+                printf("\t\t\t============================\n");
+                printf("\t\t\t====== Invalid option ======\n");
+                printf("\t\t\t============================\n");
+                printf("\n");
+                printf("\t\t\t>>>> Choose a valid option <<<<\n");
+                isValid = true;
+        }   
+    }while(!isValid);
 }
 
 //(create)
