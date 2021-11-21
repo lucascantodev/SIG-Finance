@@ -59,13 +59,11 @@ int main(){
             default:
                 printf("\t\t\t============================\n");
                 printf("\t\t\t====== Invalid option ======\n");
-                printf("\t\t\t============================\n");
-                printf("\n");
+                printf("\t\t\t============================\n\n");
                 printf("\t\t\t>>>> Choose a valid option <<<<\n");
         }
     }while(isValid);
-    printf("\n");
-    printf("\t\t\t===================================\n");
+    printf("\n\t\t\t===================================\n");
     printf("\t\t\t====== The program has ended ======\n");
     printf("\t\t\t===================================\n");
 
@@ -76,11 +74,12 @@ void welcome(){
     printf("\n");
 	printf("          __          __       _                                 _ \n          \\ \\        / /      | |                               | |\n           \\ \\  /\\  / /   ___ | |  ___   ___   _ __ ___    ___  | |\n            \\ \\/  \\/ /   / _ \\| | / __| / _ \\ | '_ ` _ \\  / _ \\ | |\n             \\  /\\  /   |  __/| || (__ | (_) || | | | | ||  __/ |_|\n              \\/  \\/     \\___||_| \\___| \\___/ |_| |_| |_| \\___| (_)\n");
     printf("\n");
+    printf("\t\t\t>>> Press ENTER to continue <<<");
+    getchar();
 }
 
 void about(){
-	printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///               Federal University of Rio Grande do Norte                 ///\n");
     printf("///                Center for Higher Education of the Seridó               ///\n");
@@ -96,15 +95,13 @@ void about(){
     printf("///    monitors the financial flow in a home and avoids                     ///\n");
     printf("///    the lack of control of expenses.                                     ///\n");
     printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n\n");
     printf("\t\t\t>>> Press ENTER to continue <<<");
     getchar();
 }
 
 void team(){
-	printf("\n");
-	printf("///////////////////////////////////////////////////////////////////////////////\n");
+	printf("\n///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///                              Developed by:                              ///\n");
     printf("///                                                                         ///\n");
@@ -113,8 +110,7 @@ void team(){
 	printf("///                                                                         ///\n");
     printf("///        Repository: https://github.com/lucascantodev/SIG-Finance         ///\n");
     printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n\n");
     printf("\t\t\t>>> Press ENTER to continue <<<\n");
     getchar();
 }
@@ -122,8 +118,7 @@ void team(){
 char mainScreen() {
     char op;
 
-    printf("\n");
-	printf("///////////////////////////////////////////////////////////////////////////////////\n");
+	printf("\n///////////////////////////////////////////////////////////////////////////////////\n");
 	printf("/// | /////////// | /////////// | /////////// | /////////// | /////////// | ///////\n");
 	printf("///           ||||||===========|=============|==============||||||             ///\n");
 	printf("///////       ||||||||||||||||||||||||||||||||||||||||||||||||||||          //////\n");
@@ -150,8 +145,7 @@ char mainScreen() {
     printf("///                                                                            ///\n");
     printf("///                                                                            ///\n");
 	printf("/// | /////////// | /////////// | /////////// | /////////// | /////////// | ////////\n");
-	printf("////////////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
+	printf("////////////////////////////////////////////////////////////////////////////////////\n\n");
     printf("\t\t\tChoose an option: ");
     scanf("%c", &op);
     getchar();
@@ -160,32 +154,31 @@ char mainScreen() {
 }
 
 //transaction module
-char transactionMenu() {
+void transactionMenu() {
     char op;
     bool isValid = true;
 
-    printf("\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                       ///\n");
-    printf("///               = = = = = = = = = = = = = = = = = = = =                 ///\n");
-    printf("///           = = = = = = = = Transaction Menu = = = = = = =              ///\n");
-    printf("///               = = = = = = = = = = = = = = = = = = = =                 ///\n");
-    printf("///                                                                       ///\n");
-    printf("///              1. Register new transaction                              ///\n");
-    printf("///              2. Transactions list                                     ///\n");
-    printf("///              3. Detail transaction                                    ///\n");
-    printf("///              4. Update transaction                                    ///\n");
-    printf("///              5. Delete transaction                                    ///\n");
-    printf("///              0. Back to main menu                                     ///\n");
-    printf("///                                                                       ///\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
-    printf("\t\t\tChoose an option: ");
-    scanf("%c", &op);
-    getchar();
-    printf("\n");
 
     do{
+        printf("\n/////////////////////////////////////////////////////////////////////////////\n");
+        printf("///                                                                       ///\n");
+        printf("///               = = = = = = = = = = = = = = = = = = = =                 ///\n");
+        printf("///           = = = = = = = = Transaction Menu = = = = = = =              ///\n");
+        printf("///               = = = = = = = = = = = = = = = = = = = =                 ///\n");
+        printf("///                                                                       ///\n");
+        printf("///              1. Register new transaction                              ///\n");
+        printf("///              2. Transactions list                                     ///\n");
+        printf("///              3. Detail transaction                                    ///\n");
+        printf("///              4. Update transaction                                    ///\n");
+        printf("///              5. Delete transaction                                    ///\n");
+        printf("///              0. Back to main menu                                     ///\n");
+        printf("///                                                                       ///\n");
+        printf("/////////////////////////////////////////////////////////////////////////////\n\n");
+        printf("\t\t\tChoose an option: ");
+        scanf("%c", &op);
+        getchar();
+        printf("\n");
+
         switch (op){
             case '1':
                 createTransaction();
@@ -208,8 +201,7 @@ char transactionMenu() {
             default:
                 printf("\t\t\t============================\n");
                 printf("\t\t\t====== Invalid option ======\n");
-                printf("\t\t\t============================\n");
-                printf("\n");
+                printf("\t\t\t============================\n\n");
                 printf("\t\t\t>>>> Choose a valid option <<<<\n");
         }   
     }while(isValid);
@@ -222,8 +214,7 @@ void createTransaction(){
     float value;
     char description[101];
 
-    printf("\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n/////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                       ///\n");
     printf("///            = = = = = = Register Transaction = = = = = =               ///\n");
     printf("///                                                                       ///\n");
@@ -240,8 +231,7 @@ void createTransaction(){
     scanf("%s", description);
     getchar();
     printf("///                                                                       ///\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n\n");
 
     //Deposit
     // printf("\n");
@@ -274,11 +264,8 @@ void createTransaction(){
 
 //(read)
 void transactionList(){
-    printf("\n");
-    printf("\t\t========== Transaction List ==========");
-    printf("\n");
-    printf("\t\tTODO: loop to show each transaction");
-    printf("\n");
+    printf("\n\t\t========== Transaction List ==========\n");
+    printf("\t\tTODO: loop to show each transaction\n");
     //TODO: loop to show each transaction
 }
 
@@ -286,13 +273,11 @@ void transactionList(){
 void detailTransaction(){
     int id;
 
-    printf("\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n/////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                       ///\n");
     printf("///            = = = = = = Detail Transaction = = = = = =                 ///\n");
     printf("///                                                                       ///\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n\n");
     printf("Which transaction ID you want to see detailed: ");
     scanf("%d", &id);
     getchar();
@@ -323,8 +308,7 @@ void updateTransaction(){
     float value;
     char description[101];
 
-    printf("\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n/////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                       ///\n");
     printf("///              = = = = = = Update Transaction = = = = = =               ///\n");
     printf("///                                                                       ///\n");
@@ -344,8 +328,7 @@ void updateTransaction(){
     scanf("%s", description);
     getchar();
     printf("///                                                                       ///\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n\n");
 
     // printf("/////////////////////////////////////////////////////////////////////////////\n");
     // printf("///                                                                       ///\n");
@@ -361,15 +344,13 @@ void updateTransaction(){
 void deleteTransaction(){
     int id;
 
-    printf("\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n/////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                       ///\n");
     printf("///            = = = = = = Delete Transaction = = = = = =                 ///\n");
     printf("///                                                                       ///\n");
     printf("///           Please enter the transaction ID to remove it                ///\n");
     printf("///                                                                       ///\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n\n");
     printf("Which transaction ID do you want to be deleted :");    
     scanf("%d", &id);
     getchar();
@@ -389,31 +370,29 @@ void deleteTransaction(){
 }
 
 //user module
-char userMenu(){
+void userMenu(){
     char op;
     bool isValid = true;
 
-    printf("\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                       ///\n");
-    printf("///               = = = = = = = = = = = = = = = = = = = =                 ///\n");
-    printf("///           = = = = = = = =    User Menu    = = = = = = =               ///\n");
-    printf("///               = = = = = = = = = = = = = = = = = = = =                 ///\n");
-    printf("///                                                                       ///\n");
-    printf("///              1. Register new user                                     ///\n");
-    printf("///              2. Users list                                            ///\n");
-    printf("///              3. Update User                                           ///\n");
-    printf("///              4. Delete User                                           ///\n");
-    printf("///              0. Back to main menu                                     ///\n");
-    printf("///                                                                       ///\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
-    printf("\t\t\tChoose an option: ");
-    scanf("%c", &op);
-    getchar();
-    printf("\n");
-    
-     do{
+    do{
+        printf("\n/////////////////////////////////////////////////////////////////////////////\n");
+        printf("///                                                                       ///\n");
+        printf("///               = = = = = = = = = = = = = = = = = = = =                 ///\n");
+        printf("///           = = = = = = = =    User Menu    = = = = = = =               ///\n");
+        printf("///               = = = = = = = = = = = = = = = = = = = =                 ///\n");
+        printf("///                                                                       ///\n");
+        printf("///              1. Register new user                                     ///\n");
+        printf("///              2. Users list                                            ///\n");
+        printf("///              3. Update User                                           ///\n");
+        printf("///              4. Delete User                                           ///\n");
+        printf("///              0. Back to main menu                                     ///\n");
+        printf("///                                                                       ///\n");
+        printf("/////////////////////////////////////////////////////////////////////////////\n\n");
+        printf("\t\t\tChoose an option: ");
+        scanf("%c", &op);
+        getchar();
+        printf("\n");
+
         switch (op){
             case '1':
                 createUser();
@@ -433,8 +412,7 @@ char userMenu(){
         default:
             printf("\t\t\t============================\n");
             printf("\t\t\t====== Invalid option ======\n");
-            printf("\t\t\t============================\n");
-            printf("\n");
+            printf("\t\t\t============================\n\n");
             printf("\t\t\t>>>> Choose a valid option <<<<\n");
         }   
     }while(isValid);
@@ -446,8 +424,7 @@ void createUser() {
     char birth_date;
     int cpf[11];
 
-    printf("\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n/////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                       ///\n");
     printf("///               = = = = = = = = = = = = = = = = = = = =                 ///\n");
     printf("///           = = = = = = = =   Register User   = = = = = = =             ///\n");
@@ -463,19 +440,15 @@ void createUser() {
     printf("///                                                                       ///\n");
     printf("///                         User's CPF:                                   ///\n");
     scanf("%d", cpf);
+    getchar();
     printf("///                                                                       ///\n");
-    printf("///                                                                       ///\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n\n");
 }
 
 //read
 void userList() {
-    printf("\n");
-    printf("\t\t========== User List ==========");
-    printf("\n");
-    printf("\t\tTODO: loop to show each user");
-    printf("\n");
+    printf("\n\t\t========== User List ==========\n");
+    printf("\t\tTODO: loop to show each user\n");
     //TODO: loop to show each user
 }
 
@@ -484,8 +457,7 @@ void updateUser() {
     char birth_date;
     int cpf[11];
 
-    printf("\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n/////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                       ///\n");
     printf("///              = = = = = = Update User = = = = = =                      ///\n");
     printf("///                PS.: this will change user's data                      ///\n");
@@ -495,24 +467,22 @@ void updateUser() {
     getchar();
     printf("///           User's CPF:                                                 ///\n");
     scanf("%d", cpf);
+    getchar();
     printf("///                                                                       ///\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n\n");
 }
 
 //(delete)
 void deleteUser() {
     int cpf[11];
 
-    printf("\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n/////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                       ///\n");
     printf("///                = = = = = = Delete User = = = = = =                    ///\n");
     printf("///                                                                       ///\n");
     printf("///               Please enter the User's CPF to remove it                ///\n");
     printf("///                                                                       ///\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n\n");
     printf("Which User's CPF do you want to be deleted :");    
     scanf("%d", cpf);
     getchar();
@@ -524,27 +494,26 @@ void typeMenu() {
     char op;
     bool isValid = true; 
 
-    printf("\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                       ///\n");
-    printf("///               = = = = = = = = = = = = = = = = = = = =                 ///\n");
-    printf("///            = = = = = = Transaction Type Menu = = = = = =              ///\n");
-    printf("///               = = = = = = = = = = = = = = = = = = = =                 ///\n");
-    printf("///                                                                       ///\n");
-    printf("///              1. Create new type                                       ///\n");
-    printf("///              2. Type list                                             ///\n");
-    printf("///              3. Update a type                                         ///\n");
-    printf("///              4. Delete a type                                         ///\n");
-    printf("///              0. Back to main menu                                     ///\n");
-    printf("///                                                                       ///\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
-    printf("\t\t\tChoose an option: ");
-    scanf("%c", &op);
-    getchar();
-    printf("\n");
 
     do{
+        printf("\n/////////////////////////////////////////////////////////////////////////////\n");
+        printf("///                                                                       ///\n");
+        printf("///               = = = = = = = = = = = = = = = = = = = =                 ///\n");
+        printf("///            = = = = = = Transaction Type Menu = = = = = =              ///\n");
+        printf("///               = = = = = = = = = = = = = = = = = = = =                 ///\n");
+        printf("///                                                                       ///\n");
+        printf("///              1. Create new type                                       ///\n");
+        printf("///              2. Type list                                             ///\n");
+        printf("///              3. Update a type                                         ///\n");
+        printf("///              4. Delete a type                                         ///\n");
+        printf("///              0. Back to main menu                                     ///\n");
+        printf("///                                                                       ///\n");
+        printf("/////////////////////////////////////////////////////////////////////////////\n\n");
+        printf("\t\t\tChoose an option: ");
+        scanf("%c", &op);
+        getchar();
+        printf("\n");
+
         switch (op){
             case '1':
                 createType();
@@ -559,24 +528,23 @@ void typeMenu() {
                 deleteType();
                 break;
             case '0':
+                isValid = false;
                 break;
             default:
                 printf("\t\t\t============================\n");
                 printf("\t\t\t====== Invalid option ======\n");
-                printf("\t\t\t============================\n");
-                printf("\n");
+                printf("\t\t\t============================\n\n");
                 printf("\t\t\t>>>> Choose a valid option <<<<\n");
-                isValid = true;
+                
         }   
-    }while(!isValid);
+    }while(isValid);
 }
 
 //(create)
 void createType(){
     char name[21];
 
-    printf("\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n/////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                       ///\n");
     printf("///              = = = = = = = = Create Type = = = = = = = =              ///\n");
     printf("///                                                                       ///\n");
@@ -584,17 +552,13 @@ void createType(){
     scanf("%[A-ZÁÉÍÓÚÂÊÔÇÃÕ a-záéíóúâêôçãõ]", name); //adapted from @flgorgonio
     getchar();
     printf("///                                                                       ///\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n\n");
 }
 
 //(read)
 void typeList(){
-    printf("\n");
-    printf("\t\t========== Type List ==========");
-    printf("\n");
-    printf("\t\tTODO: loop to show each type");
-    printf("\n");
+    printf("\n\t\t========== Type List ==========\n");
+    printf("\t\tTODO: loop to show each type\n");
     //TODO: loop to show each type
 }
 
@@ -603,8 +567,7 @@ void updateType(){
     int id;
     char name[21];
 
-    printf("\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n/////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                       ///\n");
     printf("///              = = = = = = = = Update Type = = = = = = = =              ///\n");
     printf("///                                                                       ///\n");
@@ -615,16 +578,14 @@ void updateType(){
     scanf("%[A-ZÁÉÍÓÚÂÊÔÇÃÕ a-záéíóúâêôçãõ]", name); //adapted from @flgorgonio
     getchar();
     printf("///                                                                       ///\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n\n");
 }
 
 //(delete)
 void deleteType(){
     int id;
 
-    printf("\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n/////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                       ///\n");
     printf("///              = = = = = = = = Delete Type = = = = = = = =              ///\n");
     printf("///                                                                       ///\n");
@@ -632,6 +593,5 @@ void deleteType(){
     scanf("%d",&id);
     getchar();
     printf("///                                                                       ///\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
+    printf("/////////////////////////////////////////////////////////////////////////////\n\n");
 }
