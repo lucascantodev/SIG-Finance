@@ -9,7 +9,7 @@ void team(void);
 char mainScreen(void);
 
 //CRUD: Transactions
-char transactionMenu(void);
+void transactionMenu(void);
 void createTransaction(void);
 void transactionList(void);
 void detailTransaction(void);
@@ -17,7 +17,7 @@ void updateTransaction(void);
 void deleteTransaction(void);
 
 //CRUD: User
-char userMenu(void);
+void userMenu(void);
 void createUser(void);
 void userList(void);
 void updateUser(void);
@@ -39,7 +39,6 @@ int main(){
     bool isValid = true; 
     do{
         op = mainScreen();
-        isValid = true;
         switch (op){
             case '1':
                 transactionMenu();
@@ -55,16 +54,16 @@ int main(){
                 team();
                 break;
             case '0':
-                continue;
+                isValid = false; 
+                break;
             default:
                 printf("\t\t\t============================\n");
                 printf("\t\t\t====== Invalid option ======\n");
                 printf("\t\t\t============================\n");
                 printf("\n");
                 printf("\t\t\t>>>> Choose a valid option <<<<\n");
-                isValid = false;
         }
-    }while(!isValid);
+    }while(isValid);
     printf("\n");
     printf("\t\t\t===================================\n");
     printf("\t\t\t====== The program has ended ======\n");
@@ -99,7 +98,7 @@ void about(){
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
-    printf("\t\t\t>>> Press enter to continue <<<");
+    printf("\t\t\t>>> Press ENTER to continue <<<");
     getchar();
 }
 
@@ -116,7 +115,7 @@ void team(){
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
-    printf("\t\t\t>>> Press enter to continue <<<\n");
+    printf("\t\t\t>>> Press ENTER to continue <<<\n");
     getchar();
 }
 
@@ -187,39 +186,33 @@ char transactionMenu() {
     printf("\n");
 
     do{
-        op = transactionMenu();
-        isValid = true;
         switch (op){
             case '1':
                 createTransaction();
                 break;
             case '2':
-                detailTransaction();
+                transactionList();
                 break;
             case '3':
-                updateTransaction();
+                detailTransaction();
                 break;
             case '4':
+                updateTransaction();
+                break;
+            case '5':
                 deleteTransaction();
                 break;
             case '0':
-                mainScreen();
-                continue;
+                isValid = false;
+                break;
             default:
                 printf("\t\t\t============================\n");
                 printf("\t\t\t====== Invalid option ======\n");
                 printf("\t\t\t============================\n");
                 printf("\n");
                 printf("\t\t\t>>>> Choose a valid option <<<<\n");
-                isValid = true;
         }   
-    }while(!isValid);
-    printf("\n");
-    printf("\t\t\t===================================\n");
-    printf("\t\t\t====== The program has ended ======\n");
-    printf("\t\t\t===================================\n");
-
-    return 0;
+    }while(isValid);
 }
 
 //(create)
@@ -421,8 +414,6 @@ char userMenu(){
     printf("\n");
     
      do{
-        op = userMenu();
-        isValid = true;
         switch (op){
             case '1':
                 createUser();
@@ -437,23 +428,16 @@ char userMenu(){
                 deleteUser();
                 break;
             case '0':
-                mainScreen();
-                continue;
+                isValid = false;
+                break;
         default:
             printf("\t\t\t============================\n");
             printf("\t\t\t====== Invalid option ======\n");
             printf("\t\t\t============================\n");
             printf("\n");
             printf("\t\t\t>>>> Choose a valid option <<<<\n");
-            isValid = true;
         }   
-    }while(!isValid);
-    printf("\n");
-    printf("\t\t\t===================================\n");
-    printf("\t\t\t====== The program has ended ======\n");
-    printf("\t\t\t===================================\n");
-
-    return 0;
+    }while(isValid);
 }
 
 //(create)
