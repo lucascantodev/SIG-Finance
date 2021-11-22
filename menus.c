@@ -143,7 +143,6 @@ char mainScreen() {
     printf("///                |  0. Exit                     |                            ///\n");
     printf("///                |______________________________|                            ///\n");
     printf("///                                                                            ///\n");
-    printf("///                                                                            ///\n");
 	printf("/// | /////////// | /////////// | /////////// | /////////// | /////////// | ////////\n");
 	printf("////////////////////////////////////////////////////////////////////////////////////\n\n");
     printf("\t\t\tChoose an option: ");
@@ -534,9 +533,9 @@ void typeMenu() {
                 printf("\t\t\t============================\n");
                 printf("\t\t\t====== Invalid option ======\n");
                 printf("\t\t\t============================\n\n");
-                printf("\t\t\t>>>> Choose a valid option <<<<\n");
-                
+                printf("\t\t\t>>>> Choose a valid option <<<<\n");  
         }   
+
     }while(isValid);
 }
 
