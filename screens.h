@@ -9,9 +9,8 @@
 ///                                                                         ///
 ///////////////////////////////////////////////////////////////////////////////
 
-//CRUD: User
-void userMenu(void);
-void createUser(void);
-void userList(void);
-void updateUser(void);
-void deleteUser(void);
+//screens
+void welcome(void);
+void about(void);
+void team(void);
+char mainScreen(void);
