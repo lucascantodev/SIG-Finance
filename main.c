@@ -13,6 +13,7 @@ int main(){
 
     char op;
     bool isValid = true; 
+    
     do{
         op = mainScreen();
         switch (op){
