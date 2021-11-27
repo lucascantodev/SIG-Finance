@@ -10,9 +10,9 @@
 // printf("///                                                                         ///\n");
 // printf("///////////////////////////////////////////////////////////////////////////////\n\n");
 
-//CRUD: User
-void userMenu(void);
-void createUser(void);
-void userList(void);
-void updateUser(void);
-void deleteUser(void);
+//CRUD: Types
+void typeMenu(void);
+void createType(void);
+void typeList(void);
+void updateType(void);
+void deleteType(void);
