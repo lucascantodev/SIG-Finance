@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include "validations.h"
 
 int containsLetter(char* string) {
     for (int i = 0; i < strlen(string); i++) {
