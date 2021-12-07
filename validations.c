@@ -24,7 +24,7 @@ int isSpace(char c)
     return 0;
 }
 
-//Adapted from @flgorgonio
+// Adapted from @flgorgonio
 int isLetter(char c)
 {
     if (c >= 'A' && c <= 'Z')
@@ -38,7 +38,7 @@ int isLetter(char c)
     return 0;
 }
 
-//To be validated, the name must contain some letter and only letters and spaces
+// To be validated, the name must contain some letter and only letters and spaces
 int validateName(char *name)
 {
     if (!containsLetter(name))
@@ -59,10 +59,9 @@ int validateName(char *name)
     return 1;
 }
 
-//Inspired by George Henrique Wurthmann: https://wurthmann.blogspot.com/2012/12/funcao-em-linguagem-c-validador-de-cpf.html#:~:text=Fun%C3%A7%C3%A3o%20em%20C%20para%20validar%20o%20CPF%3A%20H%C3%A1,loop%20que%20faz%20o%20calculo%20do%20segundo%20d%C3%ADgito.
-int validateCPF(int *cpf)
+// Inspired by George Henrique Wurthmann: https://wurthmann.blogspot.com/2012/12/funcao-em-linguagem-c-validador-de-cpf.html#:~:text=Fun%C3%A7%C3%A3o%20em%20C%20para%20validar%20o%20CPF%3A%20H%C3%A1,loop%20que%20faz%20o%20calculo%20do%20segundo%20d%C3%ADgito.
+int validateCPF(char *cpf)
 {
-    char cpf[12];
     int cpfInteger[12];
     int i;
     int sum = 0;
@@ -71,12 +70,8 @@ int validateCPF(int *cpf)
     int digit2;
     int digit2Final;
     int finalValue;
-    
-    printf("Enter the CPF: ");
-    scanf("%s", cpf);
 
-
-    //Using ASCII Table -> char to int
+    // Using ASCII Table -> char to int
     for (i = 0; i < 11; i++)
     {
         cpfInteger[i] = cpf[i] - 48;
@@ -86,8 +81,7 @@ int validateCPF(int *cpf)
         return 0;
     }
 
-
-    //First digit
+    // First digit
     for (i = 0; i < 9; i++)
     {
         sum = sum + cpfInteger[i] * (10 - i);
@@ -102,8 +96,7 @@ int validateCPF(int *cpf)
         digit1 = 11 - digit1Final;
     }
 
-
-    //Second digit
+    // Second digit
     sum = 0;
     for (i = 0; i < 10; i++)
     {
@@ -120,15 +113,13 @@ int validateCPF(int *cpf)
         digit2 = 11 - digit2Final;
     }
 
-
-    //Final validation of both digits
+    // Final validation of both digits
     if ((digit1 == cpfInteger[9]) && (digit2 == cpfInteger[10]))
     {
-        printf("\nCPF validated!\n");
+        return 1;
     }
     else
     {
-        printf("\nCPF invalid!\n");
+        return 0;
     }
-    return 0;
 }

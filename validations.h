@@ -13,4 +13,4 @@ int containsLetter(char* string);
 int isSpace(char c);
 int isLetter(char c);
 int validateName(char* name);
-int validateCPF(char *cpf)
+int validateCPF(char *cpf);
