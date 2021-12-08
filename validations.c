@@ -59,6 +59,29 @@ int validateName(char *name)
     return 1;
 }
 
+// checks if all the digits of the CPF are the same
+int equalsDigitCPF(char *cpf){
+
+    int cpfInteger[11],i;
+
+    //Using ASCII Table -> char to int
+    for (i = 0; i < 11; i++)
+    {
+        cpfInteger[i] = cpf[i] - 48;
+    }
+
+    int first = cpfInteger[0];
+
+    for (i = 0; i < 10; i++)
+    {
+        if (first != cpfInteger[i+1])
+        {
+            return 0;
+        }
+    }
+    return 1;
+}
+
 // Inspired by George Henrique Wurthmann: https://wurthmann.blogspot.com/2012/12/funcao-em-linguagem-c-validador-de-cpf.html#:~:text=Fun%C3%A7%C3%A3o%20em%20C%20para%20validar%20o%20CPF%3A%20H%C3%A1,loop%20que%20faz%20o%20calculo%20do%20segundo%20d%C3%ADgito.
 int validateCPF(char *cpf)
 {
