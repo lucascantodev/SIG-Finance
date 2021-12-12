@@ -145,4 +145,12 @@ int validateCPF(char *cpf)
     {
         return 0;
     }
+
+}
+
+int isDigit(char d){
+    if(d >= '0' && d <= '9'){
+        return 1;
+    }
+    return 0;
 }
