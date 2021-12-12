@@ -24,7 +24,6 @@ int isSpace(char c)
     return 0;
 }
 
-// Adapted from @flgorgonio
 int isLetter(char c)
 {
     if (c >= 'A' && c <= 'Z')
@@ -65,21 +64,9 @@ int validateCPF(char *cpf)
     int cpfInteger[12];
     int i;
     int sum = 0;
-    int digit1;
-    int digit1Final;
-    int digit2;
-    int digit2Final;
+    int digit1, digit1Final;
+    int digit2, digit2Final;
     int finalValue;
-
-    // Using ASCII Table -> char to int
-    for (i = 0; i < 11; i++)
-    {
-        cpfInteger[i] = cpf[i] - 48;
-    }
-    if (strlen(cpf) != 11)
-    {
-        return 0;
-    }
 
     // First digit
     for (i = 0; i < 9; i++)
@@ -122,4 +109,123 @@ int validateCPF(char *cpf)
     {
         return 0;
     }
+}
+
+// Checks if all CPF's digits are the same
+int equalsDigitCPF(char *cpf)
+{
+    int cpfInteger[11];
+    int i;
+
+    // Using ASCII Table -> char to int
+    for (i = 0; i < 11; i++)
+    {
+        cpfInteger[i] = cpf[i] - 48;
+    }
+
+    int first = cpfInteger[0];
+
+    for (i = 0; i < 10; i++)
+    {
+        // If all the CPF's digits are equal, it will return 0
+        if (first != cpfInteger[i + 1])
+        {
+            return 0;
+        }
+        // Otherwise, it will return 1
+    }
+    return 1;
+}
+
+int isDigit(char d)
+{
+    if(d >= '0' && d <= '9'){
+        return 1;
+    }
+    return 0;
+}
+
+int leapYear(int year)
+{
+    // If the year is divided by 4 and the result is exact it is a leap year
+    // And if the year is divided by 100 and the result is other than 0, it is not a leap year
+    // Or if the year is divided by 400 and the result is exact, that year is a leap year
+    if ((year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0))
+    {
+        // Following these rules, the aplication will return 1
+        return 1;
+    }
+    // Otherwise, it will return 0
+    else
+    {
+        return 0;
+    }
+}
+
+// Inspired by: https://pt.stackoverflow.com/questions/213423/verificar-se-uma-data-%c3%a9-v%c3%a1lida-ou-n%c3%a3o-em-c
+int isDate(int day, int month, int year)
+{
+    int finalDay;
+    // If the year is less than 0 or the month is less than 1 or the month is more than 12, it will return 1
+    if (year < 0 || month < 1 || month > 12)
+    {
+        return 0;
+    }
+    // If the month is February, and the year is leap, the last day will equal 29
+    if (month == 2)
+    {
+        if (leapYear(year))
+            finalDay = 29;
+    }
+    // Otherwise, the end day will equal 28
+    else
+    {
+        finalDay = 28;
+    }
+    // If the month is April, June, September or January, the final day of these months will equal 30
+    if (month == 4 || month == 6 || month == 9 || month == 1)
+    {
+        finalDay = 30;
+    }
+    // Otherwise, the end day will equal 31
+    else
+    {
+        finalDay = 31;
+    }
+    // If the day is less than 1 or the day is more than the finalDay, it will return 0
+    if (day < 1 || day > finalDay)
+    {
+        return 0;
+    }
+    return 1;
+}
+
+int validateDate(char *date)
+{
+    int size;
+    int day, month, year;
+
+    // 'size' receives 'date', now they're equal
+    size = strlen(date);
+    if (size != 8)
+    {
+        return 0;
+    }
+    for (int i = 0; i < size; i++)
+    {
+        if (!isDigit(date[i]))
+        {
+            return 0;
+        }
+    }
+    // Converting from char to int
+    day = (date[0] -'0') * 10 + (date[1] - '0');
+    month = (date[2] - '0') * 10 + (date[3] - '0');
+    year = (date[4] - '0') * 1000 + (date[5] - '0') * 100 + (date[6] - '0') * 10 + (date[7] - '0');
+
+    if (!isDate(day, month, year))
+    {
+        return 0;
+    }
+    return 1;
 }
