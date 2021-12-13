@@ -59,21 +59,14 @@ int validateName(char *name)
 }
 
 // checks if all the digits of the CPF are the same
-int equalsDigitCPF(int cpf[]){
-
-    int cpfInteger[11],i;
-
-    //Using ASCII Table -> char to int
-    for (i = 0; i < 11; i++)
-    {
-        cpfInteger[i] = cpf[i] - 48;
-    }
-
-    int first = cpfInteger[0];
+int equalsDigitCPF(int *cpf){
+    
+    int i;
+    int first = cpf[0];
 
     for (i = 0; i < 10; i++)
     {
-        if (first != cpfInteger[i+1])
+        if (first != cpf[i+1])
         {
             return 0;
         }
