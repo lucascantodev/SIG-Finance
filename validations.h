@@ -18,3 +18,4 @@ int equalsDigitCPF(char *cpf);
 int isDigit(char d);
 int leapYear(int year);
 int isDate(int day, int month, int year);
+int validateTime(char *time);

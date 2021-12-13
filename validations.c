@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
-#include "validations.h"
 #include <stdlib.h>
+#include "validations.h"
 
 int containsLetter(char *string)
 {
@@ -128,14 +128,13 @@ int validateCPF(char *cpf)
     {
         return 1;
     }
-    else
-    {
-        return 0;
-    }
+
+    return 0;
 
 }
 
 int isDigit(char d){
+    
     if(d >= '0' && d <= '9'){
         return 1;
     }
@@ -163,8 +162,8 @@ int equalsDigitCPF(char *cpf)
         {
             return 0;
         }
-        // Otherwise, it will return 1
     }
+    // Otherwise, it will return 1
     return 1;
 }
 
@@ -258,5 +257,48 @@ int validateDate(char *date)
     {
         return 0;
     }
+    return 1;
+}
+
+// format: HH MM 
+int validateTime(char *time){
+    char hour[3];
+    char minute[3];
+    char *sep;
+
+    sep = strtok(time," ");
+    strcpy(hour,sep);
+
+    sep = strtok(NULL," ");
+    strcpy(minute,sep);
+
+    for(int i = 0; i < 2;i++){
+        if(!isDigit(hour[i])){
+            return 0;
+        }
+    }
+
+    for(int i = 0; i < 2; i++){
+        if(!isDigit(minute[i])){
+            return 0;
+        }
+    } 
+
+    if (hour[0] > '2')
+    {
+        return 0;
+    }
+    
+    if (minute[0] > '5')
+    {
+        return 0;
+    }
+
+    int hourInt = atoi(hour);
+
+    if(hourInt >= 24){
+        return 0;
+    }
+
     return 1;
 }
