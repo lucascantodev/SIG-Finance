@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
-#include "validations.h"
 #include <stdlib.h>
+#include "validations.h"
 
 int containsLetter(char *string)
 {
@@ -59,7 +59,7 @@ int validateName(char *name)
 }
 
 // checks if all the digits of the CPF are the same
-int equalsDigitCPF(char *cpf){
+int equalsDigitCPF(int cpf[]){
 
     int cpfInteger[11],i;
 
@@ -87,9 +87,27 @@ int validateCPF(char *cpf)
     int cpfInteger[12];
     int i;
     int sum = 0;
-    int digit1, digit1Final;
-    int digit2, digit2Final;
+    int digit1;
+    int digit1Final;
+    int digit2;
+    int digit2Final;
     int finalValue;
+
+    if (strlen(cpf) != 11)
+    {
+        return 0;
+    }
+
+    // Using ASCII Table -> char to int
+    for (i = 0; i < 11; i++)
+    {
+        cpfInteger[i] = cpf[i] - 48;
+    }
+
+    if(equalsDigitCPF(cpfInteger))
+    {
+        return 0;
+    }
 
     // First digit
     for (i = 0; i < 9; i++)
@@ -128,48 +146,11 @@ int validateCPF(char *cpf)
     {
         return 1;
     }
-    else
-    {
-        return 0;
-    }
-
-}
-
-int isDigit(char d){
-    if(d >= '0' && d <= '9'){
-        return 1;
-    }
     return 0;
 }
 
-// Checks if all CPF's digits are the same
-int equalsDigitCPF(char *cpf)
-{
-    int cpfInteger[11];
-    int i;
-
-    // Using ASCII Table -> char to int
-    for (i = 0; i < 11; i++)
-    {
-        cpfInteger[i] = cpf[i] - 48;
-    }
-
-    int first = cpfInteger[0];
-
-    for (i = 0; i < 10; i++)
-    {
-        // If all the CPF's digits are equal, it will return 0
-        if (first != cpfInteger[i + 1])
-        {
-            return 0;
-        }
-        // Otherwise, it will return 1
-    }
-    return 1;
-}
-
-int isDigit(char d)
-{
+int isDigit(char d){
+    
     if(d >= '0' && d <= '9'){
         return 1;
     }
@@ -181,7 +162,7 @@ int leapYear(int year)
     // If the year is divided by 4 and the result is exact it is a leap year
     // And if the year is divided by 100 and the result is other than 0, it is not a leap year
     // Or if the year is divided by 400 and the result is exact, that year is a leap year
-    if ((year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0))
+    if (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0))
     {
         // Following these rules, the aplication will return 1
         return 1;
@@ -258,5 +239,48 @@ int validateDate(char *date)
     {
         return 0;
     }
+    return 1;
+}
+
+// format: HH MM 
+int validateTime(char *time){
+    char hour[3];
+    char minute[3];
+    char *sep;
+
+    sep = strtok(time," ");
+    strcpy(hour,sep);
+
+    sep = strtok(NULL," ");
+    strcpy(minute,sep);
+
+    for(int i = 0; i < 2;i++){
+        if(!isDigit(hour[i])){
+            return 0;
+        }
+    }
+
+    for(int i = 0; i < 2; i++){
+        if(!isDigit(minute[i])){
+            return 0;
+        }
+    } 
+
+    if (hour[0] > '2')
+    {
+        return 0;
+    }
+    
+    if (minute[0] > '5')
+    {
+        return 0;
+    }
+
+    int hourInt = atoi(hour);
+
+    if(hourInt >= 24){
+        return 0;
+    }
+
     return 1;
 }
