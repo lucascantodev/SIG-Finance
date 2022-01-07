@@ -60,6 +60,8 @@ void createTransaction(){
     char name[31];
     char DW;
     float value;
+    char date[9];
+    char time[6];
     char description[101];
 
     printf("\n/////////////////////////////////////////////////////////////////////////////\n");
@@ -74,6 +76,12 @@ void createTransaction(){
     getchar();
     printf("///           Value (no signal):                                          ///\n");
     scanf("%f", &value);
+    getchar();
+    printf("///           Date (DDMMAAAA):                                            ///\n");
+    scanf("%f", &date);
+    getchar();
+    printf("///           Time (HH MM):                                               ///\n");
+    scanf("%f", &time);
     getchar();
     printf("///           Description:                                                ///\n");
     scanf("%s", description);
