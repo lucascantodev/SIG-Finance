@@ -9,6 +9,8 @@
 ///                                                                         ///
 ///////////////////////////////////////////////////////////////////////////////
 
+typedef struct transaction Transaction;
+
 struct transaction
 {
     char DW;

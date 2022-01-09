@@ -2,6 +2,8 @@
 #include <stdbool.h>
 #include "transaction.h"
 
+typedef struct transaction Transaction;
+
 //transaction module
 void transactionMenu() {
     char op;
