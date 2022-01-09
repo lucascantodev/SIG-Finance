@@ -9,6 +9,18 @@
 ///                                                                         ///
 ///////////////////////////////////////////////////////////////////////////////
 
+struct transaction
+{
+    char DW;
+    float value;
+    char date[9];
+    char time[6];
+    char description[101];
+    //user user;
+    //type type;
+};
+
+
 //CRUD: Transactions
 void transactionMenu(void);
 void createTransaction(void);
