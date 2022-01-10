@@ -9,6 +9,13 @@
 ///                                                                         ///
 ///////////////////////////////////////////////////////////////////////////////
 
+typedef struct type Type;
+
+struct type {
+    char name[21];
+    int id;
+};
+
 //CRUD: Types
 void typeMenu(void);
 void createType(void);

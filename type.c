@@ -2,6 +2,8 @@
 #include <stdbool.h>
 #include "type.h"
 
+typedef struct type Type;
+
 //type module
 void typeMenu() {
     char op;
