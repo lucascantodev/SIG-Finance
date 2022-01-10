@@ -2,6 +2,8 @@
 #include <stdbool.h>
 #include "transaction.h"
 
+typedef struct transaction Transaction;
+
 //transaction module
 void transactionMenu() {
     char op;
@@ -78,10 +80,10 @@ void createTransaction(){
     scanf("%f", &value);
     getchar();
     printf("///           Date (DDMMAAAA):                                            ///\n");
-    scanf("%f", &date);
+    scanf("%s", date);
     getchar();
     printf("///           Time (HH MM):                                               ///\n");
-    scanf("%f", &time);
+    scanf("%s", time);
     getchar();
     printf("///           Description:                                                ///\n");
     scanf("%s", description);
