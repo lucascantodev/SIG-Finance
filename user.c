@@ -2,6 +2,8 @@
 #include <stdbool.h>
 #include "user.h"
 
+typedef struct user User;
+
 //user module
 void userMenu(){
     char op;

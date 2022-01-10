@@ -9,6 +9,8 @@
 ///                                                                         ///
 ///////////////////////////////////////////////////////////////////////////////
 
+typedef struct user User;
+
 struct user {
     char name[31];
     char birth_date;
