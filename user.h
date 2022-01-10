@@ -9,6 +9,14 @@
 ///                                                                         ///
 ///////////////////////////////////////////////////////////////////////////////
 
+struct user {
+    char name[31];
+    char birth_date;
+    int cpf[11];
+    //user user;
+    //type type;
+};
+
 //CRUD: User
 void userMenu(void);
 void createUser(void);
