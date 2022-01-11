@@ -9,9 +9,6 @@
 ///                                                                         ///
 ///////////////////////////////////////////////////////////////////////////////
 
-#include "user.h"
-#include "type.h"
-
 typedef struct transaction Transaction;
 
 struct transaction
@@ -22,8 +19,9 @@ struct transaction
     char date[9];
     char time[6];
     char description[101];
-    User* user;
-    Type* type;
+    
+    char userCPF[12];
+    long int typeID;
 };
 
 
