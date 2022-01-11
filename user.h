@@ -12,9 +12,9 @@
 typedef struct user User;
 
 struct user {
-    char name[31];
-    char birth_date;
     int cpf[11];
+    char name[36];
+    char birth_date;
 };
 
 //CRUD: User

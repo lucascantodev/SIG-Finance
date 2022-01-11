@@ -2,8 +2,8 @@
 #include <stdbool.h>
 #include "screens.h"
 #include "transaction.h"
-#include "user.h"
-#include "type.h"
+// #include "user.h"
+// #include "type.h"
 
 int main(){
     welcome();

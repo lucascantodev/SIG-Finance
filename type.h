@@ -12,8 +12,8 @@
 typedef struct type Type;
 
 struct type {
+    long int id;
     char name[21];
-    int id;
 };
 
 //CRUD: Types
