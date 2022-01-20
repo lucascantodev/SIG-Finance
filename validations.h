@@ -19,3 +19,5 @@ int isDigit(char d);
 int leapYear(int year);
 int isDate(int day, int month, int year);
 int validateTime(char *time);
+void currentTime(char* dateString, char* hourString);
+int dOrW(char DW);

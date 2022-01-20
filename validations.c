@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <time.h> 
+
 #include "validations.h"
 
 int containsLetter(char *string)
@@ -276,4 +278,54 @@ int validateTime(char *time){
     }
 
     return 1;
+}
+
+// ref: http://linguagemc.com.br/exibindo-data-e-hora-com-time-h/
+void currentTime(char* dateString, char* hourString){ 
+//              size = 6 (HH:MM) size = 11 (DD/MM/YYYY)
+  struct tm *creationTime; 
+
+  time_t seconds; 
+
+  time(&seconds);   
+
+  creationTime = localtime(&seconds); 
+
+  int day = creationTime->tm_mday;
+  sprintf(dateString, "%d", day);
+  strcat(dateString,"/");
+
+  int month = creationTime->tm_mon+1;
+  char monS[3];
+  sprintf(monS, "%d", month);
+  strcat(strcat(dateString,monS),"/");
+  
+  int year = creationTime->tm_year+1900;
+  char yearS[5];
+  sprintf(yearS, "%d", year);
+  strcat(dateString,yearS); 
+     
+  int hour = creationTime->tm_hour;
+
+  sprintf(hourString, "%d", hour);
+
+  int min = creationTime->tm_min;
+  char minS[3];
+  sprintf(minS, "%d", min);
+
+  if(min < 10){
+    strcat(strcat(strcat(hourString,":"),"0"),minS);
+  }else{
+    strcat(strcat(hourString,":"),minS);
+  }
+}
+
+// check if is deposit or withdrawal
+int dOrW(char DW){
+    if (DW == 'D' || DW == 'W' )
+    {
+        return 1;
+    }
+    return 0;
+    
 }
