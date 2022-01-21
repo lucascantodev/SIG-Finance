@@ -152,14 +152,23 @@ int isDigit(char d){
     return 0;
 }
 
+int isDigitOrPoint(char d){
+    
+    if(d == '.'){
+        return 1;
+    }else if((d >= '0' && d <= '9')){
+        return 1;
+    }
+    return 0;
+}
+
 int leapYear(int year)
 {
     // If the year is divided by 4 and the result is exact it is a leap year
     // And if the year is divided by 100 and the result is other than 0, it is not a leap year
     // Or if the year is divided by 400 and the result is exact, that year is a leap year
     if (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0))
-    {
-        // Following these rules, the aplication will return 1
+    { 
         return 1;
     }
     // Otherwise, it will return 0
@@ -207,8 +216,7 @@ int isDate(int day, int month, int year)
     return 1;
 }
 
-int validateDate(char *date)
-{
+int validateDate(char *date){
     int size;
     int day, month, year;
 
@@ -322,10 +330,9 @@ void currentTime(char* dateString, char* hourString){
 
 // check if is deposit or withdrawal
 int dOrW(char DW){
-    if (DW == 'D' || DW == 'W' )
+    if (DW == 'd' || DW == 'w' )
     {
         return 1;
     }
-    return 0;
-    
+    return 0;   
 }

@@ -15,10 +15,13 @@ struct transaction
 {
     long int id;
     char DW;
-    float value;
+    double value;
     char date[9];
     char time[6];
     char description[101];
+    char deleted;
+    char creationDate[11];
+    char creationTime[6];
     
     char userCPF[12];
     long int typeID;
@@ -32,3 +35,5 @@ void transactionList(void);
 void detailTransaction(void);
 void updateTransaction(void);
 void deleteTransaction(void);
+int createdTransactionOk(Transaction* tran);
+Transaction* createTransactionFill(void);
