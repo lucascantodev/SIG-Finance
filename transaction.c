@@ -1,8 +1,14 @@
 #include <stdio.h>
 #include <stdbool.h>
-#include "transaction.h"
+#include <time.h>
+#include <string.h>
+#include <stdlib.h>
 
-typedef struct transaction Transaction;
+#include "transaction.h"
+#include "type.h"
+#include "validations.h"
+
+//typedef struct transaction Transaction;
 
 //transaction module
 void transactionMenu() {
@@ -58,67 +64,146 @@ void transactionMenu() {
 }
 
 //(create)
-void createTransaction(){
-    char name[31];
-    char DW;
-    float value;
-    char date[9];
-    char time[6];
-    char description[101];
+void createTransaction(void){
 
+    Transaction* tran;
+    tran = createTransactionFill();
+    int aux = createdTransactionOk(tran);
+
+    if (aux == 1){
+        //TODO: save in the file and print "Sucess"
+    }else{
+        printf("\t\t\t<<<<<<<< Registration Canceled >>>>>>>>\n");
+    }
+
+    free(tran);
+}
+
+//(createFill)
+Transaction* createTransactionFill(void){
+    Transaction* tran;
+    tran = (Transaction*) malloc(sizeof(Transaction));
+
+    char date[11];
+    char hour[6];
+    char value[11];
+    bool ok;
+
+    //TODO: tran->id
+    printf("\t!!!!!!!!!! if any invalid value is entered, the field will be asked again !!!!!!!!!!\n");
     printf("\n/////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                       ///\n");
     printf("///            = = = = = = Register Transaction = = = = = =               ///\n");
     printf("///                                                                       ///\n");
-    printf("///           User name:                                                  ///\n");
-    scanf("%[A-ZÁÉÍÓÚÂÊÔÇÃÕ a-záéíóúâêôçãõ]", name); //adapted from @flgorgonio
+    do
+    {
+        printf("///           User's CPF (only numbers):                                  ///\n");
+        fgets(tran->userCPF,12,stdin);
+        getchar();
+        //TODO: check if userCPF is registered in the users
+    } while (!(validateCPF(tran->userCPF)));
+
+    do
+    {
+        printf("///           Deposit or Withdrawal (d/w):                                ///\n");
+        scanf("%c", &tran->DW);
+        getchar();
+        
+    } while (!(dOrW(tran->DW)));
+    
+    do
+    {
+        ok = true;
+        printf("///           Value no signal (532.25):                                    ///\n");
+        fgets(value,11,stdin);
+
+        for (int i = 0; i < strlen(value)-1; i++)
+        {
+            if(isDigitOrPoint(value[i]) == 0 ){
+                ok = false;
+                break;
+            }
+        }
+        if(ok == true){
+            tran->value = atof(value);
+            break;
+        }
+    } while (true);
+
+    
+
+    do
+    {
+        printf("///           Date (DDMMAAAA):                                            ///\n");
+        scanf("%s", tran->date);
+        getchar();
+        
+    } while (!(validateDate(tran->date)));
+    
+
+    do
+    {
+        printf("///           Time (HH MM):                                               ///\n");
+        fgets(tran->time,6,stdin);
+        //printf("salvei");
+        getchar();
+        
+    } while (!(validateTime(tran->time)));
+    
+
+
+    printf("///           Description (size=100):                                     ///\n");
+    scanf("%s", tran->description);
     getchar();
-    printf("///           Deposit or Withdrawal (D/W):                                ///\n");
-    scanf("%c", &DW);
-    getchar();
-    printf("///           Value (no signal):                                          ///\n");
-    scanf("%f", &value);
-    getchar();
-    printf("///           Date (DDMMAAAA):                                            ///\n");
-    scanf("%s", date);
-    getchar();
-    printf("///           Time (HH MM):                                               ///\n");
-    scanf("%s", time);
-    getchar();
-    printf("///           Description:                                                ///\n");
-    scanf("%s", description);
-    getchar();
+
+
+    do
+    {
+        printf("///           Type of transactions:                                        ///\n");
+        typeList();
+        printf("\n///           Choose ID of Type:                                          ///\n");
+        scanf("%ld", &tran->typeID);
+        getchar();
+    } while (/* TODO: check if typeID is registered in types */ false);
+    
+
     printf("///                                                                       ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n\n");
+    
+    tran->deleted = 0;
+    currentTime(date,hour);
+    strcpy(tran->creationDate,date);
+    strcpy(tran->creationTime,hour);
 
-    //Deposit
-    // printf("\n");
-    // printf("/////////////////////////////////////////////////////////////////////////////\n");
-    // printf("///                                                                       ///\n");
-    // printf("///            = = = = = = Register Transaction = = = = = =               ///\n");
-    // printf("///                                                                       ///\n");
-    // printf("///                 The deposit registration made by XXX                  ///\n");
-    // printf("///                       of +R$ XXX was sucessful!                       ///\n");
-    // printf("///                                                                       ///\n");
-    // printf("///     Description: texttexttexttexttexttexttexttexttexttext.            ///\n");
-    // printf("///                                                                       ///\n");
-    // printf("/////////////////////////////////////////////////////////////////////////////\n");
-    // printf("\n");
+    return tran;
 
-    // //Withdrawal
-    // printf("\n");
-    // printf("/////////////////////////////////////////////////////////////////////////////\n");
-    // printf("///                                                                       ///\n");
-    // printf("///            = = = = = = Register Transaction = = = = = =               ///\n");
-    // printf("///                                                                       ///\n");
-    // printf("///                 The withdrawal registration made by XXX               ///\n");
-    // printf("///                       of -R$ XXX was sucessful!                       ///\n");
-    // printf("///                                                                       ///\n");
-    // printf("///     Description: texttexttexttexttexttexttexttexttexttext.            ///\n");
-    // printf("///                                                                       ///\n");
-    // printf("/////////////////////////////////////////////////////////////////////////////\n");
-    // printf("\n");
 }
+//(createCheck)
+int createdTransactionOk(Transaction* tran){
+    char dw[11];
+    char yn;
+    tran->DW == 'd' ? strcpy(dw,"DEPOSIT") : strcpy(dw,"WITHDRAWAL");
+
+    printf("\n\n");
+    printf("\t            = = = = = = Register Transaction = = = = = =               \n\n");
+
+    printf("\n\t Do you really want to register %s of R$ %.3f made by XXX ?\n", dw, tran->value);
+    printf("\t Description: %s\n", tran->description);
+    printf("\n");
+
+    do{
+        printf("Type (y) for yes or (n) for no: \n");
+        scanf("%c",&yn);
+        getchar();
+
+        if (yn == 'y'){
+            return 1;
+        }else if (yn == 'n'){
+            return 0;
+        }
+    } while (true);
+}
+
 
 //(read)
 void transactionList(){
@@ -131,12 +216,7 @@ void transactionList(){
 void detailTransaction(){
     int id;
 
-    printf("\n/////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                       ///\n");
-    printf("///            = = = = = = Detail Transaction = = = = = =                 ///\n");
-    printf("///                                                                       ///\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n\n");
-    printf("Which transaction ID you want to see detailed: ");
+    printf("\n\tWhich transaction ID you want to see detailed: ");
     scanf("%d", &id);
     getchar();
     //TODO: Show detailed transaction
@@ -188,41 +268,15 @@ void updateTransaction(){
     printf("///                                                                       ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n\n");
 
-    // printf("/////////////////////////////////////////////////////////////////////////////\n");
-    // printf("///                                                                       ///\n");
-    // printf("///              = = = = = = Update Transaction = = = = = =               ///\n");
-    // printf("///                                                                       ///\n");
-    // printf("///               Transaction ID X was updated successfully !             ///\n");
-    // printf("///                                                                       ///\n");
-    // printf("/////////////////////////////////////////////////////////////////////////////\n");
-    // printf("\n");
 }
 
 //(delete)
 void deleteTransaction(){
     int id;
 
-    printf("\n/////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                       ///\n");
-    printf("///            = = = = = = Delete Transaction = = = = = =                 ///\n");
-    printf("///                                                                       ///\n");
-    printf("///           Please enter the transaction ID to remove it                ///\n");
-    printf("///                                                                       ///\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n\n");
     printf("Which transaction ID do you want to be deleted :");    
     scanf("%d", &id);
     getchar();
     printf("\n");
 
-    // printf("/////////////////////////////////////////////////////////////////////////////\n");
-    // printf("///                                                                       ///\n");
-    // printf("///            = = = = = = Delete Transaction = = = = = =                 ///\n");
-    // printf("///                                                                       ///\n");
-    // printf("///                                                                       ///\n");
-    // printf("///             Transaction (ID X) deleted successfully!                  ///\n");
-    // printf("///                                                                       ///\n");
-    // printf("///                                                                       ///\n");
-    // printf("///                                                                       ///\n");
-    // printf("/////////////////////////////////////////////////////////////////////////////\n");
-    // printf("\n");
 }
