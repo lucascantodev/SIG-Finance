@@ -2,8 +2,6 @@
 #include <stdbool.h>
 #include "type.h"
 
-typedef struct type Type;
-
 //type module
 void typeMenu() {
     char op;
@@ -54,19 +52,57 @@ void typeMenu() {
     }while(isValid);
 }
 
-//(create)
-void createType(){
-    char name[21];
+void createType(void){
+    Type* type;
+    type = createTypeFill();
+
+    if(createdTypeOK){
+        //TODO: save in the file and print "Sucess"
+    }else{
+        printf("\t\t\t<<<<<<<< Registration Canceled >>>>>>>>\n");
+    }
+
+    free(type);
+}
+
+//(createFill)
+Type* createTypeFill(){
+
+    Type* type;
+    type = (Type*) malloc(sizeof(Type));
 
     printf("\n/////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                       ///\n");
     printf("///              = = = = = = = = Create Type = = = = = = = =              ///\n");
     printf("///                                                                       ///\n");
     printf("///           Type name:                                                  ///\n");
-    scanf("%[A-ZÁÉÍÓÚÂÊÔÇÃÕ a-záéíóúâêôçãõ]", name); //adapted from @flgorgonio
+    scanf("%[A-ZÁÉÍÓÚÂÊÔÇÃÕ a-záéíóúâêôçãõ]", type->name); //adapted from @flgorgonio
     getchar();
     printf("///                                                                       ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n\n");
+
+    return type;
+}
+
+int createdTypeOK(Type* type){
+    char yn;
+    printf("\n\n");
+    printf("\t            = = = = = = Register Type = = = = = =               \n\n");
+
+    printf("\n\t Do you really want to register type of R$ %s ?\n", type->name);
+    printf("\n");
+
+    do{
+        printf("Type (y) for yes or (n) for no: \n");
+        scanf("%c",&yn);
+        getchar();
+
+        if (yn == 'y'){
+            return 1;
+        }else if (yn == 'n'){
+            return 0;
+        }
+    } while (true);
 }
 
 //(read)

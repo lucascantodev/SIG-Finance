@@ -128,8 +128,6 @@ Transaction* createTransactionFill(void){
         }
     } while (true);
 
-    
-
     do
     {
         printf("///           Date (DDMMAAAA):                                            ///\n");
@@ -138,7 +136,6 @@ Transaction* createTransactionFill(void){
         
     } while (!(validateDate(tran->date)));
     
-
     do
     {
         printf("///           Time (HH MM):                                               ///\n");
@@ -147,13 +144,10 @@ Transaction* createTransactionFill(void){
         getchar();
         
     } while (!(validateTime(tran->time)));
-    
-
 
     printf("///           Description (size=100):                                     ///\n");
     scanf("%s", tran->description);
     getchar();
-
 
     do
     {
@@ -164,7 +158,6 @@ Transaction* createTransactionFill(void){
         getchar();
     } while (/* TODO: check if typeID is registered in types */ false);
     
-
     printf("///                                                                       ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n\n");
     
