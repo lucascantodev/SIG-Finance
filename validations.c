@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <time.h> 
+#include <stdbool.h>
+#include <time.h>
 
 #include "validations.h"
 
@@ -61,14 +62,15 @@ int validateName(char *name)
 }
 
 // checks if all the digits of the CPF are the same
-int equalsDigitCPF(int *cpf){
-    
+int equalsDigitCPF(int *cpf)
+{
+
     int i;
     int first = cpf[0];
 
     for (i = 0; i < 10; i++)
     {
-        if (first != cpf[i+1])
+        if (first != cpf[i + 1])
         {
             return 0;
         }
@@ -99,7 +101,7 @@ int validateCPF(char *cpf)
         cpfInteger[i] = cpf[i] - 48;
     }
 
-    if(equalsDigitCPF(cpfInteger))
+    if (equalsDigitCPF(cpfInteger))
     {
         return 0;
     }
@@ -144,19 +146,25 @@ int validateCPF(char *cpf)
     return 0;
 }
 
-int isDigit(char d){
-    
-    if(d >= '0' && d <= '9'){
+int isDigit(char d)
+{
+
+    if (d >= '0' && d <= '9')
+    {
         return 1;
     }
     return 0;
 }
 
-int isDigitOrPoint(char d){
-    
-    if(d == '.'){
+int isDigitOrPoint(char d)
+{
+
+    if (d == '.')
+    {
         return 1;
-    }else if((d >= '0' && d <= '9')){
+    }
+    else if ((d >= '0' && d <= '9'))
+    {
         return 1;
     }
     return 0;
@@ -168,7 +176,7 @@ int leapYear(int year)
     // And if the year is divided by 100 and the result is other than 0, it is not a leap year
     // Or if the year is divided by 400 and the result is exact, that year is a leap year
     if (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0))
-    { 
+    {
         return 1;
     }
     // Otherwise, it will return 0
@@ -216,7 +224,8 @@ int isDate(int day, int month, int year)
     return 1;
 }
 
-int validateDate(char *date){
+int validateDate(char *date)
+{
     int size;
     int day, month, year;
 
@@ -234,7 +243,7 @@ int validateDate(char *date){
         }
     }
     // Converting from char to int
-    day = (date[0] -'0') * 10 + (date[1] - '0');
+    day = (date[0] - '0') * 10 + (date[1] - '0');
     month = (date[2] - '0') * 10 + (date[3] - '0');
     year = (date[4] - '0') * 1000 + (date[5] - '0') * 100 + (date[6] - '0') * 10 + (date[7] - '0');
 
@@ -245,35 +254,40 @@ int validateDate(char *date){
     return 1;
 }
 
-// format: HH MM 
-int validateTime(char *time){
+// format: HH MM
+int validateTime(char *time)
+{
     char hour[3];
     char minute[3];
     char *sep;
 
-    sep = strtok(time," ");
-    strcpy(hour,sep);
+    sep = strtok(time, " ");
+    strcpy(hour, sep);
 
-    sep = strtok(NULL," ");
-    strcpy(minute,sep);
+    sep = strtok(NULL, " ");
+    strcpy(minute, sep);
 
-    for(int i = 0; i < 2;i++){
-        if(!isDigit(hour[i])){
+    for (int i = 0; i < 2; i++)
+    {
+        if (!isDigit(hour[i]))
+        {
             return 0;
         }
     }
 
-    for(int i = 0; i < 2; i++){
-        if(!isDigit(minute[i])){
+    for (int i = 0; i < 2; i++)
+    {
+        if (!isDigit(minute[i]))
+        {
             return 0;
         }
-    } 
+    }
 
     if (hour[0] > '2')
     {
         return 0;
     }
-    
+
     if (minute[0] > '5')
     {
         return 0;
@@ -281,7 +295,8 @@ int validateTime(char *time){
 
     int hourInt = atoi(hour);
 
-    if(hourInt >= 24){
+    if (hourInt >= 24)
+    {
         return 0;
     }
 
@@ -289,50 +304,90 @@ int validateTime(char *time){
 }
 
 // ref: http://linguagemc.com.br/exibindo-data-e-hora-com-time-h/
-void currentTime(char* dateString, char* hourString){ 
-//              size = 6 (HH:MM) size = 11 (DD/MM/YYYY)
-  struct tm *creationTime; 
+void currentTime(char *dateString, char *hourString)
+{
+    //              size = 6 (HH:MM) size = 11 (DD/MM/YYYY)
+    struct tm *creationTime;
 
-  time_t seconds; 
+    time_t seconds;
 
-  time(&seconds);   
+    time(&seconds);
 
-  creationTime = localtime(&seconds); 
+    creationTime = localtime(&seconds);
 
-  int day = creationTime->tm_mday;
-  sprintf(dateString, "%d", day);
-  strcat(dateString,"/");
+    int day = creationTime->tm_mday;
+    sprintf(dateString, "%d", day);
+    strcat(dateString, "/");
 
-  int month = creationTime->tm_mon+1;
-  char monS[3];
-  sprintf(monS, "%d", month);
-  strcat(strcat(dateString,monS),"/");
-  
-  int year = creationTime->tm_year+1900;
-  char yearS[5];
-  sprintf(yearS, "%d", year);
-  strcat(dateString,yearS); 
-     
-  int hour = creationTime->tm_hour;
+    int month = creationTime->tm_mon + 1;
+    char monS[3];
+    sprintf(monS, "%d", month);
+    strcat(strcat(dateString, monS), "/");
 
-  sprintf(hourString, "%d", hour);
+    int year = creationTime->tm_year + 1900;
+    char yearS[5];
+    sprintf(yearS, "%d", year);
+    strcat(dateString, yearS);
 
-  int min = creationTime->tm_min;
-  char minS[3];
-  sprintf(minS, "%d", min);
+    int hour = creationTime->tm_hour;
 
-  if(min < 10){
-    strcat(strcat(strcat(hourString,":"),"0"),minS);
-  }else{
-    strcat(strcat(hourString,":"),minS);
-  }
+    sprintf(hourString, "%d", hour);
+
+    int min = creationTime->tm_min;
+    char minS[3];
+    sprintf(minS, "%d", min);
+
+    if (min < 10)
+    {
+        strcat(strcat(strcat(hourString, ":"), "0"), minS);
+    }
+    else
+    {
+        strcat(strcat(hourString, ":"), minS);
+    }
+}
+
+int validateBirthday(char *birth_date)
+{
+
+    if (validateDate(birth_date) == 1) {
+
+        char *date;
+
+        int day = (date[0] - '0') * 10 + (date[1] - '0');
+        int month = (date[2] - '0') * 10 + (date[3] - '0');
+        int year = (date[4] - '0') * 1000 + (date[5] - '0') * 100 + (date[6] - '0') * 10 + (date[7] - '0');
+
+        struct tm *creationTime;
+        time_t seconds;
+        time(&seconds);
+        creationTime = localtime(&seconds);
+
+        char *dateString;
+
+        int day = creationTime->tm_mday;
+        sprintf(dateString, "%d", day);
+        strcat(dateString, "/");
+
+        int month = creationTime->tm_mon + 1;
+        char monS[3];
+        sprintf(monS, "%d", month);
+        strcat(strcat(dateString, monS), "/");
+
+        int year = creationTime->tm_year + 1900;
+        char yearS[5];
+        sprintf(yearS, "%d", year);
+        strcat(dateString, yearS);
+
+    }
 }
 
 // check if is deposit or withdrawal
-int dOrW(char DW){
-    if (DW == 'd' || DW == 'w' )
+int dOrW(char DW)
+{
+    if (DW == 'd' || DW == 'w')
     {
         return 1;
     }
-    return 0;   
+    return 0;
 }

@@ -22,4 +22,5 @@ int isDate(int day, int month, int year);
 int validateDate(char *date);
 int validateTime(char *time);
 void currentTime(char* dateString, char* hourString);
+int validateBirthday(char *birth_date);
 int dOrW(char DW);
