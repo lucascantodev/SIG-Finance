@@ -81,11 +81,9 @@ void createTransaction(void){
 
 //(createFill)
 Transaction* createTransactionFill(void){
+
     Transaction* tran;
     tran = (Transaction*) malloc(sizeof(Transaction));
-
-    char date[11];
-    char hour[6];
     char value[11];
     bool ok;
 
@@ -171,10 +169,7 @@ Transaction* createTransactionFill(void){
     printf("/////////////////////////////////////////////////////////////////////////////\n\n");
     
     tran->deleted = 0;
-    currentTime(date,hour);
-    strcpy(tran->creationDate,date);
-    strcpy(tran->creationTime,hour);
-
+    currentTime(tran->creationDate,tran->creationTime);
     return tran;
 
 }

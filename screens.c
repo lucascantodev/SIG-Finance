@@ -68,6 +68,7 @@ char mainScreen() {
 	printf("///         = = = = = = = = =  Start Menu  = = = = = = = = = =                 ///\n");
 	printf("///           = = = = = = = = = = = = = = = = = = = = = = = =                  ///\n");
 	printf("///                 ______________________________                             ///\n");
+    printf("///                |                              |                            ///\n");
     printf("///                |  1. Transaction Module       |                            ///\n");
     printf("///                |  2. User Module              |                            ///\n");
     printf("///                |  3. Transaction Type Module  |                            ///\n");
