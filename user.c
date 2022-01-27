@@ -65,11 +65,7 @@ void createUser() {
 
 User* createUserFill(void) {
     User* use;
-    use = (User*)malloc(sizeof(User));
-
-    char name[31];
-    char birth_date[8];
-    char cpf[12];
+    use = (User*) malloc(sizeof(User));
 
     //bool ok
     printf("\n/////////////////////////////////////////////////////////////////////////////\n");
@@ -81,19 +77,15 @@ User* createUserFill(void) {
     do {
 
     printf("///                         User name:                                    ///\n");
-    fgets(use->name,31,stdin);
-    getchar();
-    //Checking if name is valid
-    } while (!(validateName(use->name)));
+    fgets(use->name,41,stdin);
+    } while (!validateName(use->name));
     
     do {
-
     printf("///                                                                       ///\n");
-    printf("///                         User birthday:      (DDMMYYYY)                ///\n");
-    fgets(use->birth_date,8,stdin);
+    printf("///                         User birthday:   (DDMMYYYY)                   ///\n");
+    fgets(use->birth_date,9,stdin);
     getchar();
-    //Checking if birth_date is valid
-    } while (!(validateBirthday(use->birth_date)));
+    } while (!validateBirthday(use->birth_date));
 
     printf("///                                                                       ///\n");
 
@@ -101,12 +93,12 @@ User* createUserFill(void) {
 
     printf("///                         User's CPF:                                   ///\n");
     fgets(use->cpf,12,stdin);
-    getchar();
-    //Checking if userCPF is already registred among the users
-    } while (!(validateCPF(use->cpf)));
+    } while (!validateCPF(use->cpf));
 
     printf("///                                                                       ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n\n");
+    use->deleted = 0;
+    return use;
 }
 
 //read

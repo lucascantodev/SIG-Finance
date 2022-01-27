@@ -6,40 +6,6 @@
 
 #include "validations.h"
 
-int containsLetter(char *string)
-{
-    for (int i = 0; i < strlen(string); i++)
-    {
-        if (isLetter(string[i]))
-        {
-            return 1;
-        }
-    }
-    return 0;
-}
-
-int isSpace(char c)
-{
-    if (c == 32)
-    {
-        return 1;
-    }
-    return 0;
-}
-
-int isLetter(char c)
-{
-    if (c >= 'A' && c <= 'Z')
-    {
-        return 1;
-    }
-    else if (c >= 'a' && c <= 'z')
-    {
-        return 1;
-    }
-    return 0;
-}
-
 // To be validated, the name must contain some letter and only letters and spaces
 int validateName(char *name)
 {
@@ -48,17 +14,48 @@ int validateName(char *name)
         return 0;
     }
 
-    for (int i = 0; i < strlen(name); i++)
+    for (int i = 0; i < strlen(name)-1; i++)
     {
+        // printf("%c",name[14]);
         if (!isLetter(name[i]))
         {
             if (!isSpace(name[i]))
             {
+                printf("Comi um cu aqui");
                 return 0;
             }
         }
     }
     return 1;
+}
+
+int isLetter(char c){
+    if (c >= 'A' && c <= 'Z'){
+        return 1;
+    }
+    else if (c >= 'a' && c <= 'z'){
+        return 1;
+    }
+    return 0;
+}
+
+int isSpace(char c){
+    if (c == 32)
+    {
+        return 1;
+    }
+    return 0;
+}
+
+int containsLetter(char *string){
+    for (int i = 0; i < strlen(string); i++)
+    {
+        if (isLetter(string[i]))
+        {
+            return 1;
+        }
+    }
+    return 0;
 }
 
 // checks if all the digits of the CPF are the same
@@ -348,40 +345,40 @@ void currentTime(char *dateString, char *hourString)
 
 int validateBirthday(char *birth_date)
 {
-    if (validateDate(birth_date)) {
+    if (!validateDate(birth_date)) {
+        return 0;
+    }
+
+    struct tm *creationTime;
+    time_t seconds;
+    time(&seconds);
+    creationTime = localtime(&seconds);
+
+    int day = creationTime->tm_mday;
+    int month = creationTime->tm_mon + 1;
+    int year = creationTime->tm_year + 1900;
+
+    int day_converted = (birth_date[0] - '0') * 10 + (birth_date[1] - '0');
+    int month_converted = (birth_date[2] - '0') * 10 + (birth_date[3] - '0');   
+    int year_converted = (birth_date[4] - '0') * 1000 + (birth_date[5] - '0') * 100 + (birth_date[6] - '0') * 10 + (birth_date[7] - '0');
+
+    if (year_converted > year) {
+        return 0;
+    }
+
+    if (year_converted == year && month_converted > month) {
+        return 0;
+    }
+
+    if (year_converted == year && month_converted == month && day_converted > day) {
+        return 0;
+    }
+
+    if (year_converted <= year - 102) {
+        return 0;
+    }
     
-        struct tm *creationTime;
-        time_t seconds;
-        time(&seconds);
-        creationTime = localtime(&seconds);
-
-        int day = creationTime->tm_mday;
-        int month = creationTime->tm_mon + 1;
-        int year = creationTime->tm_year + 1900;
-
-        int birth = validateDate(birth_date);
-
-        int day_converted = (birth_date[0] - '0') * 10 + (birth_date[1] - '0');
-        int month_converted = (birth_date[2] - '0') * 10 + (birth_date[3] - '0');   
-        int year_converted = (birth_date[4] - '0') * 1000 + (birth_date[5] - '0') * 100 + (birth_date[6] - '0') * 10 + (birth_date[7] - '0');
-
-        if (year_converted > year) {
-            return 0;
-        }
-
-        if (year_converted == year && month_converted > month) {
-            return 0;
-        }
-
-        if (year_converted == year && month_converted == month && day_converted > day) {
-            return 0;
-        }
-
-        if (year_converted <= year - 102) {
-            return 0;
-        }
-        
-        return 1;
+    return 1; 
 }
 
 // check if is deposit or withdrawal
