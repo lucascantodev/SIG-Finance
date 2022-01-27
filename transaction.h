@@ -31,9 +31,10 @@ struct transaction
 //CRUD: Transactions
 void transactionMenu(void);
 void createTransaction(void);
-void transactionList(void);
+int transactionList(void);
 void detailTransaction(void);
 void updateTransaction(void);
 void deleteTransaction(void);
 int createdTransactionOk(Transaction* tran);
 Transaction* createTransactionFill(void);
+int saveTransaction(Transaction* tran);

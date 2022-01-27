@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdbool.h>
-#include "type.h"
+#include <stdlib.h>
 
-typedef struct type Type;
+#include "type.h"
+#include "validations.h"
 
 //type module
 void typeMenu() {
@@ -54,26 +55,85 @@ void typeMenu() {
     }while(isValid);
 }
 
-//(create)
-void createType(){
-    char name[21];
+void createType(void){
+    Type* type;
+    type = createTypeFill();
+
+    if(createdTypeOK(type)){
+        if(saveType(type)){
+            fileSucess();
+        }
+    }else{
+        saveCanceled();
+    }
+
+    free(type);
+}
+
+int saveType(Type* type){
+    FILE* fp;
+    fp = fopen("types.h","at");
+
+    if (fp == NULL){
+        fileError();
+        return 0;
+    }
+    fprintf(fp,"<< Recorded Type >>\n");
+    fprintf(fp,"Name: %s\n",type->name);
+    fclose(fp);
+    return 1;
+}
+
+//(createFill)
+Type* createTypeFill(){
+
+    Type* type;
+    type = (Type*) malloc(sizeof(Type));
 
     printf("\n/////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                       ///\n");
     printf("///              = = = = = = = = Create Type = = = = = = = =              ///\n");
     printf("///                                                                       ///\n");
     printf("///           Type name:                                                  ///\n");
-    scanf("%[A-ZÁÉÍÓÚÂÊÔÇÃÕ a-záéíóúâêôçãõ]", name); //adapted from @flgorgonio
+    fgets(type->name,21,stdin); //adapted from @flgorgonio
     getchar();
     printf("///                                                                       ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n\n");
+    type->deleted = 0;
+    return type;
+}
+
+int createdTypeOK(Type* type){
+    printf("\n\n");
+    printf("\t            = = = = = = Register Type = = = = = =               \n\n");
+
+    printf("\n\t Do you really want to register type of %s ?\n", type->name);
+    printf("\n");
+
+    return yesOrNo();
 }
 
 //(read)
-void typeList(){
+int typeList(){
+    FILE* fp;
+    fp = fopen("types.txt","rt");
+    char line;
+
+    if (fp == NULL){
+        fileError();
+        return 0;
+    }
     printf("\n\t\t========== Type List ==========\n");
-    printf("\t\tTODO: loop to show each type\n");
-    //TODO: loop to show each type
+
+    line = fgetc(fp);
+
+    while (line != EOF){    
+        printf("%c", line);
+        line = fgetc(fp);
+    }
+    
+    fclose(fp);
+    return 1;
 }
 
 //(update)
