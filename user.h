@@ -12,14 +12,16 @@
 typedef struct user User;
 
 struct user {
-    int cpf[11];
-    char name[36];
-    char birth_date;
+    char name[41];
+    char birth_date[9];
+    char cpf[12];
+    short int deleted;
 };
 
 //CRUD: User
 void userMenu(void);
 void createUser(void);
+User* createUserFill(void);
 void userList(void);
 void updateUser(void);
 void deleteUser(void);
