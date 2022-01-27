@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
+
 #include "type.h"
+#include "validations.h"
 
 //type module
 void typeMenu() {
@@ -56,13 +59,29 @@ void createType(void){
     Type* type;
     type = createTypeFill();
 
-    if(createdTypeOK){
-        //TODO: save in the file and print "Sucess"
+    if(createdTypeOK(type)){
+        if(saveType(type)){
+            fileSucess();
+        }
     }else{
-        printf("\t\t\t<<<<<<<< Registration Canceled >>>>>>>>\n");
+        saveCanceled();
     }
 
     free(type);
+}
+
+int saveType(Type* type){
+    FILE* fp;
+    fp = fopen("types.h","at");
+
+    if (fp == NULL){
+        fileError();
+        return 0;
+    }
+    fprintf(fp,"<< Recorded Type >>\n");
+    fprintf(fp,"Name: %s\n",type->name);
+    fclose(fp);
+    return 1;
 }
 
 //(createFill)
@@ -76,40 +95,45 @@ Type* createTypeFill(){
     printf("///              = = = = = = = = Create Type = = = = = = = =              ///\n");
     printf("///                                                                       ///\n");
     printf("///           Type name:                                                  ///\n");
-    scanf("%[A-ZÁÉÍÓÚÂÊÔÇÃÕ a-záéíóúâêôçãõ]", type->name); //adapted from @flgorgonio
+    fgets(type->name,21,stdin); //adapted from @flgorgonio
     getchar();
     printf("///                                                                       ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n\n");
-
+    type->deleted = 0;
     return type;
 }
 
 int createdTypeOK(Type* type){
-    char yn;
     printf("\n\n");
     printf("\t            = = = = = = Register Type = = = = = =               \n\n");
 
-    printf("\n\t Do you really want to register type of R$ %s ?\n", type->name);
+    printf("\n\t Do you really want to register type of %s ?\n", type->name);
     printf("\n");
 
-    do{
-        printf("Type (y) for yes or (n) for no: \n");
-        scanf("%c",&yn);
-        getchar();
-
-        if (yn == 'y'){
-            return 1;
-        }else if (yn == 'n'){
-            return 0;
-        }
-    } while (true);
+    return yesOrNo();
 }
 
 //(read)
-void typeList(){
+int typeList(){
+    FILE* fp;
+    fp = fopen("types.txt","rt");
+    char line;
+
+    if (fp == NULL){
+        fileError();
+        return 0;
+    }
     printf("\n\t\t========== Type List ==========\n");
-    printf("\t\tTODO: loop to show each type\n");
-    //TODO: loop to show each type
+
+    line = fgetc(fp);
+
+    while (line != EOF){    
+        printf("%c", line);
+        line = fgetc(fp);
+    }
+    
+    fclose(fp);
+    return 1;
 }
 
 //(update)

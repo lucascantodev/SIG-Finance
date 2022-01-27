@@ -8,8 +8,6 @@
 #include "type.h"
 #include "validations.h"
 
-//typedef struct transaction Transaction;
-
 //transaction module
 void transactionMenu() {
     char op;
@@ -68,15 +66,55 @@ void createTransaction(void){
 
     Transaction* tran;
     tran = createTransactionFill();
-    int aux = createdTransactionOk(tran);
 
-    if (aux == 1){
-        //TODO: save in the file and print "Sucess"
+    if (createdTransactionOk(tran)){
+        if(saveTransaction(tran)){
+            fileSucess();
+        }
     }else{
-        printf("\t\t\t<<<<<<<< Registration Canceled >>>>>>>>\n");
+        saveCanceled();
+    }
+    free(tran);
+}
+
+//(read)
+int transactionList(){
+    FILE* fp;
+    fp = fopen("transactions.txt","rt");
+    char line;
+
+    if (fp == NULL){
+        fileError();
+        return 0;
     }
 
-    free(tran);
+    printf("\n\t\t========== Transaction List ==========\n\n");
+
+    line = fgetc(fp);
+
+    while (line != EOF){    
+        printf("%c", line);
+        line = fgetc(fp);
+    }
+    
+    fclose(fp);
+    return 1;
+}
+
+int saveTransaction(Transaction* tran){
+    FILE* fp;
+    fp = fopen("transactions.txt","at");
+
+    if (fp == NULL){
+        fileError();
+        return 0;
+    }
+    fprintf(fp,"<< Recorded Transaction >>\n");
+    fprintf(fp,"D or W: %c\n",tran->DW);
+    fprintf(fp,"Value: %f\n",tran->value);
+    fprintf(fp,"Description: %s\n",tran->description);
+    fclose(fp);
+    return 1;
 }
 
 //(createFill)
@@ -93,24 +131,21 @@ Transaction* createTransactionFill(void){
     printf("///                                                                       ///\n");
     printf("///            = = = = = = Register Transaction = = = = = =               ///\n");
     printf("///                                                                       ///\n");
-    do
-    {
+    do{
         printf("///           User's CPF (only numbers):                                  ///\n");
         fgets(tran->userCPF,12,stdin);
         getchar();
         //TODO: check if userCPF is registered in the users
     } while (!(validateCPF(tran->userCPF)));
 
-    do
-    {
+    do{
         printf("///           Deposit or Withdrawal (d/w):                                ///\n");
         scanf("%c", &tran->DW);
         getchar();
         
     } while (!(dOrW(tran->DW)));
     
-    do
-    {
+    do{
         ok = true;
         printf("///           Value no signal (532.25):                                    ///\n");
         fgets(value,11,stdin);
@@ -128,29 +163,24 @@ Transaction* createTransactionFill(void){
         }
     } while (true);
 
-    do
-    {
+    do{
         printf("///           Date (DDMMAAAA):                                            ///\n");
         scanf("%s", tran->date);
         getchar();
         
     } while (!(validateDate(tran->date)));
     
-    do
-    {
+    do{
         printf("///           Time (HH MM):                                               ///\n");
         fgets(tran->time,6,stdin);
-        //printf("salvei");
         getchar();
         
     } while (!(validateTime(tran->time)));
 
     printf("///           Description (size=100):                                     ///\n");
-    scanf("%s", tran->description);
-    getchar();
+    fgets(tran->description,101,stdin);
 
-    do
-    {
+    do{
         printf("///           Type of transactions:                                        ///\n");
         typeList();
         printf("\n///           Choose ID of Type:                                          ///\n");
@@ -169,7 +199,6 @@ Transaction* createTransactionFill(void){
 //(createCheck)
 int createdTransactionOk(Transaction* tran){
     char dw[11];
-    char yn;
     tran->DW == 'd' ? strcpy(dw,"DEPOSIT") : strcpy(dw,"WITHDRAWAL");
 
     printf("\n\n");
@@ -179,26 +208,10 @@ int createdTransactionOk(Transaction* tran){
     printf("\t Description: %s\n", tran->description);
     printf("\n");
 
-    do{
-        printf("Type (y) for yes or (n) for no: \n");
-        scanf("%c",&yn);
-        getchar();
-
-        if (yn == 'y'){
-            return 1;
-        }else if (yn == 'n'){
-            return 0;
-        }
-    } while (true);
+    return yesOrNo();
 }
 
 
-//(read)
-void transactionList(){
-    printf("\n\t\t========== Transaction List ==========\n");
-    printf("\t\tTODO: loop to show each transaction\n");
-    //TODO: loop to show each transaction
-}
 
 //(readByID)
 void detailTransaction(){

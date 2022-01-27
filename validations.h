@@ -23,3 +23,7 @@ int validateDate(char *date);
 int validateTime(char *time);
 void currentTime(char* dateString, char* hourString);
 int dOrW(char DW);
+int yesOrNo(void);
+void fileError(void);
+void fileSucess(void);
+void saveCanceled(void);

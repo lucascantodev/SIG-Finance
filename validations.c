@@ -1,3 +1,5 @@
+// Validations and Utilities
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -335,4 +337,48 @@ int dOrW(char DW){
         return 1;
     }
     return 0;   
+}
+
+int yesOrNo(){
+    char yn;
+
+    do{
+        printf("Type (y) for yes or (n) for no: \n");
+        scanf("%c",&yn);
+        getchar();
+
+        if (yn == 'y'){
+            return 1;
+        }else if (yn == 'n'){
+            return 0;
+        }
+    } while (1);
+}
+
+void fileError(void){
+    printf("\n\t\t!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
+    printf("\t\t!! error: COULD NOT OPEN FILE !!\n");
+    printf("\t\t!!     Operation Canceled     !!\n");
+    printf("\t\t!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n");
+
+    printf("\t\t\t>>> Press ENTER to continue <<<");
+    getchar();
+}
+
+void fileSucess(void){
+    printf("\n\t\t////////////////////////\n");
+    printf("\t\t// Saved Successfully //\n");
+    printf("\t\t////////////////////////\n\n");
+
+    printf("\t\t\t>>> Press ENTER to continue <<<");
+    getchar();
+}
+
+void saveCanceled(void){
+    printf("\n\t\t!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
+    printf("\t\t<<<<<<<< Save Canceled >>>>>>>>\n");
+    printf("\n\t\t!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n");
+
+    printf("\t\t\t>>> Press ENTER to continue <<<");
+    getchar();
 }

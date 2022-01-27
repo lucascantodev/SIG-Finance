@@ -14,11 +14,15 @@ typedef struct type Type;
 struct type {
     long int id;
     char name[21];
+    int deleted;
 };
 
 //CRUD: Types
 void typeMenu(void);
 void createType(void);
-void typeList(void);
+Type* createTypeFill(void);
+int createdTypeOK(Type* type);
+int typeList(void);
 void updateType(void);
 void deleteType(void);
+int saveType(Type* type);

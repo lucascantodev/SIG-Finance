@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdbool.h>
+
 #include "screens.h"
 
 void welcome(){
