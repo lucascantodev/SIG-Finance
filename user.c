@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include <stdbool.h>
-#include "user.h"
+#include <stdlib.h>
 
-typedef struct user User;
+#include "user.h"
+#include "validations.h"
+
+//typedef struct user User;
 
 //user module
 void userMenu(){
@@ -55,29 +58,47 @@ void userMenu(){
 
 //(create)
 void createUser() {
-    char name[31];
-    char birth_date;
-    int cpf[11];
+    User* use;
+    use = createUserFill();
+    free(use);
+}
 
+User* createUserFill(void) {
+    User* use;
+    use = (User*) malloc(sizeof(User));
+
+    //bool ok
     printf("\n/////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                       ///\n");
     printf("///               = = = = = = = = = = = = = = = = = = = =                 ///\n");
     printf("///           = = = = = = = =   Register User   = = = = = = =             ///\n");
     printf("///               = = = = = = = = = = = = = = = = = = = =                 ///\n");
     printf("///                                                                       ///\n");
+    do {
+
     printf("///                         User name:                                    ///\n");
-    scanf("%[A-ZÁÉÍÓÚÂÊÔÇÃÕ a-záéíóúâêôçãõ]", name); //adapted from @flgorgonio
-    getchar();
+    fgets(use->name,41,stdin);
+    } while (!validateName(use->name));
+    
+    do {
     printf("///                                                                       ///\n");
-    printf("///                         User birthday:                                ///\n");
-    scanf("%c", &birth_date);
+    printf("///                         User birthday:   (DDMMYYYY)                   ///\n");
+    fgets(use->birth_date,9,stdin);
     getchar();
+    } while (!validateBirthday(use->birth_date));
+
     printf("///                                                                       ///\n");
+
+    do {
+
     printf("///                         User's CPF:                                   ///\n");
-    scanf("%d", cpf);
-    getchar();
+    fgets(use->cpf,12,stdin);
+    } while (!validateCPF(use->cpf));
+
     printf("///                                                                       ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n\n");
+    use->deleted = 0;
+    return use;
 }
 
 //read
@@ -89,19 +110,19 @@ void userList() {
 
 //(update)
 void updateUser() {
-    char birth_date;
-    int cpf[11];
+    char birth_date[8];
+    char cpf[12];
 
     printf("\n/////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                       ///\n");
     printf("///              = = = = = = Update User = = = = = =                      ///\n");
     printf("///                PS.: this will change user's data                      ///\n");
     printf("///                                                                       ///\n");
-    printf("///           User's birthday:                                            ///\n");
-    scanf("%c", &birth_date);
+    printf("///           User's birthday:            (DDMMYYYY)                      ///\n");
+    scanf("%s", birth_date);
     getchar();
     printf("///           User's CPF:                                                 ///\n");
-    scanf("%d", cpf);
+    scanf("%s", cpf);
     getchar();
     printf("///                                                                       ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n\n");
@@ -109,7 +130,7 @@ void updateUser() {
 
 //(delete)
 void deleteUser() {
-    int cpf[11];
+    char cpf[11];
 
     printf("\n/////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                       ///\n");
@@ -119,7 +140,7 @@ void deleteUser() {
     printf("///                                                                       ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n\n");
     printf("Which User's CPF do you want to be deleted :");    
-    scanf("%d", cpf);
+    scanf("%s", cpf);
     getchar();
     printf("\n");
 }
