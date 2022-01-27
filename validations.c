@@ -64,7 +64,6 @@ int validateName(char *name)
 // checks if all the digits of the CPF are the same
 int equalsDigitCPF(int *cpf)
 {
-
     int i;
     int first = cpf[0];
 
@@ -349,41 +348,44 @@ void currentTime(char *dateString, char *hourString)
 
 int validateBirthday(char *birth_date)
 {
-
-    if (validateDate(birth_date) == 1) {
-
-        char *date;
-
-        int day = (date[0] - '0') * 10 + (date[1] - '0');
-        int month = (date[2] - '0') * 10 + (date[3] - '0');
-        int year = (date[4] - '0') * 1000 + (date[5] - '0') * 100 + (date[6] - '0') * 10 + (date[7] - '0');
-
+    if (validateDate(birth_date)) {
+    
         struct tm *creationTime;
         time_t seconds;
         time(&seconds);
         creationTime = localtime(&seconds);
 
-        char *dateString;
-
         int day = creationTime->tm_mday;
-        sprintf(dateString, "%d", day);
-        strcat(dateString, "/");
-
         int month = creationTime->tm_mon + 1;
-        char monS[3];
-        sprintf(monS, "%d", month);
-        strcat(strcat(dateString, monS), "/");
-
         int year = creationTime->tm_year + 1900;
-        char yearS[5];
-        sprintf(yearS, "%d", year);
-        strcat(dateString, yearS);
 
-    }
+        int birth = validateDate(birth_date);
+
+        int day_converted = (birth_date[0] - '0') * 10 + (birth_date[1] - '0');
+        int month_converted = (birth_date[2] - '0') * 10 + (birth_date[3] - '0');   
+        int year_converted = (birth_date[4] - '0') * 1000 + (birth_date[5] - '0') * 100 + (birth_date[6] - '0') * 10 + (birth_date[7] - '0');
+
+        if (year_converted > year) {
+            return 0;
+        }
+
+        if (year_converted == year && month_converted > month) {
+            return 0;
+        }
+
+        if (year_converted == year && month_converted == month && day_converted > day) {
+            return 0;
+        }
+
+        if (year_converted <= year - 102) {
+            return 0;
+        }
+        
+        return 1;
 }
 
 // check if is deposit or withdrawal
-int dOrW(char DW)
+int dOrW(char DW) 
 {
     if (DW == 'd' || DW == 'w')
     {

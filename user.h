@@ -13,7 +13,7 @@ typedef struct user User;
 
 struct user {
     char name[31];
-    char birth_date[9];
+    char birth_date[8];
     char cpf[12];
 };
 
