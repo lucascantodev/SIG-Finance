@@ -73,7 +73,7 @@ void createUser() {
 
 int saveUser(User* use){
     FILE* fp;
-    fp = fopen("users.txt","at");
+    fp = fopen("users.dat","ab");
 
     if (fp == NULL){
         fileError();
@@ -139,13 +139,23 @@ User* createUserFill(void) {
 //read
 int userList() {
     FILE* fp;
-    fp = fopen("users.txt","rt");
+    fp = fopen("users.dat","rb");
     char line;
 
     if (fp == NULL){
         fileError();
         return 0;
     }
+
+    User* use;
+    use = (User*) malloc(sizeof(User));
+
+    while(fread(use,sizeof(User),1,fp)) {
+        showUser(use);
+    }
+    free(use);
+    fclose(fp);
+    return 1;
 
     printf("\n\t\t========== User List ==========\n\n");
 
