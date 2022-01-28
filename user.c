@@ -51,7 +51,7 @@ void userMenu(){
             printf("\t\t\t============================\n");
             printf("\t\t\t====== Invalid option ======\n");
             printf("\t\t\t============================\n\n");
-            printf("\t\t\t>>>> Choose a valid option <<<<\n");
+            printf("\t\t\t>>> Choose a valid option <<<\n");
         }   
     }while(isValid);
 }
@@ -60,7 +60,40 @@ void userMenu(){
 void createUser() {
     User* use;
     use = createUserFill();
+
+    if(createdUserOk(use)){
+        if(saveUser(use)){
+            fileSucess();
+        }
+    }else{
+        saveCanceled();
+    }
     free(use);
+}
+
+int saveUser(User* use){
+    FILE* fp;
+    fp = fopen("users.txt","at");
+
+    if (fp == NULL){
+        fileError();
+        return 0;
+    }
+    fprintf(fp,"<< Recorded User >>\n");
+    fprintf(fp,"Name: %s\n",use->name);
+    fprintf(fp,"Birth date: %s\n",use->birth_date);
+    fclose(fp);
+    return 1;
+}
+
+int createdUserOk(User* use){
+    printf("\n\n");
+    printf("\t              = = = = = = Register User = = = = = =                 \n\n");
+
+    printf("\n\tDo you really want to register a user named %s ?\n", use->name);
+    printf("\n");
+
+    return yesOrNo();
 }
 
 User* createUserFill(void) {
@@ -77,13 +110,13 @@ User* createUserFill(void) {
     do {
 
     printf("///                         User name:                                    ///\n");
-    fgets(use->name,41,stdin);
+    fgetsS(use->name,41);
     } while (!validateName(use->name));
     
     do {
     printf("///                                                                       ///\n");
     printf("///                         User birthday:   (DDMMYYYY)                   ///\n");
-    fgets(use->birth_date,9,stdin);
+    fgetsS(use->birth_date,9);
     getchar();
     } while (!validateBirthday(use->birth_date));
 
@@ -92,20 +125,39 @@ User* createUserFill(void) {
     do {
 
     printf("///                         User's CPF:                                   ///\n");
-    fgets(use->cpf,12,stdin);
+    fgetsS(use->cpf,12);
+    getchar();
     } while (!validateCPF(use->cpf));
 
     printf("///                                                                       ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n\n");
     use->deleted = 0;
+
     return use;
 }
 
 //read
-void userList() {
-    printf("\n\t\t========== User List ==========\n");
-    printf("\t\tTODO: loop to show each user\n");
-    //TODO: loop to show each user
+int userList() {
+    FILE* fp;
+    fp = fopen("users.txt","rt");
+    char line;
+
+    if (fp == NULL){
+        fileError();
+        return 0;
+    }
+
+    printf("\n\t\t========== User List ==========\n\n");
+
+    line = fgetc(fp);
+
+    while (line != EOF){    
+        printf("%c", line);
+        line = fgetc(fp);
+    }
+    
+    fclose(fp);
+    return 1;
 }
 
 //(update)

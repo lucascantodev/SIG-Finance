@@ -133,7 +133,7 @@ Transaction* createTransactionFill(void){
     printf("///                                                                       ///\n");
     do{
         printf("///           User's CPF (only numbers):                                  ///\n");
-        fgets(tran->userCPF,12,stdin);
+        fgetsS(tran->userCPF,12);
         getchar();
         //TODO: check if userCPF is registered in the users
     } while (!(validateCPF(tran->userCPF)));
@@ -148,7 +148,7 @@ Transaction* createTransactionFill(void){
     do{
         ok = true;
         printf("///           Value no signal (532.25):                                    ///\n");
-        fgets(value,11,stdin);
+        fgetsS(value,11);
 
         for (int i = 0; i < strlen(value)-1; i++)
         {
@@ -172,17 +172,17 @@ Transaction* createTransactionFill(void){
     
     do{
         printf("///           Time (HH MM):                                               ///\n");
-        fgets(tran->time,6,stdin);
+        fgetsS(tran->time,6);
         getchar();
         
     } while (!(validateTime(tran->time)));
 
     printf("///           Description (size=100):                                     ///\n");
-    fgets(tran->description,101,stdin);
+    fgetsS(tran->description,101);
 
     do{
-        printf("///           Type of transactions:                                        ///\n");
-        typeList();
+        printf("///           Type of transactions:                                      ///\n");
+        //typeList();
         printf("\n///           Choose ID of Type:                                          ///\n");
         scanf("%ld", &tran->typeID);
         getchar();
@@ -193,8 +193,8 @@ Transaction* createTransactionFill(void){
     
     tran->deleted = 0;
     currentTime(tran->creationDate,tran->creationTime);
-    return tran;
 
+    return tran;
 }
 //(createCheck)
 int createdTransactionOk(Transaction* tran){

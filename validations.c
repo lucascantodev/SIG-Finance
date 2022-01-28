@@ -409,10 +409,10 @@ int yesOrNo(){
 }
 
 void fileError(void){
-    printf("\n\t\t!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
+    printf("\n\t\t!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
     printf("\t\t!! error: COULD NOT OPEN FILE !!\n");
     printf("\t\t!!     Operation Canceled     !!\n");
-    printf("\t\t!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n");
+    printf("\t\t!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n");
 
     printf("\t\t\t>>> Press ENTER to continue <<<");
     getchar();
@@ -434,4 +434,10 @@ void saveCanceled(void){
 
     printf("\t\t\t>>> Press ENTER to continue <<<");
     getchar();
+}
+
+void fgetsS(char* string, long int stringSize){
+    // get sdtin with fgets and remove "\n"
+    fgets(string,stringSize,stdin);
+    string[strcspn(string, "\n")] = 0;
 }

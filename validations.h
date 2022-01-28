@@ -28,3 +28,4 @@ int yesOrNo(void);
 void fileError(void);
 void fileSucess(void);
 void saveCanceled(void);
+void fgetsS(char* string, long int stringSize);

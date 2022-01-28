@@ -22,6 +22,8 @@ struct user {
 void userMenu(void);
 void createUser(void);
 User* createUserFill(void);
-void userList(void);
+int userList(void);
 void updateUser(void);
 void deleteUser(void);
+int saveUser(User* use);
+int createdUserOk(User* use);
