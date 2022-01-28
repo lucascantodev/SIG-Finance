@@ -72,7 +72,7 @@ void createType(void){
 
 int saveType(Type* type){
     FILE* fp;
-    fp = fopen("types.h","at");
+    fp = fopen("types.txt","at");
 
     if (fp == NULL){
         fileError();
@@ -95,8 +95,7 @@ Type* createTypeFill(){
     printf("///              = = = = = = = = Create Type = = = = = = = =              ///\n");
     printf("///                                                                       ///\n");
     printf("///           Type name:                                                  ///\n");
-    fgets(type->name,21,stdin); //adapted from @flgorgonio
-    getchar();
+    fgetsS(type->name,21); //adapted from @flgorgonio
     printf("///                                                                       ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n\n");
     type->deleted = 0;
