@@ -441,3 +441,33 @@ void fgetsS(char* string, long int stringSize){
     fgets(string,stringSize,stdin);
     string[strcspn(string, "\n")] = 0;
 }
+
+int fileLen(char* fileName){
+    FILE* fp;
+    fp = fopen(fileName,"rb");
+
+    if (fp == NULL){
+        return 1;
+    } 
+    int len;
+    fseek(fp, 0, SEEK_END);
+    len = ftell(fp);
+    fclose(fp);
+
+    return len;
+}
+
+void registerNotFound(void){
+    printf("\n\t\t!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
+    printf("\t\t!!    ID is not registered.    !!\n");
+    printf("\t\t!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n");
+
+    printf("\t\t\t>>> Press ENTER to continue <<<");
+    getchar();
+}
+
+void printfDateTime(char* time, char* date){
+    printf("Time: %c%c:%c%c | %c%c/%c%c/%c%c%c%c",time[0],
+            time[1],time[3],time[4],date[0],date[1],
+            date[2],date[3],date[4],date[5],date[6],date[7]);
+}
