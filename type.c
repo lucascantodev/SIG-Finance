@@ -59,7 +59,7 @@ void createType(void){
     Type* type;
     type = createTypeFill();
 
-    if(createdTypeOK(type)){
+    if(saveTypeOk(type,"REGISTER")){
         if(saveType(type)){
             fileSucess();
         }
@@ -72,14 +72,13 @@ void createType(void){
 
 int saveType(Type* type){
     FILE* fp;
-    fp = fopen("types.txt","at");
+    fp = fopen("types.dat","ab");
 
     if (fp == NULL){
         fileError();
         return 0;
     }
-    fprintf(fp,"<< Recorded Type >>\n");
-    fprintf(fp,"Name: %s\n",type->name);
+    fwrite(type,sizeof(Type),1,fp);
     fclose(fp);
     return 1;
 }
@@ -89,6 +88,8 @@ Type* createTypeFill(){
 
     Type* type;
     type = (Type*) malloc(sizeof(Type));
+
+    type->id = (fileLen("types.dat")/sizeof(Type));
 
     printf("\n/////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                       ///\n");
@@ -102,11 +103,11 @@ Type* createTypeFill(){
     return type;
 }
 
-int createdTypeOK(Type* type){
+int saveTypeOk(Type* type, char* operation){
     printf("\n\n");
-    printf("\t            = = = = = = Register Type = = = = = =               \n\n");
+    printf("\t            = = = = = = %s TYPE = = = = = =               \n\n",operation);
 
-    printf("\n\t Do you really want to register type of %s ?\n", type->name);
+    printf("\n\t Do you really want to %s %s type ?\n",operation, type->name);
     printf("\n");
 
     return yesOrNo();
@@ -115,56 +116,133 @@ int createdTypeOK(Type* type){
 //(read)
 int typeList(){
     FILE* fp;
-    fp = fopen("types.txt","rt");
-    char line;
+    fp = fopen("types.dat","rb");
 
     if (fp == NULL){
         fileError();
         return 0;
     }
-    printf("\n\t\t========== Type List ==========\n");
 
-    line = fgetc(fp);
+    Type* type;
+    type = (Type*) malloc(sizeof(Type));
 
-    while (line != EOF){    
-        printf("%c", line);
-        line = fgetc(fp);
+    while (fread(type,sizeof(Type),1,fp)){
+        if(type->deleted != 1){
+            printf("\n\t\t= = = = = Registered Type = = = = =");
+            printf("\nType name: %s | ID: %ld",type->name,type->id);
+        }else if(type == NULL){
+            printf("\t\n= = = = = Non-existent Type = = = = =");
+        }
     }
     
+    free(type);
     fclose(fp);
     return 1;
 }
 
 //(update)
 void updateType(){
-    int id;
-    char name[21];
+    long int id;
+    Type* type;
 
-    printf("\n/////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                       ///\n");
-    printf("///              = = = = = = = = Update Type = = = = = = = =              ///\n");
-    printf("///                                                                       ///\n");
-    printf("///           Enter the ID of the type you want to update:                ///\n");
-    scanf("%d",&id);
+    printf("                 = = = = = = Update Type = = = = = =                  \n\n");
+    printf("\nWhich type ID do you want to be updated: ");    
+    scanf("%ld",&id);
     getchar();
-    printf("///           New type name:                                              ///\n");
-    scanf("%[A-ZÁÉÍÓÚÂÊÔÇÃÕ a-záéíóúâêôçãõ]", name); //adapted from @flgorgonio
-    getchar();
-    printf("///                                                                       ///\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n\n");
+
+    type = findType(&id);
+    if(type == NULL){
+        registerNotFound();
+    }else{
+        printf("\n           Type name: \n");
+        fgetsS(type->name,21);
+
+        if(saveTypeOk(type,"UPDATE")){
+            if(resaveType(type)){
+                fileSucess();
+            }else{
+                fileError();
+            }
+        }else{
+            saveCanceled();
+        }
+        free(type);
+    }
+
+}
+
+Type* findType(long int* id){
+    FILE* fp;
+    Type* type;
+
+    fp = fopen("types.dat","rb");
+
+    if (fp == NULL){
+        fileError();
+        return NULL;
+    }
+
+    type = (Type*) malloc(sizeof(Type));
+
+    while (fread(type,sizeof(Type),1,fp)){
+        if(type->id == *id && type->deleted == 0){
+            fclose(fp);
+            return type;
+        }
+    }   
+    fclose(fp);
+    return NULL;
 }
 
 //(delete)
 void deleteType(){
-    int id;
+    long int id;
+    Type* type;
 
-    printf("\n/////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                       ///\n");
-    printf("///              = = = = = = = = Delete Type = = = = = = = =              ///\n");
-    printf("///                                                                       ///\n");
-    printf("///           Enter the ID of the type you want to delete:                ///\n");
-    scanf("%d",&id);
+    printf("\nWhich type ID do you want to be deleted: ");    
+    scanf("%ld", &id);
     getchar();
-    printf("///                                                                       ///\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n\n");
+
+    type = findType(&id);
+    if (type == NULL){
+        registerNotFound();
+    }else{
+        if (saveTypeOk(type,"DELETE")){
+            type->deleted = 1;
+            if (resaveType(type)){
+                fileSucess();
+            }else{
+                fileError();
+            }
+        }else{
+            saveCanceled();
+        }
+        
+        free(type);
+    }
+}
+
+int resaveType(Type* type){
+    FILE* fp;
+    fp = fopen("types.dat","r+b");
+    bool find = false;
+
+    if (fp == NULL){
+        fileError();
+        return find;
+    }
+
+    Type* typeRead;
+    typeRead = (Type*) malloc(sizeof(Type));
+
+    while (fread(typeRead,sizeof(Type),1,fp) && !find){
+        if (typeRead->id == type->id && typeRead->deleted == 0){
+            find = true;
+            fseek(fp,-1*sizeof(Type),SEEK_CUR);
+            fwrite(type,sizeof(Type),1,fp);
+        }
+    }
+    fclose(fp);
+    free(typeRead);
+    return find;
 }

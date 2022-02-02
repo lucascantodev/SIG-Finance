@@ -429,7 +429,7 @@ void fileSucess(void){
 
 void saveCanceled(void){
     printf("\n\t\t!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
-    printf("\t\t<<<<<<<< Save Canceled >>>>>>>>\n");
+    printf("\t\t<<<<<<<< Save Canceled >>>>>>>");
     printf("\n\t\t!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n");
 
     printf("\t\t\t>>> Press ENTER to continue <<<");

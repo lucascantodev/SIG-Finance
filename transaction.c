@@ -77,12 +77,6 @@ void createTransaction(void){
     free(tran);
 }
 
-// void showTransactionDetails(Transaction* tran){
-
-// }
-
-
-
 //(read)
 int transactionList(){
     FILE* fp;
@@ -95,7 +89,6 @@ int transactionList(){
 
     Transaction* tran;
     tran = (Transaction*) malloc(sizeof(Transaction));
-
     
     while(fread(tran,sizeof(Transaction),1,fp)){
         showTransaction(tran);
@@ -129,7 +122,7 @@ Transaction* createTransactionFill(void){
     //define id
     tran->id = (fileLen("transactions.dat")/sizeof(Transaction));
     
-    printf("\t!!!!!!!!!! If any invalid value is entered, the field will be asked again !!!!!!!!!!\n");
+    printf("\n\n!!!!!!!!!! If any invalid value is entered, the field will be asked again !!!!!!!!!!\n\n");
     printf("\n/////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                       ///\n");
     printf("///            = = = = = = Register Transaction = = = = = =               ///\n");
@@ -206,7 +199,7 @@ int saveTransactionOk(Transaction* tran, char* operation){
     tran->DW == 'd' ? strcpy(dw,"DEPOSIT") : strcpy(dw,"WITHDRAWAL");
 
     printf("\n\n");
-    printf("\t            = = = = = = Register Transaction = = = = = =               \n\n");
+    printf("\t            = = = = = = %s TRANSACTION = = = = = =               \n\n",operation);
 
     printf("\n\tDo you really want to %s %s of R$ %.3f made by XXX ?\n", operation, dw, tran->value);
     printf("\tID: %ld",tran->id);
@@ -268,7 +261,6 @@ void showTransaction(Transaction* tran){
 
 //(update)
 void updateTransaction(){
-
     long int id;
     Transaction* tran;
     char value[11];
@@ -345,8 +337,10 @@ void updateTransaction(){
             if(resaveTransaction(tran)){
                 fileSucess(); 
             }else{
-                saveCanceled();
+                fileError();
             }
+        }else{
+            saveCanceled();
         }
         free(tran);
     }
@@ -370,10 +364,15 @@ void deleteTransaction(){
             tran->deleted = 1;
             if(resaveTransaction(tran)){
                 fileSucess();  
+            }else{
+                fileError();
             }
+        }else{
+            saveCanceled();
         }
+        
+        free(tran);
     }
-    free(tran);
 }
 
 int resaveTransaction(Transaction* tran){
