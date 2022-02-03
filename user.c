@@ -5,14 +5,16 @@
 #include "user.h"
 #include "validations.h"
 
-//typedef struct user User;
+// typedef struct user User;
 
-//user module
-void userMenu(){
+// user module
+void userMenu()
+{
     char op;
     bool isValid = true;
 
-    do{
+    do
+    {
         printf("\n/////////////////////////////////////////////////////////////////////////////\n");
         printf("///                                                                       ///\n");
         printf("///               = = = = = = = = = = = = = = = = = = = =                 ///\n");
@@ -31,62 +33,69 @@ void userMenu(){
         getchar();
         printf("\n");
 
-        switch (op){
-            case '1':
-                createUser();
-                break;
-            case '2':
-                userList();
-                break;
-            case '3':
-                updateUser();
-                break;
-            case '4':
-                deleteUser();
-                break;
-            case '0':
-                isValid = false;
-                break;
+        switch (op)
+        {
+        case '1':
+            createUser();
+            break;
+        case '2':
+            userList();
+            break;
+        case '3':
+            updateUser();
+            break;
+        case '4':
+            deleteUser();
+            break;
+        case '0':
+            isValid = false;
+            break;
         default:
             printf("\t\t\t============================\n");
             printf("\t\t\t====== Invalid option ======\n");
             printf("\t\t\t============================\n\n");
             printf("\t\t\t>>> Choose a valid option <<<\n");
-        }   
-    }while(isValid);
+        }
+    } while (isValid);
 }
 
 //(create)
-void createUser() {
-    User* use;
+void createUser()
+{
+    User *use;
     use = createUserFill();
 
-    if(createdUserOk(use)){
-        if(saveUser(use)){
+    if (saveUserOk(use))
+    {
+        if (saveUser(use))
+        {
             fileSucess();
         }
-    }else{
+    }
+    else
+    {
         saveCanceled();
     }
     free(use);
 }
 
-int saveUser(User* use){
-    FILE* fp;
-    fp = fopen("users.dat","ab");
+int saveUser(User *use)
+{
+    FILE *fp;
+    fp = fopen("users.dat", "ab");
 
-    if (fp == NULL){
+    if (fp == NULL)
+    {
         fileError();
         return 0;
     }
-    fprintf(fp,"<< Recorded User >>\n");
-    fprintf(fp,"Name: %s\n",use->name);
-    fprintf(fp,"Birth date: %s\n",use->birth_date);
+    fwrite(use, sizeof(use), 1, fp);
     fclose(fp);
     return 1;
 }
 
-int createdUserOk(User* use){
+int saveUserOk(User *use)
+{
     printf("\n\n");
     printf("\t              = = = = = = Register User = = = = = =                 \n\n");
 
@@ -96,37 +105,42 @@ int createdUserOk(User* use){
     return yesOrNo();
 }
 
-User* createUserFill(void) {
-    User* use;
-    use = (User*) malloc(sizeof(User));
+//(createFill)
+User *createUserFill(void)
+{
+    User *use;
+    use = (User *)malloc(sizeof(User));
 
-    //bool ok
+    // bool ok
     printf("\n/////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                       ///\n");
     printf("///               = = = = = = = = = = = = = = = = = = = =                 ///\n");
     printf("///           = = = = = = = =   Register User   = = = = = = =             ///\n");
     printf("///               = = = = = = = = = = = = = = = = = = = =                 ///\n");
     printf("///                                                                       ///\n");
-    do {
+    do
+    {
 
-    printf("///                         User name:                                    ///\n");
-    fgetsS(use->name,41);
+        printf("///                         User name:                                    ///\n");
+        fgetsS(use->name, 41);
     } while (!validateName(use->name));
-    
-    do {
-    printf("///                                                                       ///\n");
-    printf("///                         User birthday:   (DDMMYYYY)                   ///\n");
-    fgetsS(use->birth_date,9);
-    getchar();
+
+    do
+    {
+        printf("///                                                                       ///\n");
+        printf("///                         User birthday:   (DDMMYYYY)                   ///\n");
+        fgetsS(use->birth_date, 9);
+        getchar();
     } while (!validateBirthday(use->birth_date));
 
     printf("///                                                                       ///\n");
 
-    do {
+    do
+    {
 
-    printf("///                         User's CPF:                                   ///\n");
-    fgetsS(use->cpf,12);
-    getchar();
+        printf("///                         User's CPF:                                   ///\n");
+        fgetsS(use->cpf, 12);
+        getchar();
     } while (!validateCPF(use->cpf));
 
     printf("///                                                                       ///\n");
@@ -136,73 +150,201 @@ User* createUserFill(void) {
     return use;
 }
 
-//read
-int userList() {
-    FILE* fp;
-    fp = fopen("users.dat","rb");
-    char line;
+// read and show user
+int userList()
+{
+    FILE *fp;
+    fp = fopen("users.dat", "rb");
 
-    if (fp == NULL){
+    if (fp == NULL)
+    {
         fileError();
         return 0;
     }
 
-    User* use;
-    use = (User*) malloc(sizeof(User));
+    User *use;
+    use = (User *)malloc(sizeof(User));
 
-    while(fread(use,sizeof(User),1,fp)) {
-        showUser(use);
+    while (fread(use, sizeof(User), 1, fp))
+    {
+        if (use->deleted != 1)
+        {
+            printf("\n\t\t= = = = = Registred User = = = = =");
+            printf("\nUser name: %s", use->name);
+            printf("\nUser Birthday: %s", use->birth_date);
+        }
+        else if (use == NULL)
+        {
+            printf("\t\n= = = = = Non-existent User = = = = =");
+        }
     }
+
     free(use);
-    fclose(fp);
-    return 1;
-
-    printf("\n\t\t========== User List ==========\n\n");
-
-    line = fgetc(fp);
-
-    while (line != EOF){    
-        printf("%c", line);
-        line = fgetc(fp);
-    }
-    
     fclose(fp);
     return 1;
 }
 
 //(update)
-void updateUser() {
-    char birth_date[8];
+void updateUser()
+{
     char cpf[12];
+    User *use;
 
-    printf("\n/////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                       ///\n");
-    printf("///              = = = = = = Update User = = = = = =                      ///\n");
-    printf("///                PS.: this will change user's data                      ///\n");
-    printf("///                                                                       ///\n");
-    printf("///           User's birthday:            (DDMMYYYY)                      ///\n");
-    scanf("%s", birth_date);
-    getchar();
-    printf("///           User's CPF:                                                 ///\n");
+    printf("                 = = = = = = Update User = = = = = =                  \n\n");
+    printf("\nWhich user CPF do you want to update? ");
     scanf("%s", cpf);
     getchar();
-    printf("///                                                                       ///\n");
-    printf("/////////////////////////////////////////////////////////////////////////////\n\n");
+    use = findUser(cpf);
+
+    if (use == NULL)
+    {
+        registerNotFound();
+    }
+    else
+    {
+        do
+        {
+            printf("\n           User's Name (only letters): ");
+            fgetsS(use->name, 41);
+            getchar();
+
+        } while (!(validateName(use->name)));
+
+        do
+        {
+            printf("\n           User's CPF (only numbers): ");
+            fgetsS(use->cpf, 12);
+            getchar();
+
+        } while (!(validateCPF(use->cpf)));
+
+        do
+        {
+            printf("\n           Birthday (DDMMAAAA): ");
+            scanf("%s", use->birth_date);
+            getchar();
+
+        } while (!(validateDate(use->birth_date)));
+
+        if (saveUserOk(use))
+        {
+            if (resaveUser(use))
+            {
+                fileSucess();
+            }
+            else
+            {
+                saveCanceled();
+            }
+        }
+        free(use);
+    }
+}
+
+User *findUser(char *cpf)
+{
+    FILE *fp;
+    User *use;
+
+    fp = fopen("users.dat", "rb");
+
+    if (fp == NULL)
+    {
+        fileError();
+        return NULL;
+    }
+
+    use = (User *)malloc(sizeof(User));
+
+    while (fread(use, sizeof(User), 1, fp))
+    {
+        if (use->cpf == cpf && use->deleted == 0)
+        {
+            fclose(fp);
+            return use;
+        }
+    }
+
+    fclose(fp);
+    return NULL;
 }
 
 //(delete)
-void deleteUser() {
+void deleteUser()
+{
+    User *use;
     char cpf[11];
 
     printf("\n/////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                       ///\n");
     printf("///                = = = = = = Delete User = = = = = =                    ///\n");
     printf("///                                                                       ///\n");
-    printf("///               Please enter the User's CPF to remove it                ///\n");
+    printf("///               Which User CPF do you want to be deleted?               ///\n");
     printf("///                                                                       ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n\n");
-    printf("Which User's CPF do you want to be deleted :");    
     scanf("%s", cpf);
     getchar();
-    printf("\n");
+
+    use = findUser(cpf);
+    if (use == NULL)
+    {
+        registerNotFound();
+    }
+    else
+    {
+        if (saveUserOk(use))
+        {
+            use->deleted = 1;
+            if (resaveUser(use))
+            {
+                fileSucess();
+            }
+        }
+    }
+    free(use);
+}
+
+int resaveUser(User *use)
+{
+    FILE *fp;
+    fp = fopen("user.dat", "r+b");
+    bool find = false;
+
+    if (fp == NULL)
+    {
+        fileError();
+        return find;
+    }
+    User *useRead;
+    useRead = (User *)malloc(sizeof(User));
+
+    while (fread(useRead, sizeof(User), 1, fp) && !find)
+    {
+        if (useRead->cpf == use->cpf && useRead->deleted == 0)
+        {
+            find = true;
+            fseek(fp, -1 * sizeof(User), SEEK_CUR);
+            fwrite(use, sizeof(User), 1, fp);
+        }
+    }
+    fclose(fp);
+    free(useRead);
+    return find;
+}
+
+void registerNotFound(void)
+{
+    printf("\n\t\t!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
+    printf("\t\t!!    CPF is not registered.    !!\n");
+    printf("\t\t!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n");
+
+    printf("\t\t\t>>> Press ENTER to continue <<<");
+    getchar();
+}
+
+void printfDateTime(char *time, char *date)
+{
+    printf("Time: %c%c:%c%c | %c%c/%c%c/%c%c%c%c", time[0],
+           time[1], time[3], time[4], date[0], date[1],
+           date[2], date[3], date[4], date[5], date[6], date[7]);
 }
