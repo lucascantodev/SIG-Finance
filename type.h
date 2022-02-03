@@ -21,8 +21,10 @@ struct type {
 void typeMenu(void);
 void createType(void);
 Type* createTypeFill(void);
-int createdTypeOK(Type* type);
+int saveTypeOk(Type* type,char* operation);
 int typeList(void);
 void updateType(void);
 void deleteType(void);
 int saveType(Type* type);
+Type* findType(long int* id);
+int resaveType(Type* type);
