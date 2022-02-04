@@ -11,20 +11,21 @@
 
 typedef struct type Type;
 
-struct type {
+struct type
+{
     long int id;
     char name[21];
     int deleted;
 };
 
-//CRUD: Types
+// CRUD: Types
 void typeMenu(void);
 void createType(void);
-Type* createTypeFill(void);
-int saveTypeOk(Type* type,char* operation);
+Type *createTypeFill(void);
+int saveTypeOk(Type *type, char *operation);
 int typeList(void);
 void updateType(void);
 void deleteType(void);
-int saveType(Type* type);
-Type* findType(long int* id);
-int resaveType(Type* type);
+int saveType(Type *type);
+Type *findType(long int *id);
+int resaveType(Type *type);

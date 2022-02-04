@@ -16,7 +16,7 @@ int validateName(char *name)
         return 0;
     }
 
-    for (int i = 0; i < strlen(name)-1; i++)
+    for (int i = 0; i < strlen(name) - 1; i++)
     {
         // printf("%c",name[14]);
         if (!isLetter(name[i]))
@@ -31,17 +31,21 @@ int validateName(char *name)
     return 1;
 }
 
-int isLetter(char c){
-    if (c >= 'A' && c <= 'Z'){
+int isLetter(char c)
+{
+    if (c >= 'A' && c <= 'Z')
+    {
         return 1;
     }
-    else if (c >= 'a' && c <= 'z'){
+    else if (c >= 'a' && c <= 'z')
+    {
         return 1;
     }
     return 0;
 }
 
-int isSpace(char c){
+int isSpace(char c)
+{
     if (c == 32)
     {
         return 1;
@@ -49,7 +53,8 @@ int isSpace(char c){
     return 0;
 }
 
-int containsLetter(char *string){
+int containsLetter(char *string)
+{
     for (int i = 0; i < strlen(string); i++)
     {
         if (isLetter(string[i]))
@@ -347,7 +352,8 @@ void currentTime(char *dateString, char *hourString)
 
 int validateBirthday(char *birth_date)
 {
-    if (!validateDate(birth_date)) {
+    if (!validateDate(birth_date))
+    {
         return 0;
     }
 
@@ -361,54 +367,65 @@ int validateBirthday(char *birth_date)
     int year = creationTime->tm_year + 1900;
 
     int day_converted = (birth_date[0] - '0') * 10 + (birth_date[1] - '0');
-    int month_converted = (birth_date[2] - '0') * 10 + (birth_date[3] - '0');   
+    int month_converted = (birth_date[2] - '0') * 10 + (birth_date[3] - '0');
     int year_converted = (birth_date[4] - '0') * 1000 + (birth_date[5] - '0') * 100 + (birth_date[6] - '0') * 10 + (birth_date[7] - '0');
 
-    if (year_converted > year) {
+    if (year_converted > year)
+    {
         return 0;
     }
 
-    if (year_converted == year && month_converted > month) {
+    if (year_converted == year && month_converted > month)
+    {
         return 0;
     }
 
-    if (year_converted == year && month_converted == month && day_converted > day) {
+    if (year_converted == year && month_converted == month && day_converted > day)
+    {
         return 0;
     }
 
-    if (year_converted <= year - 102) {
+    if (year_converted <= year - 102)
+    {
         return 0;
     }
-    
-    return 1; 
+
+    return 1;
 }
 
 // check if is deposit or withdrawal
-int dOrW(char DW) 
+int dOrW(char DW)
 {
-    if (DW == 'd' || DW == 'w'){
+    if (DW == 'd' || DW == 'w')
+    {
         return 1;
     }
-    return 0;   
+    return 0;
 }
 
-int yesOrNo(){
+int yesOrNo()
+{
     char yn;
 
-    do{
+    do
+    {
         printf("Type (y) for yes or (n) for no: \n");
-        scanf("%c",&yn);
+        scanf("%c", &yn);
         getchar();
 
-        if (yn == 'y'){
+        if (yn == 'y')
+        {
             return 1;
-        }else if (yn == 'n'){
+        }
+        else if (yn == 'n')
+        {
             return 0;
         }
-    } while(1);
+    } while (1);
 }
 
-void fileError(void){
+void fileError(void)
+{
     printf("\n\t\t!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
     printf("\t\t!! error: COULD NOT OPEN FILE !!\n");
     printf("\t\t!!     Operation Canceled     !!\n");
@@ -418,7 +435,8 @@ void fileError(void){
     getchar();
 }
 
-void fileSucess(void){
+void fileSucess(void)
+{
     printf("\n\t\t////////////////////////\n");
     printf("\t\t// Saved Successfully //\n");
     printf("\t\t////////////////////////\n\n");
@@ -427,7 +445,8 @@ void fileSucess(void){
     getchar();
 }
 
-void saveCanceled(void){
+void saveCanceled(void)
+{
     printf("\n\t\t!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
     printf("\t\t<<<<<<<< Save Canceled >>>>>>>");
     printf("\n\t\t!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n");
@@ -436,19 +455,22 @@ void saveCanceled(void){
     getchar();
 }
 
-void fgetsS(char* string, long int stringSize){
+void fgetsS(char *string, long int stringSize)
+{
     // get sdtin with fgets and remove "\n"
-    fgets(string,stringSize,stdin);
+    fgets(string, stringSize, stdin);
     string[strcspn(string, "\n")] = 0;
 }
 
-int fileLen(char* fileName){
-    FILE* fp;
-    fp = fopen(fileName,"rb");
+int fileLen(char *fileName)
+{
+    FILE *fp;
+    fp = fopen(fileName, "rb");
 
-    if (fp == NULL){
+    if (fp == NULL)
+    {
         return 1;
-    } 
+    }
     int len;
     fseek(fp, 0, SEEK_END);
     len = ftell(fp);
@@ -457,7 +479,8 @@ int fileLen(char* fileName){
     return len;
 }
 
-void registerNotFound(void){
+void registerNotFound(void)
+{
     printf("\n\t\t!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
     printf("\t\t!!    ID is not registered.   !!\n");
     printf("\t\t!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n");
@@ -466,18 +489,21 @@ void registerNotFound(void){
     getchar();
 }
 
-void printfDateTime(char* time, char* date){
-    printf("Time: %c%c:%c%c | %c%c/%c%c/%c%c%c%c",time[0],
-            time[1],time[3],time[4],date[0],date[1],
-            date[2],date[3],date[4],date[5],date[6],date[7]);
+void printfDateTime(char *time, char *date)
+{
+    printf("Time: %c%c:%c%c | %c%c/%c%c/%c%c%c%c", time[0],
+           time[1], time[3], time[4], date[0], date[1],
+           date[2], date[3], date[4], date[5], date[6], date[7]);
 }
 
-void printfDate(char* date){
-    printf("%c%c/%c%c/%c%c%c%c",date[0],date[1],
-            date[2],date[3],date[4],date[5],date[6],date[7]);
+void printfDate(char *date)
+{
+    printf("%c%c/%c%c/%c%c%c%c", date[0], date[1],
+           date[2], date[3], date[4], date[5], date[6], date[7]);
 }
 
-void noRegisterFound(void){
+void noRegisterFound(void)
+{
     printf("\n\t\t!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
     printf("\t\t!!    No register found.      !!\n");
     printf("\t\t!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n");
