@@ -80,6 +80,7 @@ void createTransaction(void){
 //(read)
 int transactionList(){
     FILE* fp;
+    int count = 0;
     fp = fopen("transactions.dat","rb");
 
     if (fp == NULL){
@@ -92,7 +93,14 @@ int transactionList(){
     
     while(fread(tran,sizeof(Transaction),1,fp)){
         showTransaction(tran);
+        if (tran->deleted == 0){
+            count += 1;
+        }
+    } 
+    if (count == 0){
+        noRegisterFound();
     }
+    
     free(tran);
     fclose(fp);
     return 1;

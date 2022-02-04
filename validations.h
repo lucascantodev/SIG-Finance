@@ -32,3 +32,5 @@ void fgetsS(char* string, long int stringSize);
 int fileLen(char* fileName);
 void registerNotFound(void);
 void printfDateTime(char* time,char* date);
+void printfDate(char* date);
+void noRegisterFound(void);

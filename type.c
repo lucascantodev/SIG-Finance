@@ -66,7 +66,6 @@ void createType(void){
     }else{
         saveCanceled();
     }
-
     free(type);
 }
 
@@ -116,6 +115,7 @@ int saveTypeOk(Type* type, char* operation){
 //(read)
 int typeList(){
     FILE* fp;
+    int count = 0;
     fp = fopen("types.dat","rb");
 
     if (fp == NULL){
@@ -130,9 +130,14 @@ int typeList(){
         if(type->deleted != 1){
             printf("\n\t\t= = = = = Registered Type = = = = =");
             printf("\nType name: %s | ID: %ld",type->name,type->id);
+            count += 1;
         }else if(type == NULL){
             printf("\t\n= = = = = Non-existent Type = = = = =");
+            count += 1;
         }
+    }
+    if(count == 0){
+        noRegisterFound();
     }
     
     free(type);
@@ -168,7 +173,6 @@ void updateType(){
         }
         free(type);
     }
-
 }
 
 Type* findType(long int* id){
@@ -217,7 +221,6 @@ void deleteType(){
         }else{
             saveCanceled();
         }
-        
         free(type);
     }
 }
