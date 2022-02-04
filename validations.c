@@ -405,7 +405,7 @@ int yesOrNo(){
         }else if (yn == 'n'){
             return 0;
         }
-    } while (1);
+    } while(1);
 }
 
 void fileError(void){
@@ -459,7 +459,7 @@ int fileLen(char* fileName){
 
 void registerNotFound(void){
     printf("\n\t\t!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
-    printf("\t\t!!    ID is not registered.    !!\n");
+    printf("\t\t!!    ID is not registered.   !!\n");
     printf("\t\t!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n");
 
     printf("\t\t\t>>> Press ENTER to continue <<<");
@@ -470,4 +470,18 @@ void printfDateTime(char* time, char* date){
     printf("Time: %c%c:%c%c | %c%c/%c%c/%c%c%c%c",time[0],
             time[1],time[3],time[4],date[0],date[1],
             date[2],date[3],date[4],date[5],date[6],date[7]);
+}
+
+void printfDate(char* date){
+    printf("%c%c/%c%c/%c%c%c%c",date[0],date[1],
+            date[2],date[3],date[4],date[5],date[6],date[7]);
+}
+
+void noRegisterFound(void){
+    printf("\n\t\t!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
+    printf("\t\t!!    No register found.      !!\n");
+    printf("\t\t!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n");
+
+    printf("\t\t\t>>> Press ENTER to continue <<<");
+    getchar();
 }
