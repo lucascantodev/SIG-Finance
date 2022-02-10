@@ -7,6 +7,7 @@
 #include "transaction.h"
 #include "type.h"
 #include "validations.h"
+#include "useful.h"
 
 //transaction module
 void transactionMenu() {

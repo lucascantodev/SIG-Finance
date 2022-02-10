@@ -9,16 +9,15 @@
 ///                                                                         ///
 ///////////////////////////////////////////////////////////////////////////////
 
-int containsLetter(char* string);
-int isSpace(char c);
-int isLetter(char c);
-int validateName(char* name);
-int validateCPF(char *cpf);
-int equalsDigitCPF(int *cpf);
-int isDigit(char d);
-int isDigitOrPoint(char d);
-int leapYear(int year);
-int isDate(int day, int month, int year);
-int validateDate(char *date);
-int validateTime(char *time);
-int validateBirthday(char *birth_date);
+void currentTime(char* dateString, char* hourString);
+void fileError(void);
+void fileSucess(void);
+void saveCanceled(void);
+void fgetsS(char* string, long int stringSize);
+void registerNotFound(void);
+void printfDateTime(char* time,char* date);
+void printfDate(char* date);
+void noRegisterFound(void);
+int dOrW(char DW);
+int yesOrNo(void);
+int fileLen(char* fileName);

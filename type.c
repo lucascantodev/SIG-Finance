@@ -4,6 +4,7 @@
 
 #include "type.h"
 #include "validations.h"
+#include "useful.h"
 
 //type module
 void typeMenu() {

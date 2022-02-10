@@ -5,6 +5,7 @@
 
 #include "user.h"
 #include "validations.h"
+#include "useful.h"
 
 // user module
 void userMenu()
