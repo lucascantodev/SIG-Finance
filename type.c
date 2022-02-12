@@ -20,7 +20,7 @@ void typeMenu() {
         printf("///                                                                       ///\n");
         printf("///              1. Create new type                                       ///\n");
         printf("///              2. Type list                                             ///\n");
-        printf("///              3. findTy a type                                         ///\n");
+        printf("///              3. Update a type                                         ///\n");
         printf("///              4. Delete a type                                         ///\n");
         printf("///              0. Back to main menu                                     ///\n");
         printf("///                                                                       ///\n");
@@ -89,7 +89,7 @@ Type* createTypeFill(){
     Type* type;
     type = (Type*) malloc(sizeof(Type));
 
-    type->id = (fileLen("types.dat")/sizeof(Type))+1;
+    type->id = (fileLen("types.dat")/sizeof(Type));
 
     printf("\n/////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                       ///\n");
@@ -130,7 +130,7 @@ int typeList(){
     while (fread(type,sizeof(Type),1,fp)){
         if(type->deleted != 1){
             printf("\n\t\t= = = = = Registered Type = = = = =");
-            printf("\n\nType name: %s | ID: %ld\n",type->name,type->id);
+            printf("\nType name: %s | ID: %ld",type->name,type->id);
             count += 1;
         }else if(type == NULL){
             printf("\t\n= = = = = Non-existent Type = = = = =");
@@ -172,8 +172,8 @@ void updateType(){
         }else{
             saveCanceled();
         }
+        free(type);
     }
-    free(type);
 }
 
 Type* findType(long int* id){
@@ -183,6 +183,7 @@ Type* findType(long int* id){
     fp = fopen("types.dat","rb");
 
     if (fp == NULL){
+        fileError();
         return NULL;
     }
 
@@ -221,8 +222,8 @@ void deleteType(){
         }else{
             saveCanceled();
         }
+        free(type);
     }
-    free(type);
 }
 
 int resaveType(Type* type){

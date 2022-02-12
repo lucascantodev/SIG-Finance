@@ -217,8 +217,8 @@ void updateUser(){
         }else{
             saveCanceled();
         }
+        free(use);
     }
-    free(use);
 }
 
 User* findUser(char *cpf){
