@@ -9,10 +9,10 @@
 ///                                                                         ///
 ///////////////////////////////////////////////////////////////////////////////
 
-int containsLetter(char* string);
+int containsLetter(char *string);
 int isSpace(char c);
 int isLetter(char c);
-int validateName(char* name);
+int validateName(char *name);
 int validateCPF(char *cpf);
 int equalsDigitCPF(int *cpf);
 int isDigit(char d);

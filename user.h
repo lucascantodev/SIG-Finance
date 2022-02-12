@@ -11,21 +11,22 @@
 
 typedef struct user User;
 
-struct user {
+struct user
+{
     char name[41];
     char birth_date[9];
     char cpf[12];
     short int deleted;
 };
 
-//CRUD: User
+// CRUD: User
 void userMenu(void);
 void createUser(void);
-User* createUserFill(void);
+User *createUserFill(void);
 int userList(void);
 void updateUser(void);
 void deleteUser(void);
-int saveUser(User* use);
-int saveUserOk(User *use, char* operation);
-User* findUser(char* cpf);
+int saveUser(User *use);
+int saveUserOk(User *use, char *operation);
+User *findUser(char *cpf);
 int resaveUser(User *use);

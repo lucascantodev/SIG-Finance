@@ -11,7 +11,8 @@
 
 typedef struct transaction Transaction;
 
-struct transaction{
+struct transaction
+{
     long int id;
     char DW;
     double value;
@@ -21,22 +22,21 @@ struct transaction{
     char deleted;
     char creationDate[11];
     char creationTime[6];
-    
+
     char userCPF[12];
     long int typeID;
 };
 
-
-//CRUD: Transactions
+// CRUD: Transactions
 void transactionMenu(void);
 void createTransaction(void);
 int transactionList(void);
 void detailTransaction(void);
 void updateTransaction(void);
 void deleteTransaction(void);
-int saveTransactionOk(Transaction* tran, char* operation);
-Transaction* createTransactionFill(void);
-int saveTransaction(Transaction* tran);
-Transaction* findTransaction(long int* id);
-int resaveTransaction(Transaction* tran);
-void showTransaction(Transaction* tran);
+int saveTransactionOk(Transaction *tran, char *operation);
+Transaction *createTransactionFill(void);
+int saveTransaction(Transaction *tran);
+Transaction *findTransaction(long int *id);
+int resaveTransaction(Transaction *tran);
+void showTransaction(Transaction *tran);

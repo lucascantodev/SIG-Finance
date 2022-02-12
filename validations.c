@@ -16,7 +16,7 @@ int validateName(char *name)
         return 0;
     }
 
-    for (int i = 0; i < strlen(name)-1; i++)
+    for (int i = 0; i < strlen(name) - 1; i++)
     {
         // printf("%c",name[14]);
         if (!isLetter(name[i]))
@@ -31,17 +31,21 @@ int validateName(char *name)
     return 1;
 }
 
-int isLetter(char c){
-    if (c >= 'A' && c <= 'Z'){
+int isLetter(char c)
+{
+    if (c >= 'A' && c <= 'Z')
+    {
         return 1;
     }
-    else if (c >= 'a' && c <= 'z'){
+    else if (c >= 'a' && c <= 'z')
+    {
         return 1;
     }
     return 0;
 }
 
-int isSpace(char c){
+int isSpace(char c)
+{
     if (c == 32)
     {
         return 1;
@@ -49,7 +53,8 @@ int isSpace(char c){
     return 0;
 }
 
-int containsLetter(char *string){
+int containsLetter(char *string)
+{
     for (int i = 0; i < strlen(string); i++)
     {
         if (isLetter(string[i]))
@@ -303,7 +308,8 @@ int validateTime(char *time)
 
 int validateBirthday(char *birth_date)
 {
-    if (!validateDate(birth_date)) {
+    if (!validateDate(birth_date))
+    {
         return 0;
     }
 
@@ -317,24 +323,27 @@ int validateBirthday(char *birth_date)
     int year = creationTime->tm_year + 1900;
 
     int day_converted = (birth_date[0] - '0') * 10 + (birth_date[1] - '0');
-    int month_converted = (birth_date[2] - '0') * 10 + (birth_date[3] - '0');   
+    int month_converted = (birth_date[2] - '0') * 10 + (birth_date[3] - '0');
     int year_converted = (birth_date[4] - '0') * 1000 + (birth_date[5] - '0') * 100 + (birth_date[6] - '0') * 10 + (birth_date[7] - '0');
 
-    if (year_converted > year) {
+    if (year_converted > year)
+    {
         return 0;
     }
 
-    if (year_converted == year && month_converted > month) {
+    if (year_converted == year && month_converted > month)
+    {
         return 0;
     }
 
-    if (year_converted == year && month_converted == month && day_converted > day) {
+    if (year_converted == year && month_converted == month && day_converted > day)
+    {
         return 0;
     }
 
-    if (year_converted <= year - 102) {
+    if (year_converted <= year - 102)
+    {
         return 0;
     }
-    
-    return 1; 
+    return 1;
 }
