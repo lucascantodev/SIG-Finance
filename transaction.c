@@ -15,7 +15,7 @@ void transactionMenu() {
     bool isValid = true;
 
     do{
-        printf("\n/////////////////////////////////////////////////////////////////////////////\n");
+        printf("\n\n/////////////////////////////////////////////////////////////////////////////\n");
         printf("///                                                                       ///\n");
         printf("///               = = = = = = = = = = = = = = = = = = = =                 ///\n");
         printf("///           = = = = = = = = Transaction Menu = = = = = = =              ///\n");
@@ -101,6 +101,8 @@ int transactionList(){
     if (count == 0){
         noRegisterFound();
     }
+    printf("\n\t\t\t>>> Press ENTER to continue <<<\n\n");
+    getchar();
     
     free(tran);
     fclose(fp);
@@ -127,6 +129,7 @@ Transaction* createTransactionFill(void){
     tran = (Transaction*) malloc(sizeof(Transaction));
     char value[11];
     bool ok;
+    Type* type;
 
     //define id
     tran->id = (fileLen("transactions.dat")/sizeof(Transaction));
@@ -186,12 +189,19 @@ Transaction* createTransactionFill(void){
     fgetsS(tran->description,101);
 
     do{
-        printf("\n                 = = = = = = Type of transaction = = = = = =                  \n\n");
-        //typeList();
-        printf("\n///           Choose ID of Type:                                          ///\n");
+        printf("\n                 = = = = = = Type List = = = = = =                  \n");
+        typeList();
+        printf("\n///           Choose ID of Type (enter 0 to leave untyped or enter a valid ID):      ///\n");
         scanf("%ld", &tran->typeID);
         getchar();
-    } while (/* TODO: check if typeID is registered in types */ false);
+        type = findType(&tran->typeID);
+        if (type == NULL && tran->typeID != 0){
+            printf("\n\n\t\t!!!!!!!!! Type not found. !!!!!!!!!\n\t\t!!!!!!!!! Enter 0 to leave untyped or enter a valid ID. !!!!!!!!!\n\n");
+            printf("\t\t\t>>> Press ENTER to continue <<<\n\n");
+            getchar();
+        }
+        free(type);
+    } while (type == NULL && tran->typeID != 0);
     
     printf("///                                                                       ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n\n");
@@ -212,6 +222,17 @@ int saveTransactionOk(Transaction* tran, char* operation){
 
     printf("\n\tDo you really want to %s %s of R$ %.3f made by XXX ?\n", operation, dw, tran->value);
     printf("\tID: %ld",tran->id);
+
+    //get the type name
+    if (tran->typeID != 0){
+        Type* type;
+        type = findType(&tran->typeID);
+        printf("                           Type: %s",type->name);
+        free(type);
+    }else{
+        printf("                           Type: NULL");
+    }
+     
     printf("\n\t");
     printfDateTime(tran->time,tran->date);
     printf("\tDescription: %s\n", tran->description);
@@ -239,8 +260,15 @@ void detailTransaction(){
         printf("\nID: %ld",tran->id); //printf("Made by: %s",nameOfUser);
         printf("\n%s: $%.3lf",dw,tran->value);
         printf("\n"); printfDateTime(tran->time,tran->date);
-        //print("\n%s",type)
-        printf("\nDescription: %s",tran->description);
+        if (tran->typeID == 0){
+            printf("\nType: NULL      ");
+        }else{
+            Type* type = findType(&tran->typeID);
+            printf("\nType: %s      ",type->name);
+            free(type);
+        }
+        
+        printf("Description: %s",tran->description);
         printf("\nCreation time: %s | Creation date: %s",tran->creationTime,tran->creationDate);
         printf("\n\n\t\t\t>>> Press ENTER to continue <<<");
         getchar();
@@ -274,6 +302,7 @@ void updateTransaction(){
     Transaction* tran;
     char value[11];
     bool ok;
+    Type* type;
 
     printf("                 = = = = = = Update Transaction = = = = = =                  \n\n");
     printf("\nWhich transaction ID do you want to be updated: ");    
@@ -335,12 +364,19 @@ void updateTransaction(){
         fgetsS(tran->description,101);
 
         do{
-            printf("\n                 = = = = = = Type of transaction = = = = = =                  \n\n");
-            //typeList();
-            printf("\n///           Choose ID of Type:                                          ///\n");
+            printf("\n                 = = = = = = Type List = = = = = =                  \n");
+            typeList();
+            printf("\n///           Choose ID of Type (enter 0 to leave untyped or enter a valid ID):      ///\n");
             scanf("%ld", &tran->typeID);
             getchar();
-        } while (/* TODO: check if typeID is registered in types */ false);
+            type = findType(&tran->typeID);
+            if (type == NULL && tran->typeID != 0){
+                printf("\n\n\t\t!!!!!!!!! Type not found. !!!!!!!!!\n\t\t!!!!!!!!! Enter 0 to leave untyped or enter a valid ID. !!!!!!!!!\n\n");
+                printf("\t\t\t>>> Press ENTER to continue <<<\n\n");
+                getchar();
+            }
+            free(type);
+        } while (type == NULL && tran->typeID != 0);
 
         if(saveTransactionOk(tran,"UPDATE")){           
             if(resaveTransaction(tran)){
@@ -351,8 +387,8 @@ void updateTransaction(){
         }else{
             saveCanceled();
         }
-        free(tran);
     }
+    free(tran);
 
 }
 
@@ -378,10 +414,9 @@ void deleteTransaction(){
             }
         }else{
             saveCanceled();
-        }
-        
-        free(tran);
+        }   
     }
+    free(tran);
 }
 
 int resaveTransaction(Transaction* tran){

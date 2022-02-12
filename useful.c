@@ -52,7 +52,7 @@ void currentTime(char *dateString, char *hourString){
 void fileError(void){
     printf("\n\t\t!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
     printf("\t\t!! error: COULD NOT OPEN FILE !!\n");
-    printf("\t\t!!     Operation Canceled     !!\n");
+    printf("\t\t!! The file may not exist yet !!\n");
     printf("\t\t!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n");
 
     printf("\t\t\t>>> Press ENTER to continue <<<");
