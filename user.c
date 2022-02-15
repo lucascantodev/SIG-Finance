@@ -14,6 +14,7 @@ void userMenu()
     bool isValid = true;
 
     do{
+        system("clear||cls");
         printf("\n/////////////////////////////////////////////////////////////////////////////\n");
         printf("///                                                                       ///\n");
         printf("///               = = = = = = = = = = = = = = = = = = = =                 ///\n");
@@ -30,6 +31,7 @@ void userMenu()
         printf("\t\t\tChoose an option: ");
         scanf("%c", &op);
         getchar();
+        system("clear||cls");
         printf("\n");
 
         switch (op)
@@ -62,8 +64,10 @@ void userMenu()
 void createUser(){
     User *use;
     use = createUserFill();
+    system("clear||cls");
 
     if (saveUserOk(use,"REGISTER")){
+        system("clear||cls");
         if (saveUser(use)){
             fileSucess();
         }
@@ -98,10 +102,15 @@ int saveUserOk(User *use, char* operation){
 
 //(createFill)
 User *createUserFill(void){
-    User *use;
+    User* use;
     use = (User *)malloc(sizeof(User));
+    User* useAux;
+    bool cpfExists = false;
 
-    // bool ok
+    printf("\n\n!!!!!!!!!! If any invalid value is entered, the field will be asked again !!!!!!!!!!\n\n");
+    printf("\t\t\t>>> Press ENTER to continue <<<");
+    getchar();
+
     printf("\n/////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                       ///\n");
     printf("///               = = = = = = = = = = = = = = = = = = = =                 ///\n");
@@ -124,13 +133,17 @@ User *createUserFill(void){
     printf("///                                                                       ///\n");
 
     do{
-
         printf("///                         User's CPF:                                   ///\n");
         fgetsS(use->cpf, 12);
         getchar();
-    } while (!validateCPF(use->cpf));
-    //printf("\n|%s|",use->cpf);
-
+        useAux = findUser(use->cpf);
+        if (useAux != NULL){
+            if ((strcmp(use->cpf,useAux->cpf) == 0)){
+                cpfExists = true;
+                printf("\n\t\t!!!!!!!! The cpf informed is already registered !!!!!!!!\n");
+            }
+        } 
+    } while (!validateCPF(use->cpf) || cpfExists);
     printf("///                                                                       ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n\n");
     use->deleted = 0;
@@ -165,9 +178,12 @@ int userList(){
         }
     }if (count == 0){
         noRegisterFound();
+    }else{
+        printf("\n\t\t\t>>> Press ENTER to continue <<<\n\n");
+        getchar();
+        system("clear||cls");
     }
     
-
     free(use);
     fclose(fp);
     return 1;
@@ -178,11 +194,14 @@ void updateUser(){
     char cpf[12];
     User *use;
 
+    printf("\n\n!!!!!!!!!! If any invalid value is entered, the field will be asked again !!!!!!!!!!\n\n");
+    printf("\t\t\t>>> Press ENTER to continue <<<");
+    getchar();
+
     printf("                 = = = = = = Update User = = = = = =                  \n\n");
     printf("\nWhich user CPF do you want to be updated: ");
     fgetsS(cpf,12);
     getchar();
-    //printf("\n|%s|",cpf);
 
     use = findUser(cpf);
     if (use == NULL){
@@ -195,13 +214,6 @@ void updateUser(){
         } while (!(validateName(use->name)));
 
         do{
-            printf("\n           User's CPF (only numbers): ");
-            fgetsS(use->cpf, 12);
-            getchar();
-
-        } while (!(validateCPF(use->cpf)));
-
-        do{
             printf("\n           Birthday (DDMMAAAA): ");
             scanf("%s", use->birth_date);
             getchar();
@@ -209,6 +221,7 @@ void updateUser(){
         } while (!(validateDate(use->birth_date)));
 
         if (saveUserOk(use,"UPDATE")){
+            system("clear||cls");
             if (resaveUser(use)){
                 fileSucess();
             }else{

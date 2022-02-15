@@ -12,6 +12,7 @@ void typeMenu() {
     bool isValid = true; 
     
     do{
+        system("clear||cls");
         printf("\n/////////////////////////////////////////////////////////////////////////////\n");
         printf("///                                                                       ///\n");
         printf("///               = = = = = = = = = = = = = = = = = = = =                 ///\n");
@@ -28,6 +29,7 @@ void typeMenu() {
         printf("\t\t\tChoose an option: ");
         scanf("%c", &op);
         getchar();
+        system("clear||cls");
         printf("\n");
 
         switch (op){
@@ -59,8 +61,10 @@ void typeMenu() {
 void createType(void){
     Type* type;
     type = createTypeFill();
+    system("clear||cls");
 
     if(saveTypeOk(type,"REGISTER")){
+        system("clear||cls");
         if(saveType(type)){
             fileSucess();
         }
@@ -97,7 +101,6 @@ Type* createTypeFill(){
     printf("///                                                                       ///\n");
     printf("///           Type name:                                                  ///\n");
     fgetsS(type->name,21);
-    getchar();
     printf("///                                                                       ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n\n");
     type->deleted = 0;
@@ -140,6 +143,10 @@ int typeList(){
     }
     if(count == 0){
         noRegisterFound();
+    }else{
+        printf("\n\t\t\t>>> Press ENTER to continue <<<\n\n");
+        getchar();
+        system("clear||cls");
     }
     
     free(type);
@@ -151,7 +158,7 @@ int typeList(){
 void updateType(){
     long int id;
     Type* type;
-
+    
     printf("                 = = = = = = Update Type = = = = = =                  \n\n");
     printf("\nWhich type ID do you want to be updated: ");    
     scanf("%ld",&id);
@@ -165,6 +172,7 @@ void updateType(){
         fgetsS(type->name,21);
 
         if(saveTypeOk(type,"UPDATE")){
+            system("clear||cls");
             if(resaveType(type)){
                 fileSucess();
             }else{
@@ -213,6 +221,7 @@ void deleteType(){
         registerNotFound();
     }else{
         if (saveTypeOk(type,"DELETE")){
+            system("clear||cls");
             type->deleted = 1;
             if (resaveType(type)){
                 fileSucess();

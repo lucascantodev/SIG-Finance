@@ -75,11 +75,9 @@ void createTransaction(void){
         system("clear||cls");
         if(saveTransaction(tran)){
             fileSucess();
-            system("clear||cls");
         }
     }else{
         saveCanceled();
-        system("clear||cls");
     }
     free(tran);
 }
@@ -106,10 +104,11 @@ int transactionList(){
     } 
     if (count == 0){
         noRegisterFound();
+    }else{
+        printf("\n\t\t\t>>> Press ENTER to continue <<<\n\n");
+        getchar();
+        system("clear||cls");
     }
-    printf("\n\t\t\t>>> Press ENTER to continue <<<\n\n");
-    getchar();
-    system("clear||cls");
 
     free(tran);
     fclose(fp);
@@ -143,6 +142,9 @@ Transaction* createTransactionFill(void){
     tran->id = (fileLen("transactions.dat")/sizeof(Transaction));
     
     printf("\n\n!!!!!!!!!! If any invalid value is entered, the field will be asked again !!!!!!!!!!\n\n");
+    printf("\t\t\t>>> Press ENTER to continue <<<");
+    getchar();
+
     printf("\n/////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                       ///\n");
     printf("///            = = = = = = Register Transaction = = = = = =               ///\n");
@@ -356,6 +358,10 @@ void updateTransaction(){
     }else{  
         
         do{
+            printf("\n\n!!!!!!!!!! If any invalid value is entered, the field will be asked again !!!!!!!!!!\n\n");
+            printf("\t\t\t>>> Press ENTER to continue <<<");
+            getchar();
+            
             printf("\n                 = = = = = = User List = = = = = =                  \n");
             userList();
             printf("\n\n///        User's CPF (enter '0' if you're not a user or enter a valid CPF): ///\n");
