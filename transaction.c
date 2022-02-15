@@ -6,6 +6,7 @@
 
 #include "transaction.h"
 #include "type.h"
+#include "user.h"
 #include "validations.h"
 #include "useful.h"
 
@@ -130,6 +131,7 @@ Transaction* createTransactionFill(void){
     char value[11];
     bool ok;
     Type* type;
+    User* user;
 
     //define id
     tran->id = (fileLen("transactions.dat")/sizeof(Transaction));
@@ -140,11 +142,21 @@ Transaction* createTransactionFill(void){
     printf("///            = = = = = = Register Transaction = = = = = =               ///\n");
     printf("///                                                                       ///\n");
     do{
-        printf("///           User's CPF (only numbers):                                  ///\n");
+        printf("\n                 = = = = = = User List = = = = = =                  \n");
+        userList();
+        printf("\n\n///        User's CPF (enter 0 to leave without user or enter a valid CPF): ///\n");
         fgetsS(tran->userCPF,12);
-        getchar();
-        //TODO: check if userCPF is registered in the users
-    } while (!(validateCPF(tran->userCPF)));
+        if (strlen(tran->userCPF) != 1){
+            getchar(); 
+        }       
+        user = findUser(tran->userCPF);
+        if (user == NULL && (strcmp(tran->userCPF,"0")!= 0)){
+            printf("\n\n\t\t\t\t!!!!!!!!! User not found. !!!!!!!!!\n\t\t!!!!!!!!! Enter 0 to leave untyped or enter a valid CPF. !!!!!!!!!\n\n");
+            printf("\t\t\t>>> Press ENTER to continue <<<\n\n");
+            getchar();
+        }
+        free(user);
+    } while (user == NULL && (strcmp(tran->userCPF,"0")!= 0));
 
     do{
         printf("///           Deposit or Withdrawal (d/w):                                ///\n");
@@ -196,7 +208,7 @@ Transaction* createTransactionFill(void){
         getchar();
         type = findType(&tran->typeID);
         if (type == NULL && tran->typeID != 0){
-            printf("\n\n\t\t!!!!!!!!! Type not found. !!!!!!!!!\n\t\t!!!!!!!!! Enter 0 to leave untyped or enter a valid ID. !!!!!!!!!\n\n");
+            printf("\n\n\t\t\t\t!!!!!!!!! Type not found. !!!!!!!!!\n\t\t!!!!!!!!! Enter 0 to leave untyped or enter a valid ID. !!!!!!!!!\n\n");
             printf("\t\t\t>>> Press ENTER to continue <<<\n\n");
             getchar();
         }
@@ -220,7 +232,12 @@ int saveTransactionOk(Transaction* tran, char* operation){
     printf("\n\n");
     printf("\t            = = = = = = %s TRANSACTION = = = = = =               \n\n",operation);
 
-    printf("\n\tDo you really want to %s %s of R$ %.3f made by XXX ?\n", operation, dw, tran->value);
+    if ((strcmp(tran->userCPF,"0")!= 0)){
+        User* user = findUser(tran->userCPF);
+        printf("\n\tDo you really want to %s %s of R$ %.3f made by %s ?\n", operation, dw, tran->value, user->name);
+    }else{
+        printf("\n\tDo you really want to %s %s of R$ %.3f made by NULL ?\n", operation, dw, tran->value);
+    }
     printf("\tID: %ld",tran->id);
 
     //get the type name
@@ -257,7 +274,14 @@ void detailTransaction(){
     }else{
         tran->DW == 'd' ? strcpy(dw,"DEPOSIT") : strcpy(dw,"WITHDRAWAL");
         printf("\n\n\t\t= = = = = Registered Transaction = = = = =");
-        printf("\nID: %ld",tran->id); //printf("Made by: %s",nameOfUser);
+        printf("\nID: %ld\t",tran->id);
+        if ((strcmp(tran->userCPF,"0")!= 0)){
+            User* user = findUser(tran->userCPF);
+            printf("Made by: %s",user->name);
+        }else{
+            printf("Made by: NULL");
+        }
+        
         printf("\n%s: $%.3lf",dw,tran->value);
         printf("\n"); printfDateTime(tran->time,tran->date);
         if (tran->typeID == 0){
@@ -285,7 +309,14 @@ void showTransaction(Transaction* tran){
         tran->DW == 'd' ? strcpy(dw,"DEPOSIT") : strcpy(dw,"WITHDRAWAL");
 
         printf("\n\n\t\t= = = = = Registered Transaction = = = = =");
-        printf("\nID: %ld",tran->id);//printf("Made by: %s",nameOfUser);
+        printf("\nID: %ld\t",tran->id);
+
+        if ((strcmp(tran->userCPF,"0")!= 0)){
+            User* user = findUser(tran->userCPF);
+            printf("Made by: %s",user->name);
+        }else{
+            printf("Made by: NULL");
+        }
         printf("\n%s: $%.3lf",dw,tran->value);
         //printf("\n%s",type);
         printf("\n");
@@ -303,6 +334,7 @@ void updateTransaction(){
     char value[11];
     bool ok;
     Type* type;
+    User* user;
 
     printf("                 = = = = = = Update Transaction = = = = = =                  \n\n");
     printf("\nWhich transaction ID do you want to be updated: ");    
@@ -314,12 +346,23 @@ void updateTransaction(){
     if(tran == NULL){
         registerNotFound();
     }else{  
-            do{
-            printf("\n           User's CPF (only numbers): ");
+        
+        do{
+            printf("\n                 = = = = = = User List = = = = = =                  \n");
+            userList();
+            printf("\n\n///        User's CPF (enter 0 to leave without user or enter a valid CPF): ///\n");
             fgetsS(tran->userCPF,12);
-            getchar();
-            //TODO: check if userCPF is registered in the users
-        } while (!(validateCPF(tran->userCPF)));
+            if (strlen(tran->userCPF) != 1){
+                getchar(); 
+            }
+            user = findUser(tran->userCPF);
+            if (user == NULL && (strcmp(tran->userCPF,"0")!= 0)){
+                printf("\n\n\t\t\t\t!!!!!!!!! User not found. !!!!!!!!!\n\t\t!!!!!!!!! Enter 0 to leave untyped or enter a valid CPF. !!!!!!!!!\n\n");
+                printf("\t\t\t>>> Press ENTER to continue <<<\n\n");
+                getchar();
+            }
+            free(user);
+        } while (user == NULL && tran->userCPF != 0);
 
         do{
             printf("\n           Deposit or Withdrawal (d/w): ");
@@ -371,7 +414,7 @@ void updateTransaction(){
             getchar();
             type = findType(&tran->typeID);
             if (type == NULL && tran->typeID != 0){
-                printf("\n\n\t\t!!!!!!!!! Type not found. !!!!!!!!!\n\t\t!!!!!!!!! Enter 0 to leave untyped or enter a valid ID. !!!!!!!!!\n\n");
+                printf("\n\n\t\t\t\t!!!!!!!!! Type not found. !!!!!!!!!\n\t\t!!!!!!!!! Enter 0 to leave untyped or enter a valid ID. !!!!!!!!!\n\n");
                 printf("\t\t\t>>> Press ENTER to continue <<<\n\n");
                 getchar();
             }
@@ -389,7 +432,6 @@ void updateTransaction(){
         }
     }
     free(tran);
-
 }
 
 //(delete)

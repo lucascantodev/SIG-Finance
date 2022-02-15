@@ -20,7 +20,7 @@ void typeMenu() {
         printf("///                                                                       ///\n");
         printf("///              1. Create new type                                       ///\n");
         printf("///              2. Type list                                             ///\n");
-        printf("///              3. findTy a type                                         ///\n");
+        printf("///              3. Update a type                                         ///\n");
         printf("///              4. Delete a type                                         ///\n");
         printf("///              0. Back to main menu                                     ///\n");
         printf("///                                                                       ///\n");

@@ -21,7 +21,7 @@ void userMenu()
         printf("///               = = = = = = = = = = = = = = = = = = = =                 ///\n");
         printf("///                                                                       ///\n");
         printf("///              1. Register new user                                     ///\n");
-        printf("///              2. Users list                                            ///\n");
+        printf("///              2. User list                                            ///\n");
         printf("///              3. Update User                                           ///\n");
         printf("///              4. Delete User                                           ///\n");
         printf("///              0. Back to main menu                                     ///\n");
@@ -228,7 +228,6 @@ User* findUser(char *cpf){
     fp = fopen("users.dat","rb");
 
     if (fp == NULL){
-        fileError();
         return NULL;
     }
 
