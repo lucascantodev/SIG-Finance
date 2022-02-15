@@ -18,6 +18,5 @@ void registerNotFound(void);
 void printfDateTime(char* time,char* date);
 void printfDate(char* date);
 void noRegisterFound(void);
-int dOrW(char DW);
 int yesOrNo(void);
 int fileLen(char* fileName);

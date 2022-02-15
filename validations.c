@@ -31,6 +31,15 @@ int validateName(char *name)
     return 1;
 }
 
+// check if is deposit or withdrawal
+int dOrW(char DW) 
+{
+    if (DW == 'd' || DW == 'w'){
+        return 1;
+    }
+    return 0;   
+}
+
 int isLetter(char c){
     if (c >= 'A' && c <= 'Z'){
         return 1;

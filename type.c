@@ -96,7 +96,8 @@ Type* createTypeFill(){
     printf("///              = = = = = = = = Create Type = = = = = = = =              ///\n");
     printf("///                                                                       ///\n");
     printf("///           Type name:                                                  ///\n");
-    fgetsS(type->name,21); //adapted from @flgorgonio
+    fgetsS(type->name,21);
+    getchar();
     printf("///                                                                       ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n\n");
     type->deleted = 0;

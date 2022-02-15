@@ -1,5 +1,5 @@
 //Useful
-
+#include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
@@ -57,6 +57,7 @@ void fileError(void){
 
     printf("\t\t\t>>> Press ENTER to continue <<<");
     getchar();
+    system("clear||cls");
 }
 
 void fileSucess(void){
@@ -66,6 +67,7 @@ void fileSucess(void){
 
     printf("\t\t\t>>> Press ENTER to continue <<<");
     getchar();
+    system("clear||cls");
 }
 
 void saveCanceled(void){
@@ -75,6 +77,7 @@ void saveCanceled(void){
 
     printf("\t\t\t>>> Press ENTER to continue <<<");
     getchar();
+    system("clear||cls");
 }
 
 void fgetsS(char* string, long int stringSize){
@@ -105,6 +108,7 @@ void registerNotFound(void){
 
     printf("\t\t\t>>> Press ENTER to continue <<<");
     getchar();
+    system("clear||cls");
 }
 
 void printfDateTime(char* time, char* date){
@@ -125,15 +129,7 @@ void noRegisterFound(void){
 
     printf("\t\t\t>>> Press ENTER to continue <<<");
     getchar();
-}
-
-// check if is deposit or withdrawal
-int dOrW(char DW) 
-{
-    if (DW == 'd' || DW == 'w'){
-        return 1;
-    }
-    return 0;   
+    system("clear||cls");
 }
 
 int yesOrNo(){
@@ -143,6 +139,7 @@ int yesOrNo(){
         printf("Type (y) for yes or (n) for no: \n");
         scanf("%c",&yn);
         getchar();
+        system("clear||cls");
 
         if (yn == 'y'){
             return 1;

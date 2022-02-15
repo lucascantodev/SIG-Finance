@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+
 
 #include "screens.h"
 
@@ -8,6 +10,8 @@ void welcome(){
     printf("\n");
     printf("\t\t\t>>> Press ENTER to continue <<<");
     getchar();
+    system("clear||cls");
+
 }
 
 void about(){
@@ -30,6 +34,7 @@ void about(){
     printf("///////////////////////////////////////////////////////////////////////////////\n\n");
     printf("\t\t\t>>> Press ENTER to continue <<<");
     getchar();
+    system("clear||cls");
 }
 
 void team(){
@@ -45,11 +50,12 @@ void team(){
     printf("///////////////////////////////////////////////////////////////////////////////\n\n");
     printf("\t\t\t>>> Press ENTER to continue <<<\n");
     getchar();
+    system("clear||cls");
 }
 
 char mainScreen() {
     char op;
-
+    system("clear||cls");
 	printf("\n///////////////////////////////////////////////////////////////////////////////////\n");
 	printf("/// | /////////// | /////////// | /////////// | /////////// | /////////// | ///////\n");
 	printf("///           ||||||===========|=============|==============||||||             ///\n");
@@ -81,6 +87,7 @@ char mainScreen() {
     printf("\t\t\tChoose an option: ");
     scanf("%c", &op);
     getchar();
+    system("clear||cls");
     printf("\n");
     return op;
 }

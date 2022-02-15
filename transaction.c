@@ -33,6 +33,7 @@ void transactionMenu() {
         printf("\t\t\tChoose an option: ");
         scanf("%c", &op);
         getchar();
+        system("clear||cls");
         printf("\n");
 
         switch (op){
@@ -68,13 +69,17 @@ void createTransaction(void){
 
     Transaction* tran;
     tran = createTransactionFill();
+    system("clear||cls");
 
     if (saveTransactionOk(tran,"REGISTER")){
+        system("clear||cls");
         if(saveTransaction(tran)){
             fileSucess();
+            system("clear||cls");
         }
     }else{
         saveCanceled();
+        system("clear||cls");
     }
     free(tran);
 }
@@ -104,7 +109,8 @@ int transactionList(){
     }
     printf("\n\t\t\t>>> Press ENTER to continue <<<\n\n");
     getchar();
-    
+    system("clear||cls");
+
     free(tran);
     fclose(fp);
     return 1;
@@ -144,16 +150,17 @@ Transaction* createTransactionFill(void){
     do{
         printf("\n                 = = = = = = User List = = = = = =                  \n");
         userList();
-        printf("\n\n///        User's CPF (enter 0 to leave without user or enter a valid CPF): ///\n");
+        printf("\n\n///        User's CPF (enter '0' if you're not a user or enter a valid CPF): ///\n");
         fgetsS(tran->userCPF,12);
         if (strlen(tran->userCPF) != 1){
             getchar(); 
         }       
         user = findUser(tran->userCPF);
         if (user == NULL && (strcmp(tran->userCPF,"0")!= 0)){
-            printf("\n\n\t\t\t\t!!!!!!!!! User not found. !!!!!!!!!\n\t\t!!!!!!!!! Enter 0 to leave untyped or enter a valid CPF. !!!!!!!!!\n\n");
+            printf("\n\n\t\t\t\t!!!!!!!!! User not found. !!!!!!!!!\n\t\t!!!!!!!!! Enter '0' if you're not a user or enter a valid CPF. !!!!!!!!!\n\n");
             printf("\t\t\t>>> Press ENTER to continue <<<\n\n");
             getchar();
+
         }
         free(user);
     } while (user == NULL && (strcmp(tran->userCPF,"0")!= 0));
@@ -203,12 +210,12 @@ Transaction* createTransactionFill(void){
     do{
         printf("\n                 = = = = = = Type List = = = = = =                  \n");
         typeList();
-        printf("\n///           Choose ID of Type (enter 0 to leave untyped or enter a valid ID):      ///\n");
+        printf("\n///           Choose ID of Type (enter '0' if you dont have an ID or enter a valid ID):      ///\n");
         scanf("%ld", &tran->typeID);
         getchar();
         type = findType(&tran->typeID);
         if (type == NULL && tran->typeID != 0){
-            printf("\n\n\t\t\t\t!!!!!!!!! Type not found. !!!!!!!!!\n\t\t!!!!!!!!! Enter 0 to leave untyped or enter a valid ID. !!!!!!!!!\n\n");
+            printf("\n\n\t\t\t\t!!!!!!!!! Type not found. !!!!!!!!!\n\t\t!!!!!!!!! Enter '0' if you dont have an ID or enter a valid ID. !!!!!!!!!\n\n");
             printf("\t\t\t>>> Press ENTER to continue <<<\n\n");
             getchar();
         }
@@ -296,6 +303,7 @@ void detailTransaction(){
         printf("\nCreation time: %s | Creation date: %s",tran->creationTime,tran->creationDate);
         printf("\n\n\t\t\t>>> Press ENTER to continue <<<");
         getchar();
+        system("clear||cls");
     }
     free(tran);
     
@@ -350,14 +358,14 @@ void updateTransaction(){
         do{
             printf("\n                 = = = = = = User List = = = = = =                  \n");
             userList();
-            printf("\n\n///        User's CPF (enter 0 to leave without user or enter a valid CPF): ///\n");
+            printf("\n\n///        User's CPF (enter '0' if you're not a user or enter a valid CPF): ///\n");
             fgetsS(tran->userCPF,12);
             if (strlen(tran->userCPF) != 1){
                 getchar(); 
             }
             user = findUser(tran->userCPF);
             if (user == NULL && (strcmp(tran->userCPF,"0")!= 0)){
-                printf("\n\n\t\t\t\t!!!!!!!!! User not found. !!!!!!!!!\n\t\t!!!!!!!!! Enter 0 to leave untyped or enter a valid CPF. !!!!!!!!!\n\n");
+                printf("\n\n\t\t\t\t!!!!!!!!! User not found. !!!!!!!!!\n\t\t!!!!!!!!! Enter '0' if you're not a user or enter a valid CPF. !!!!!!!!!\n\n");
                 printf("\t\t\t>>> Press ENTER to continue <<<\n\n");
                 getchar();
             }
@@ -409,19 +417,20 @@ void updateTransaction(){
         do{
             printf("\n                 = = = = = = Type List = = = = = =                  \n");
             typeList();
-            printf("\n///           Choose ID of Type (enter 0 to leave untyped or enter a valid ID):      ///\n");
+            printf("\n///           Choose ID of Type (enter '0' if you dont have an ID or enter a valid ID):      ///\n");
             scanf("%ld", &tran->typeID);
             getchar();
             type = findType(&tran->typeID);
             if (type == NULL && tran->typeID != 0){
-                printf("\n\n\t\t\t\t!!!!!!!!! Type not found. !!!!!!!!!\n\t\t!!!!!!!!! Enter 0 to leave untyped or enter a valid ID. !!!!!!!!!\n\n");
+                printf("\n\n\t\t\t\t!!!!!!!!! Type not found. !!!!!!!!!\n\t\t!!!!!!!!! Enter '0' if you dont have an ID or enter a valid ID. !!!!!!!!!\n\n");
                 printf("\t\t\t>>> Press ENTER to continue <<<\n\n");
                 getchar();
             }
             free(type);
         } while (type == NULL && tran->typeID != 0);
 
-        if(saveTransactionOk(tran,"UPDATE")){           
+        if(saveTransactionOk(tran,"UPDATE")){       
+            system("clear||cls");    
             if(resaveTransaction(tran)){
                 fileSucess(); 
             }else{
@@ -448,6 +457,7 @@ void deleteTransaction(){
         registerNotFound();
     }else{
         if(saveTransactionOk(tran,"DELETE")){
+            system("clear||cls");
             tran->deleted = 1;
             if(resaveTransaction(tran)){
                 fileSucess();  
