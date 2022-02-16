@@ -18,12 +18,10 @@ int validateName(char *name)
 
     for (int i = 0; i < strlen(name)-1; i++)
     {
-        // printf("%c",name[14]);
         if (!isLetter(name[i]))
         {
             if (!isSpace(name[i]))
             {
-                printf("Comi um cu aqui");
                 return 0;
             }
         }

@@ -134,6 +134,7 @@ User *createUserFill(void){
 
     do{
         printf("///                         User's CPF:                                   ///\n");
+        cpfExists = false;
         fgetsS(use->cpf, 12);
         getchar();
         useAux = findUser(use->cpf);
@@ -306,4 +307,37 @@ int resaveUser(User *use){
     fclose(fp);
     free(useRead);
     return find;
+}
+
+// This function physically deletes the logically deleted data from the user module
+int physicalDeletionUsers(){
+
+    FILE *fp;
+    fp = fopen("users.dat", "rb");
+    if (fp == NULL){
+        return 0;
+    }
+    
+    FILE *fp2;
+    fp2 = fopen("users2.dat", "wb");
+    if (fp2 == NULL){
+        return 0;
+    }
+
+    User* use;
+    use = (User*) malloc(sizeof(User));
+
+    while (fread(use, sizeof(User), 1, fp)){
+        if (use->deleted != 1){
+            fwrite(use,sizeof(User),1,fp2);
+        }
+    }
+
+    free(use);
+    fclose(fp);
+    fclose(fp2);
+    remove("users.dat");
+    rename("users2.dat","users.dat");
+
+    return 1;
 }
