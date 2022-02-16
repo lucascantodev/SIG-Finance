@@ -7,6 +7,7 @@
 #include "type.h"
 
 int main(){
+    physicalDeletionUsers();
     welcome();
     about();
     team();

@@ -29,3 +29,4 @@ int saveUser(User* use);
 int saveUserOk(User *use, char* operation);
 User* findUser(char* cpf);
 int resaveUser(User *use);
+int physicalDeletionUsers();
