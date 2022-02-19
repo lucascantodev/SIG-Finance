@@ -30,6 +30,7 @@ void transactionMenu()
         printf("///              4. Update transaction                                    ///\n");
         printf("///              5. Delete transaction                                    ///\n");
         printf("///              6. List transactions by type                             ///\n");
+        printf("///              7. Filter transactions by user                           ///\n");
         printf("///              0. Back to main menu                                     ///\n");
         printf("///                                                                       ///\n");
         printf("/////////////////////////////////////////////////////////////////////////////\n\n");
@@ -58,6 +59,9 @@ void transactionMenu()
             break;
         case '6':
             transactionListByType();
+            break;
+        case '7':
+            filterTransactionsByUser();
             break;
         case '0':
             isValid = false;
@@ -177,8 +181,7 @@ Transaction *createTransactionFill(void)
         userList();
         printf("\n\n///        User's CPF (enter '0' if you're not a user or enter a valid CPF): ///\n");
         fgetsS(tran->userCPF, 12);
-        if (strlen(tran->userCPF) != 1)
-        {
+        if (strlen(tran->userCPF) != 1){
             getchar();
         }
         user = findUser(tran->userCPF);
@@ -413,17 +416,23 @@ void showTransaction(Transaction *tran)
         printf("\n\n\t\t= = = = = Registered Transaction = = = = =");
         printf("\nID: %ld\t", tran->id);
 
-        if ((strcmp(tran->userCPF, "0") != 0))
-        {
+        if ((strcmp(tran->userCPF, "0") != 0)){
             User *user = findUser(tran->userCPF);
-            printf("Made by: %s", user->name);
+            printf("       Made by: %s", user->name);
         }
-        else
-        {
-            printf("Made by: NULL");
+        else{
+            printf("       Made by: NULL");
         }
         printf("\n%s: $%.3lf", dw, tran->value);
-        // printf("\n%s",type);
+
+        if (tran->typeID == 0){
+            printf("            Type: NULL");
+        }
+        else{
+            Type *type = findType(&tran->typeID);
+            printf("            Type: %s", type->name);
+            free(type);
+        }
         printf("\n");
         printfDateTime(tran->time, tran->date);
     }
@@ -658,4 +667,40 @@ Transaction *findTransaction(long int *id)
 
     fclose(fp);
     return NULL;
+}
+
+int filterTransactionsByUser(){
+    char cpf[12];
+    User* user; 
+
+    printf("\nWhat is the CPF of the user you want to see the transactions: ");
+    fgetsS(cpf,12);
+    getchar();
+
+    user = findUser(cpf);
+    if (user == NULL){
+        free(user);
+        return 0;
+    }
+
+    FILE* fp;
+    fp = fopen("transactions.dat","rb");
+    if (fp == NULL){
+        fileError();
+        return 0;
+    }
+    
+    Transaction* tran;
+    tran = (Transaction*) malloc(sizeof(Transaction));
+
+    while (fread(tran,sizeof(Transaction),1,fp)){
+        if (strcmp(tran->userCPF,cpf) == 0){
+            showTransaction(tran);
+        }
+    }
+    
+    free(user);
+    free(tran);
+
+    return 1;
 }

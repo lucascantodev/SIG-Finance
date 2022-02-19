@@ -40,4 +40,6 @@ int saveTransaction(Transaction* tran);
 Transaction* findTransaction(long int* id);
 int resaveTransaction(Transaction* tran);
 void showTransaction(Transaction* tran);
-int transactionListByType();
+int filterTransactionsByUser(void);
+int transactionListByType(void);
+
