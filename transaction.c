@@ -29,7 +29,7 @@ void transactionMenu()
         printf("///              3. Detail transaction                                    ///\n");
         printf("///              4. Update transaction                                    ///\n");
         printf("///              5. Delete transaction                                    ///\n");
-
+        printf("///              6. List transactions by type                             ///\n");
         printf("///              7. Filter transactions by user                           ///\n");
         printf("///              0. Back to main menu                                     ///\n");
         printf("///                                                                       ///\n");
@@ -57,7 +57,9 @@ void transactionMenu()
         case '5':
             deleteTransaction();
             break;
-
+        case '6':
+            transactionListByType();
+            break;
         case '7':
             filterTransactionsByUser();
             break;
@@ -361,6 +363,47 @@ void detailTransaction()
     free(tran);
 
     printf("\n");
+}
+
+int transactionListByType()
+{
+    Type *type;
+    Transaction *tran;
+
+    long int answer;
+
+    printf("\n\tType the type's ID you want to list: ");
+    scanf("%ld", &answer);
+    getchar();
+
+    type = findType(&answer);
+    if (type == NULL) {
+        free(type);
+        return 0;
+    }
+
+    FILE *fp;
+    fp = fopen("transactions.dat", "rb");
+    if (fp == NULL)
+    {
+        fileError();
+        return 0;
+    }
+    else
+    {
+        tran = (Transaction *)malloc(sizeof(Transaction));
+        while (fread(tran, sizeof(Transaction), 1, fp))
+        {
+            if (tran->typeID == answer)
+            {
+                showTransaction(tran);
+            }
+        }
+    }
+    free(type);
+    free(tran);
+
+    return 1;
 }
 
 void showTransaction(Transaction *tran)
