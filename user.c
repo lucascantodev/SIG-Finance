@@ -159,6 +159,7 @@ User *createUserFill(void)
                 printf("\n\t\t!!!!!!!! The cpf informed is already registered !!!!!!!!\n");
             }
         }
+        free(useAux);
     } while (!validateCPF(use->cpf) || cpfExists);
     printf("///                                                                       ///\n");
     printf("/////////////////////////////////////////////////////////////////////////////\n\n");
