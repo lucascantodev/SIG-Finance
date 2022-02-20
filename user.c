@@ -23,9 +23,10 @@ void userMenu()
         printf("///               = = = = = = = = = = = = = = = = = = = =                 ///\n");
         printf("///                                                                       ///\n");
         printf("///              1. Register new user                                     ///\n");
-        printf("///              2. User list                                            ///\n");
+        printf("///              2. User list                                             ///\n");
         printf("///              3. Update User                                           ///\n");
         printf("///              4. Delete User                                           ///\n");
+        printf("///              5. List users alphabetically                             ///\n");
         printf("///              0. Back to main menu                                     ///\n");
         printf("///                                                                       ///\n");
         printf("/////////////////////////////////////////////////////////////////////////////\n\n");
@@ -49,6 +50,9 @@ void userMenu()
         case '4':
             deleteUser();
             break;
+        case '5':
+            userListAlphabetically();
+            break;            
         case '0':
             isValid = false;
             break;
@@ -396,4 +400,67 @@ int physicalDeletionUsers(){
     rename("users2.dat","users.dat");
 
     return 1;
+}
+
+int userListAlphabetically(void){
+    FILE* fp;
+    User* newUser;
+    User* list;
+
+
+    fp = fopen("users.dat","rb");
+    if (fp == NULL){
+        fileError();
+        return 0;
+    }
+
+    // get list
+    list = NULL;
+    newUser = (User*) malloc(sizeof(User));
+
+    while (fread(newUser, sizeof(User), 1, fp)){
+        if (newUser->deleted == 0){
+            if (list == NULL){
+                list = newUser;
+                newUser->next = NULL;
+            }else if (strcmp(newUser->name,list->name) < 0){
+                newUser->next = list;
+                list = newUser;
+            }else{
+                User* previous = list;
+                User* current = list->next;
+
+                while ((current != NULL) && strcmp(current->name,newUser->name) < 0){
+                    previous = current;
+                    current = current->next;
+                }
+                previous->next = newUser;
+                newUser->next = current;
+            }
+        }
+        newUser = (User*) malloc(sizeof(User));
+    }
+    fclose(fp);
+
+    //show list
+    newUser = list;
+    while (newUser != NULL){
+        printf("\n\t\t= = = = = Registred User = = = = =");
+        printf("\nUser name: %s", newUser->name);
+        printf("\nUser Birthday: ");
+        printfDate(newUser->birth_date);
+        newUser = newUser->next;
+    }
+    printf("\n\n\t\t\t>>> Press ENTER to continue <<<\n");
+    getchar();
+    
+    //free list
+    newUser = list;
+    while (list != NULL){
+        list = newUser->next;
+        free(newUser);
+        newUser = list;
+    }
+
+    return 1;  
 }

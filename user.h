@@ -16,6 +16,7 @@ struct user {
     char birth_date[9];
     char cpf[12];
     short int deleted;
+    User* next;
 };
 
 //CRUD: User
@@ -30,3 +31,4 @@ int saveUserOk(User *use, char* operation);
 User* findUser(char* cpf);
 int resaveUser(User *use);
 int physicalDeletionUsers();
+int userListAlphabetically(void);

@@ -30,7 +30,7 @@ void transactionMenu()
         printf("///              4. Update transaction                                    ///\n");
         printf("///              5. Delete transaction                                    ///\n");
         printf("///              6. List transactions by type                             ///\n");
-        printf("///              7. Filter transactions by user                           ///\n");
+        printf("///              7. List transactions by user                             ///\n");
         printf("///              0. Back to main menu                                     ///\n");
         printf("///                                                                       ///\n");
         printf("/////////////////////////////////////////////////////////////////////////////\n\n");
