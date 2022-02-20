@@ -3,7 +3,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 ///                                                                         ///
 ///             Lucas Canto           &           Jonathan Maia             ///
-///             @lucascantodev                  @jonathan-tauan             ///
+///             @lucascantodev                    @jtauanpm                 ///
 ///                                                                         ///
 ///        Repository: https://github.com/lucascantodev/SIG-Finance         ///
 ///                                                                         ///

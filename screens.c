@@ -43,7 +43,7 @@ void team(){
     printf("///                              Developed by:                              ///\n");
     printf("///                                                                         ///\n");
     printf("///             Lucas Canto           &           Jonathan Maia             ///\n");
-    printf("///             @lucascantodev                  @jonathan-tauan             ///\n");
+    printf("///             @lucascantodev                    @jtauanpm                 ///\n");
 	printf("///                                                                         ///\n");
     printf("///        Repository: https://github.com/lucascantodev/SIG-Finance         ///\n");
     printf("///                                                                         ///\n");
