@@ -18,9 +18,9 @@ struct transaction{
     char date[9];
     char time[6];
     char description[101];
-    char deleted;
     char creationDate[11];
     char creationTime[6];
+    char deleted;
     
     char userCPF[12];
     long int typeID;

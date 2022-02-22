@@ -12,9 +12,9 @@
 typedef struct user User;
 
 struct user {
+    char cpf[12];
     char name[41];
     char birth_date[9];
-    char cpf[12];
     short int deleted;
     User* next;
 };
