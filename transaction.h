@@ -31,15 +31,15 @@ struct transaction{
 void transactionMenu(void);
 void createTransaction(void);
 int transactionList(void);
-void detailTransaction(void);
-void updateTransaction(void);
-void deleteTransaction(void);
+void detailTransaction(long int* id);
+void updateTransaction(long int* id);
+void deleteTransaction(long int* id);
 int saveTransactionOk(Transaction* tran, char* operation);
 Transaction* createTransactionFill(void);
 int saveTransaction(Transaction* tran);
 Transaction* findTransaction(long int* id);
 int resaveTransaction(Transaction* tran);
 void showTransaction(Transaction* tran);
-int filterTransactionsByUser(void);
-int transactionListByType(void);
+int filterTransactionsByUser(char* cpf);
+int transactionListByType(long int* typeID);
 

@@ -14,6 +14,9 @@
 void transactionMenu()
 {
     char op;
+    long int id;
+    long int typeID;
+    char cpf[12];
     bool isValid = true;
 
     do
@@ -49,19 +52,37 @@ void transactionMenu()
             transactionList();
             break;
         case '3':
-            detailTransaction();
+            printf("\n\tWhich transaction ID you want to see detailed: ");
+            scanf("%ld", &id);
+            getchar();
+            detailTransaction(&id);
             break;
         case '4':
-            updateTransaction();
+            printf("\nWhich transaction ID do you want to be updated: ");
+            scanf("%ld", &id);
+            getchar();
+            updateTransaction(&id);
             break;
         case '5':
-            deleteTransaction();
+            printf("\nWhich transaction ID do you want to be deleted: ");
+            scanf("%ld", &id);
+            getchar();
+            deleteTransaction(&id);
             break;
         case '6':
-            transactionListByType();
+            printf("\n\tType the type's ID you want to list: ");
+            scanf("%ld", &typeID);
+            getchar();
+            transactionListByType(&typeID);
             break;
         case '7':
-            filterTransactionsByUser();
+            printf("\nWhat is the CPF of the user you want to see the transactions: ");
+            fgetsS(cpf,12);
+            // if (strlen(cpf) != 1)
+            // {
+            //     getchar();
+            // }
+            filterTransactionsByUser(cpf);
             break;
         case '0':
             isValid = false;
@@ -181,9 +202,9 @@ Transaction *createTransactionFill(void)
         userList();
         printf("\n\n///        User's CPF (enter '0' if you're not a user or enter a valid CPF): ///\n");
         fgetsS(tran->userCPF, 12);
-        if (strlen(tran->userCPF) != 1){
-            getchar();
-        }
+        // if (strlen(tran->userCPF) != 1){
+        //     getchar();
+        // }
         user = findUser(tran->userCPF);
         if (user == NULL && (strcmp(tran->userCPF, "0") != 0))
         {
@@ -310,17 +331,12 @@ int saveTransactionOk(Transaction *tran, char *operation)
 }
 
 //(readByID)
-void detailTransaction()
+void detailTransaction(long int* id)
 {
-    long int id;
     Transaction *tran;
     char dw[11];
 
-    printf("\n\tWhich transaction ID you want to see detailed: ");
-    scanf("%ld", &id);
-    getchar();
-
-    tran = findTransaction(&id);
+    tran = findTransaction(id);
     if (tran == NULL || tran->deleted == 1)
     {
         registerNotFound();
@@ -365,19 +381,14 @@ void detailTransaction()
     printf("\n");
 }
 
-int transactionListByType()
+int transactionListByType(long int* typeID)
 {
     Type *type;
     Transaction *tran;
 
-    long int answer;
-
-    printf("\n\tType the type's ID you want to list: ");
-    scanf("%ld", &answer);
-    getchar();
-
-    type = findType(&answer);
+    type = findType(typeID);
     if (type == NULL) {
+        noRegisterFound();
         free(type);
         return 0;
     }
@@ -394,7 +405,7 @@ int transactionListByType()
         tran = (Transaction *)malloc(sizeof(Transaction));
         while (fread(tran, sizeof(Transaction), 1, fp))
         {
-            if (tran->typeID == answer)
+            if (tran->typeID == *typeID)
             {
                 showTransaction(tran);
             }
@@ -443,21 +454,17 @@ void showTransaction(Transaction *tran)
 }
 
 //(update)
-void updateTransaction()
+void updateTransaction(long int* id)
 {
-    long int id;
     Transaction *tran;
     char value[11];
     bool ok;
     Type *type;
     User *user;
 
-    printf("                 = = = = = = Update Transaction = = = = = =                  \n\n");
-    printf("\nWhich transaction ID do you want to be updated: ");
-    scanf("%ld", &id);
-    getchar();
+    printf("/n/n                 = = = = = = Update Transaction = = = = = =                  \n\n");
 
-    tran = findTransaction(&id);
+    tran = findTransaction(id);
 
     if (tran == NULL)
     {
@@ -466,20 +473,20 @@ void updateTransaction()
     else
     {
 
+        printf("\n\n!!!!!!!!!! If any invalid value is entered, the field will be asked again !!!!!!!!!!\n\n");
+        printf("\t\t\t>>> Press ENTER to continue <<<");
+        getchar();
         do
         {
-            printf("\n\n!!!!!!!!!! If any invalid value is entered, the field will be asked again !!!!!!!!!!\n\n");
-            printf("\t\t\t>>> Press ENTER to continue <<<");
-            getchar();
 
             printf("\n                 = = = = = = User List = = = = = =                  \n");
             userList();
             printf("\n\n///        User's CPF (enter '0' if you're not a user or enter a valid CPF): ///\n");
             fgetsS(tran->userCPF, 12);
-            if (strlen(tran->userCPF) != 1)
-            {
-                getchar();
-            }
+            // if (strlen(tran->userCPF) != 1)
+            // {
+            //     getchar();
+            // }
             user = findUser(tran->userCPF);
             if (user == NULL && (strcmp(tran->userCPF, "0") != 0))
             {
@@ -488,7 +495,7 @@ void updateTransaction()
                 getchar();
             }
             free(user);
-        } while (user == NULL && tran->userCPF != 0);
+        } while (user == NULL && (strcmp(tran->userCPF, "0") != 0));
 
         do
         {
@@ -576,16 +583,11 @@ void updateTransaction()
 }
 
 //(delete)
-void deleteTransaction()
+void deleteTransaction(long int* id)
 {
-    long int id;
     Transaction *tran;
 
-    printf("\nWhich transaction ID do you want to be deleted: ");
-    scanf("%ld", &id);
-    getchar();
-
-    tran = findTransaction(&id);
+    tran = findTransaction(id);
     if (tran == NULL)
     {
         registerNotFound();
@@ -669,16 +671,12 @@ Transaction *findTransaction(long int *id)
     return NULL;
 }
 
-int filterTransactionsByUser(){
-    char cpf[12];
+int filterTransactionsByUser(char* cpf){
     User* user; 
-
-    printf("\nWhat is the CPF of the user you want to see the transactions: ");
-    fgetsS(cpf,12);
-    getchar();
 
     user = findUser(cpf);
     if (user == NULL){
+        noRegisterFound();
         free(user);
         return 0;
     }
