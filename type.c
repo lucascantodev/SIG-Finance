@@ -11,6 +11,7 @@ void typeMenu()
 {
     char op;
     bool isValid = true;
+    long int id;
 
     do
     {
@@ -43,10 +44,16 @@ void typeMenu()
             typeList();
             break;
         case '3':
-            updateType();
+            printf("\nWhich type ID do you want to be updated: ");
+            scanf("%ld", &id);
+            getchar();
+            updateType(&id);
             break;
         case '4':
-            deleteType();
+            printf("\nWhich type ID do you want to be deleted: ");
+            scanf("%ld", &id);
+            getchar();
+            deleteType(&id);
             break;
         case '0':
             isValid = false;
@@ -176,17 +183,13 @@ int typeList()
 }
 
 //(update)
-void updateType()
+void updateType(long int* id)
 {
-    long int id;
     Type *type;
 
-    printf("                 = = = = = = Update Type = = = = = =                  \n\n");
-    printf("\nWhich type ID do you want to be updated: ");
-    scanf("%ld", &id);
-    getchar();
+    printf("/n/n                 = = = = = = Update Type = = = = = =                  \n\n");
 
-    type = findType(&id);
+    type = findType(id);
     if (type == NULL)
     {
         registerNotFound();
@@ -243,16 +246,11 @@ Type *findType(long int *id)
 }
 
 //(delete)
-void deleteType()
+void deleteType(long int* id)
 {
-    long int id;
     Type *type;
 
-    printf("\nWhich type ID do you want to be deleted: ");
-    scanf("%ld", &id);
-    getchar();
-
-    type = findType(&id);
+    type = findType(id);
     if (type == NULL)
     {
         registerNotFound();
