@@ -11,6 +11,7 @@
 void userMenu()
 {
     char op;
+    char cpf[12];
     bool isValid = true;
 
     do
@@ -45,10 +46,16 @@ void userMenu()
             userList();
             break;
         case '3':
-            updateUser();
+            printf("\nWhich user CPF do you want to be updated: ");
+            fgetsS(cpf, 12);
+            getchar();
+            updateUser(cpf);
             break;
         case '4':
-            deleteUser();
+            printf("\nWhich User CPF do you want to be deleted: ");
+            fgetsS(cpf, 12);
+            getchar();
+            deleteUser(cpf);
             break;
         case '5':
             userListAlphabetically();
@@ -221,19 +228,11 @@ int userList()
 }
 
 //(update)
-void updateUser()
+void updateUser(char* cpf)
 {
-    char cpf[12];
     User *use;
-
-    printf("\n\n!!!!!!!!!! If any invalid value is entered, the field will be asked again !!!!!!!!!!\n\n");
-    printf("\t\t\t>>> Press ENTER to continue <<<");
-    getchar();
-
-    printf("                 = = = = = = Update User = = = = = =                  \n\n");
-    printf("\nWhich user CPF do you want to be updated: ");
-    fgetsS(cpf, 12);
-    getchar();
+    
+    printf("/n                 = = = = = = Update User = = = = = =                  \n\n");
 
     use = findUser(cpf);
     if (use == NULL)
@@ -242,7 +241,9 @@ void updateUser()
     }
     else
     {
-
+        printf("\n\n!!!!!!!!!! If any invalid value is entered, the field will be asked again !!!!!!!!!!\n\n");
+        printf("\t\t\t>>> Press ENTER to continue <<<");
+        getchar();
         do
         {
             printf("\n           User's Name (only letters): ");
@@ -304,14 +305,9 @@ User *findUser(char *cpf)
 }
 
 //(delete)
-void deleteUser()
+void deleteUser(char* cpf)
 {
     User *use;
-    char cpf[12];
-
-    printf("\nWhich User CPF do you want to be deleted: ");
-    fgetsS(cpf, 12);
-    getchar();
 
     use = findUser(cpf);
     if (use == NULL)

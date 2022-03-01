@@ -84,6 +84,19 @@ void saveCanceled(void)
     system("clear||cls");
 }
 
+void invalidOption(void)
+{
+    printf("\t\t\t============================\n");
+    printf("\t\t\t====== Invalid option ======\n");
+    printf("\t\t\t============================\n\n");
+
+    printf("\t\t\t>>> Press ENTER to continue <<<");
+    getchar();
+    system("clear||cls");
+    
+    printf("\n\n\t\t\t>>> Choose a valid option <<<\n");
+}
+
 void fgetsS(char *string, long int stringSize)
 {
     // get sdtin with fgets and remove "\n"
