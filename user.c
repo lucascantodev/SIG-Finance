@@ -433,6 +433,8 @@ int userListAlphabetically(void){
                 previous->next = newUser;
                 newUser->next = current;
             }
+        }else{
+            free(newUser);
         }
         newUser = (User*) malloc(sizeof(User));
     }
